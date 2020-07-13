@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "610534752084",
+    "firebase_url": "https://sadar-caaaf.firebaseio.com",
+    "project_id": "sadar-caaaf",
+    "storage_bucket": "sadar-caaaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610534752084:android:dbf06802bf031283fa12c1",
+        "android_client_info": {
+          "package_name": "com.sadar.bazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610534752084-nrn3gvh9vqjdod971e02d31654u1gsrg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sadar.bazar",
+            "certificate_hash": "18b8b49dc0f0c9fc9d82fcb80ea98e2e81fa7dfd"
+          }
+        },
+        {
+          "client_id": "610534752084-qknhf01o9dppafdilsn45bm3bb90hdt7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYTJTtVYWuX1v74F0q0uiQgMNUbkDH1NE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610534752084-qknhf01o9dppafdilsn45bm3bb90hdt7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
