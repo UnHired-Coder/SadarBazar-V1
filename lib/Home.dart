@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/large/ShopItemHorizontal.dart';
 import 'package:bazar/ui/widgets/large/ShopItemVertical.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -149,19 +150,22 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ShopItemVertical(
-              width: 160,
+              width: width*0.35,
               height: 230,
-              code: [0, 1, 1, 1],
+              code: [1, 1, 1, 1],
             ),
             ShopItemVertical(
-              width: 160,
+              width: width*0.35,
               height: 230,
               code: [1, 1, 1, 1],
             ),
           ],
         ),
-        new Container(
-          color: White,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ShopItemHorizontal(width: width*0.8, height: 120, code: [1, 1, 1, 1])
+          ],
         ),
         new Container(
           color: White,
