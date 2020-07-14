@@ -9,6 +9,9 @@ void main() {
   )));
 }
 
+onWillPopup() {
+}
+
 class RestartWidget extends StatefulWidget {
   final Widget child;
 
@@ -24,7 +27,6 @@ class RestartWidget extends StatefulWidget {
 
 class _RestartWidgetState extends State<RestartWidget> {
   Key key = UniqueKey();
-  DateTime currentBackPressTime;
 
   void restartApp() {
     setState(() {
@@ -40,17 +42,4 @@ class _RestartWidgetState extends State<RestartWidget> {
     );
   }
 
-  Future<bool> onWillPop() {
-    DateTime now = DateTime.now();
-    if (currentBackPressTime == null ||
-        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
-      currentBackPressTime = now;
-      const SnackBar snackBar = SnackBar(
-        content: Text('Tap back again to leave'),
-      );
-      Scaffold.of(context).showSnackBar(snackBar);
-      return Future.value(false);
-    }
-    return Future.value(true);
-  }
 }
