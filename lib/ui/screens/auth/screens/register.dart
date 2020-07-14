@@ -124,7 +124,7 @@ class _RegisterState extends State<Register> {
                                       " " +
                                       otp);
                                   requestRegister(phone, otp);
-                                } else if (phone != "") {
+                                } else if (phone != "" && _field) {
                                   setState(() {
                                     _validatePhone = false;
                                     _loading = false;
@@ -285,6 +285,7 @@ class _RegisterState extends State<Register> {
 
   Widget _otpField() {
     return TextField(
+      obscureText: true,
       textAlign: TextAlign.center,
       controller: _otpController,
       keyboardType: TextInputType.number,

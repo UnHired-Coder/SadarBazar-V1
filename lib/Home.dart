@@ -1,7 +1,10 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/large/ShopItemVertical.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,11 +12,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double height;
+  double width;
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
 
+    setState(() {
+      width = _width;
+      height = _height;
+    });
     _currentUser();
     return Scaffold(
       body: WillPopScope(
@@ -24,55 +34,26 @@ class _HomeState extends State<Home> {
               height: _height,
               child: DefaultTabController(
                 length: 4,
-                child: new Scaffold(
-                  body: TabBarView(
-                    children: [
-                      new Container(
-                        color: White,
-                      ),
-                      new Container(
-                        color: White,
-                      ),
-                      new Container(
-                        color: White,
-                      ),
-                      new Container(
-                        color: White,
-                      ),
-                    ],
-                  ),
-                  bottomNavigationBar: new TabBar(
-                    tabs: [
-                      Tab(
-                        icon: new Icon(Icons.home),
-                      ),
-                      Tab(
-                        icon: new Icon(Icons.rss_feed),
-                      ),
-                      Tab(
-                        icon: new Icon(Icons.perm_identity),
-                      ),
-                      Tab(icon: new Icon(Icons.settings),)
-                    ],
-                    labelColor: Orange,
-                    unselectedLabelColor: LightBlack,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorPadding: EdgeInsets.all(5.0),
-                    indicatorColor: Orange,
+                child: SafeArea(
+                  child: new Scaffold(
+                    appBar: AppBar(
+                      backgroundColor: Black,
+                    ),
+                    body: _tabBarView(),
+                    backgroundColor: White,
+                    bottomNavigationBar: _tabBar(),
+                    drawer: _drawer(),
                   ),
                 ),
               )),
         ),
       ),
     );
-
   }
 
-  void _currentUser() async{
+  void _currentUser() async {
     await FirebaseAuth.instance.currentUser().then((_user) {
-
-      if(_user == null)
-        return null;
+      if (_user == null) return null;
 
       debugPrint(_user.phoneNumber);
       debugPrint(_user.displayName);
@@ -81,7 +62,143 @@ class _HomeState extends State<Home> {
     });
   }
 
+  Drawer _drawer() {
+    return Drawer(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              height: height * 0.1,
+              width: MediaQuery.of(context).size.width,
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: FakeWhite,
+              ),
+            ),
+            _drawerItem("Home", FontAwesomeIcons.home, context),
+            _drawerItem("My Orders", FontAwesomeIcons.stickyNote, context),
+            _drawerItem("My cart", FontAwesomeIcons.shoppingCart, context),
+            _breaker(),
+            _drawerItem("My Transactions", FontAwesomeIcons.moneyBill, context),
+            _drawerItem("My Wallet", FontAwesomeIcons.wallet, context),
+            _breaker(),
+            Container(
+              height: 80,
+              color: White,
+            ),
+            _drawerItem(
+                "Refer your friends", FontAwesomeIcons.userFriends, context),
+            _drawerItem("Rate Us!", FontAwesomeIcons.star, context),
+            _drawerItem("Share", FontAwesomeIcons.share, context),
+            _drawerItem("About Us", FontAwesomeIcons.teamspeak, context),
+            _drawerItem("Logout", FontAwesomeIcons.signOutAlt, context,
+                color: Maroon),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container _breaker() {
+    return Container(
+      alignment: Alignment.center,
+      height: 50,
+      color: White,
+      child: Container(
+        height: 2,
+        color: LightBlack.withOpacity(0.1),
+        width: MediaQuery.of(context).size.width,
+      ),
+    );
+  }
+
+  InkWell _drawerItem(String title, IconData iconData, context, {Color color}) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+          height: 50,
+          color: White,
+          margin: EdgeInsets.only(left: 20),
+          child: Row(
+            children: [
+              Icon(
+                iconData,
+                size: 10,
+                color: (color != null) ? color : LightBlack,
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                title,
+                style: TextStyle(fontSize: 20, color: LightBlack),
+              )
+            ],
+          )),
+    );
+  }
+
+  TabBarView _tabBarView() {
+    return new TabBarView(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ShopItemVertical(
+              width: 160,
+              height: 230,
+              code: [0, 1, 1, 1],
+            ),
+            ShopItemVertical(
+              width: 160,
+              height: 230,
+              code: [1, 1, 1, 1],
+            ),
+          ],
+        ),
+        new Container(
+          color: White,
+        ),
+        new Container(
+          color: White,
+        ),
+        new Container(
+          color: White,
+        ),
+      ],
+    );
+  }
+
+  TabBar _tabBar() {
+    return new TabBar(
+      tabs: [
+        Tab(
+          icon: new Icon(Icons.home),
+        ),
+        Tab(
+          icon: new Icon(Icons.rss_feed),
+        ),
+        Tab(
+          icon: new Icon(Icons.perm_identity),
+        ),
+        Tab(
+          icon: new Icon(Icons.settings),
+        )
+      ],
+      labelColor: Orange,
+      unselectedLabelColor: LightBlack,
+      indicatorSize: TabBarIndicatorSize.label,
+      indicatorPadding: EdgeInsets.all(5.0),
+      indicatorColor: Black,
+    );
+  }
+
   DateTime currentBackPressTime;
+
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
     if (currentBackPressTime == null ||
