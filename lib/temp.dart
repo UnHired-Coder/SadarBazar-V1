@@ -8,9 +8,10 @@ class Temp extends StatefulWidget {
 class _TempState extends State<Temp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      color: Colors.white,
     );
   }
 }
