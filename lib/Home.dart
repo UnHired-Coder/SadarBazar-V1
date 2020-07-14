@@ -1,4 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/large/CatagoriesGrid.dart';
+import 'package:bazar/ui/widgets/large/PromoteItem.dart';
 import 'package:bazar/ui/widgets/large/ShopItemHorizontal.dart';
 import 'package:bazar/ui/widgets/large/ShopItemVertical.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -150,29 +152,53 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ShopItemVertical(
-              width: width*0.35,
+              width: width * 0.35,
               height: 230,
               code: [1, 1, 1, 1],
             ),
             ShopItemVertical(
-              width: width*0.35,
+              width: width * 0.35,
               height: 230,
               code: [1, 1, 1, 1],
             ),
+          ],
+        ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ShopItemHorizontal(
+                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ShopItemHorizontal(
+                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
+              ],
+            )
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ShopItemHorizontal(width: width*0.8, height: 120, code: [1, 1, 1, 1])
+            CategoriesGrid(
+              width: width,
+              height: height * 0.5,
+            )
           ],
         ),
-        new Container(
-          color: White,
-        ),
-        new Container(
-          color: White,
-        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PromoteItem(
+              width: width * 0.8,
+              height: 120,
+            )
+          ],
+        )
       ],
     );
   }
