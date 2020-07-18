@@ -1,4 +1,8 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/screens/mainscreens/CartScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
+import 'package:bazar/ui/screens/mainscreens/SearchScreen.dart';
 import 'package:bazar/ui/widgets/large/CatagoriesGrid.dart';
 import 'package:bazar/ui/widgets/large/PromoteItem.dart';
 import 'package:bazar/ui/widgets/large/ShopItemHorizontal.dart';
@@ -147,61 +151,67 @@ class _HomeState extends State<Home> {
 
   TabBarView _tabBarView() {
     return new TabBarView(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ShopItemVertical(
-              width: width * 0.35,
-              height: 230,
-              code: [1, 1, 1, 1],
-            ),
-            ShopItemVertical(
-              width: width * 0.35,
-              height: 230,
-              code: [1, 1, 1, 1],
-            ),
-          ],
-        ),
-        Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ShopItemHorizontal(
-                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ShopItemHorizontal(
-                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
-              ],
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CategoriesGrid(
-              width: width,
-              height: height * 0.5,
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PromoteItem(
-              width: width * 0.8,
-              height: 120,
-            )
-          ],
-        )
-      ],
+      children: [HomeScreen(), SearchScreen(), CartScreen(), ProfileScreen()],
     );
   }
+
+//  TabBarView _tabBarView() {
+//    return new TabBarView(
+//      children: [
+//        Row(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: [
+//            ShopItemVertical(
+//              width: width * 0.35,
+//              height: 230,
+//              code: [1, 1, 1, 1],
+//            ),
+//            ShopItemVertical(
+//              width: width * 0.35,
+//              height: 230,
+//              code: [1, 1, 1, 1],
+//            ),
+//          ],
+//        ),
+//        Column(
+//          children: [
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: [
+//                ShopItemHorizontal(
+//                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
+//              ],
+//            ),
+//            Row(
+//              mainAxisAlignment: MainAxisAlignment.center,
+//              children: [
+//                ShopItemHorizontal(
+//                    width: width * 0.8, height: 120, code: [1, 1, 1, 1])
+//              ],
+//            )
+//          ],
+//        ),
+//        Row(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: [
+//            CategoriesGrid(
+//              width: width,
+//              height: height * 0.5,
+//            )
+//          ],
+//        ),
+//        Row(
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: [
+//            PromoteItem(
+//              width: width * 0.8,
+//              height: 120,
+//            )
+//          ],
+//        )
+//      ],
+//    );
+//  }
 
   TabBar _tabBar() {
     return new TabBar(
