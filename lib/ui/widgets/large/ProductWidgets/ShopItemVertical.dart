@@ -78,7 +78,11 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
               child: Container(
                 height: widget.height * 0.5,
                 width: widget.width,
-                color: FakeWhite,
+                decoration: BoxDecoration(
+                    color: White,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://www.bigbasket.com/media/uploads/p/mm/20000745_5-fresho-bottle-gourd.jpg"))),
               ),
               flex: 5,
             ),
@@ -108,7 +112,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                               fontWeight: FontWeight.bold, fontSize: 15),
                         )),
                     SizedBox(
-                      height: 10,
+                      height: 8,
                     ),
                     Container(
                         alignment: Alignment.centerLeft,
@@ -136,31 +140,48 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Orange,
-                        borderRadius: BorderRadius.circular(5)
-                      ),
+                          color: Orange,
+                          borderRadius: BorderRadius.circular(5)),
                       alignment: Alignment.center,
                       margin: EdgeInsets.all(4),
                       height: 30,
                       width: 100,
-                      
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           InkWell(
-                            onTap: (){debugPrint("Add Item");},
+                            onTap: () {
+                              debugPrint("Add Item");
+                            },
                             child: Container(
                               width: 40,
                               margin: EdgeInsets.only(left: 4),
                               child: Text(
                                 "Add",
-                                style: TextStyle(color: White,fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: White, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
-                          SizedBox(width: 10,),
-                          Container(width: 0.5,color: White,),
-                          InkWell(onTap: (){debugPrint("Add More");},child: Container(width: 15,child: Icon(FontAwesomeIcons.plus,size: 10,color: White,)),)
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 0.5,
+                            color: White,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              debugPrint("Add More");
+                            },
+                            child: Container(
+                                width: 15,
+                                child: Icon(
+                                  FontAwesomeIcons.plus,
+                                  size: 10,
+                                  color: White,
+                                )),
+                          )
                         ],
                       ),
                     )

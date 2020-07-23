@@ -22,6 +22,7 @@ class _PromoteItemState extends State<PromoteItem> {
     return Container(
       color: Maroon.withOpacity(0.2),
       padding: EdgeInsets.all(0.1),
+      margin: EdgeInsets.all(2),
       child: Container(
         width: widget.width,
         height: widget.height,
@@ -31,7 +32,10 @@ class _PromoteItemState extends State<PromoteItem> {
           Flexible(
             child: Container(
               height: widget.height,
-              color: FakeWhite,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/f4b21a4e-9109-4ce4-843c-7a2d2c2aec0d/T1_All_Fresh-Fruits_DT_1_480x360_25thJune.jpg"))),
             ),
             flex: 3,
           ),

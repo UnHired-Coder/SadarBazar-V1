@@ -51,7 +51,11 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
                 child: Container(
                   width: widget.width * 0.3,
                   height: widget.height,
-                  color: FakeWhite,
+                  decoration: BoxDecoration(
+                      color: White,
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              "https://www.bigbasket.com/media/uploads/p/mm/20000745_5-fresho-bottle-gourd.jpg"))),
                 ),
                 flex: 5,
               ),
@@ -65,11 +69,12 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
                     children: [
                       Container(
                           alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.only(left: 10,top: 10),
+                          margin: EdgeInsets.only(left: 10, top: 10),
                           child: Text(
                             "Rs 233/-",
                             style: TextStyle(
-                                color: LightBlack.withOpacity(0.8), fontSize: 13),
+                                color: LightBlack.withOpacity(0.8),
+                                fontSize: 13),
                           )),
                       Container(
                           margin: EdgeInsets.only(left: 10),
@@ -187,3 +192,5 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
     );
   }
 }
+
+

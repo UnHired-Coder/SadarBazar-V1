@@ -3,10 +3,6 @@ import 'package:bazar/ui/screens/mainscreens/CartScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
 import 'package:bazar/ui/screens/mainscreens/SearchScreen.dart';
-import 'package:bazar/ui/widgets/large/CatagoriesGrid.dart';
-import 'package:bazar/ui/widgets/large/PromoteItem.dart';
-import 'package:bazar/ui/widgets/large/ShopItemHorizontal.dart';
-import 'package:bazar/ui/widgets/large/ShopItemVertical.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,9 +39,6 @@ class _HomeState extends State<Home> {
                 length: 4,
                 child: SafeArea(
                   child: new Scaffold(
-                    appBar: AppBar(
-                      backgroundColor: Black,
-                    ),
                     body: _tabBarView(),
                     backgroundColor: White,
                     bottomNavigationBar: _tabBar(),
@@ -217,16 +210,16 @@ class _HomeState extends State<Home> {
     return new TabBar(
       tabs: [
         Tab(
-          icon: new Icon(Icons.home),
+          icon: new Icon(FontAwesomeIcons.home,size: 18,),
         ),
         Tab(
-          icon: new Icon(Icons.rss_feed),
+          icon: new Icon(FontAwesomeIcons.search,size: 18,),
         ),
         Tab(
-          icon: new Icon(Icons.perm_identity),
+          icon: new Icon(FontAwesomeIcons.shoppingCart,size: 18,),
         ),
         Tab(
-          icon: new Icon(Icons.settings),
+          icon: new Icon(FontAwesomeIcons.user,size: 18,),
         )
       ],
       labelColor: Orange,
