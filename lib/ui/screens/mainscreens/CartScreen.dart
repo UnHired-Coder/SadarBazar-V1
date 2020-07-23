@@ -1,6 +1,7 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartScreen extends StatefulWidget {
@@ -8,54 +9,166 @@ class CartScreen extends StatefulWidget {
   _CartScreenState createState() => _CartScreenState();
 }
 
-class _CartScreenState extends State<CartScreen> {
+enum ScrollState { EXPANDED, COLLAPSED, BUSY }
+
+class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
+  ScrollController _scrollController;
+  ScrollState _scrollState;
+  bool _checkOut;
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 400,
+      ),
+      lowerBound: 0.0,
+      upperBound: 200.0,
+    )..addListener(() {
+      setState(() {});
+    });
+
+    _checkOut = true;
+    _scrollState = ScrollState.EXPANDED;
+    _scrollController = new ScrollController()
+      ..addListener(() => !_isAppBarExpanded
+          ? {
+//              debugPrint(_scrollState.toString()),
+              if (_scrollState != ScrollState.EXPANDED &&
+                  _scrollState != ScrollState.BUSY)
+                {
+                  debugPrint("Show --"),
+                  _scrollState = ScrollState.BUSY,
+                  _animationController.reverse(),
+                  Future.delayed(Duration(milliseconds: 200), () {
+                    debugPrint("Done");
+                    setState(() {
+                      _checkOut = true;
+                    });
+                    _scrollState = ScrollState.EXPANDED;
+                  }),
+                }
+            }
+          : {
+//              debugPrint(_scrollState.toString()),
+              if (_scrollState != ScrollState.COLLAPSED &&
+                  _scrollState != ScrollState.BUSY)
+                {
+                  debugPrint("Hide --"),
+                  _animationController.forward(),
+                  _scrollState = ScrollState.BUSY,
+                  Future.delayed(Duration(microseconds: 200), () {
+                    debugPrint("Done");
+                    setState(() {
+                      _checkOut = false;
+                    });
+                    _scrollState = ScrollState.COLLAPSED;
+                  }),
+                }
+            });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
+  bool get _isAppBarExpanded {
+    return (_scrollController.position.userScrollDirection ==
+        ScrollDirection.reverse);
+  }
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: FakeWhite,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              floating: true,
-              snap: true,
-              backgroundColor: Maroon,
-              expandedHeight: _height * 0.25,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Text(
-                      "My Cart",
-                      style: TextStyle(color: White, fontSize: 12),
-                    ),
+      backgroundColor: FakeWhite,
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            floating: true,
+            snap: true,
+            backgroundColor: Maroon,
+            expandedHeight: _height * 0.25,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Text(
+                    "My Cart",
+                    style: TextStyle(color: White, fontSize: 12),
                   ),
-                  Icon(
-                    FontAwesomeIcons.shoppingCart,
-                    size: 15,
-                  )
+                ),
+                Icon(
+                  FontAwesomeIcons.shoppingCart,
+                  size: 15,
+                )
+              ],
+            ),
+            flexibleSpace: FlexibleSpaceBar(
+              background: Column(
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  CustomSilverBarCart()
                 ],
               ),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Column(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                    ),
-                    CustomSilverBarCart()
-                  ],
-                ),
-              ),
             ),
-            SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-              return ShopItemHorizontal(
-                  width: _width * 0.8, height: 120, code: [1, 1, 1, 0]);
-            }, childCount: 10))
-          ],
-        ));
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return ShopItemHorizontal(
+                    width: _width * 0.8, height: 120, code: [1, 1, 1, 0]);
+              },
+              childCount: 30,
+            ),
+          )
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: Transform.translate(
+        offset: Offset(0, _animationController.value),
+        child: RaisedButton(
+          onPressed: () {
+            debugPrint("Proceed to Checkout");
+          },
+          color: Maroon,
+          child: Container(
+            alignment: Alignment.center,
+            height: _height * 0.04,
+            width: _width * 0.5,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Proceed to Checkout",
+                  style: TextStyle(
+                      color: White, fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Icon(
+                  FontAwesomeIcons.arrowRight,
+                  color: White,
+                  size: 14,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -122,7 +235,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
               height: 20,
             ),
             Container(
-              height: 4,
+              height: 2,
               width: _width,
               color: Black,
             ),
