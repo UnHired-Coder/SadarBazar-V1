@@ -1,68 +1,94 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:flutter/material.dart';
 
 class ShopItemGrid extends StatefulWidget {
+  final bool flag;
+  final List<ProductItem> gridOfProducts;
+
+  ShopItemGrid({this.flag, @required this.gridOfProducts});
+
   @override
   _ShopItemGridState createState() => _ShopItemGridState();
 }
 
 class _ShopItemGridState extends State<ShopItemGrid> {
+  bool _flag;
+
+  @override
+  void initState() {
+    super.initState();
+    _flag = widget.gridOfProducts != null && widget.gridOfProducts.length == 4
+        ? true
+        : false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(),
-      child: Column(
-        children: [
-          Container(),
-          Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Orange, border: Border.all(color: Black,width: 0.1)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(width: 4,),
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.7,
-                          padding: EdgeInsets.all(1),
-                          child: Text(
-                            "Checkout these Amazing products!!",
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: White,
-                              fontSize: 20,
+    return Visibility(
+      visible: _flag,
+//      visible: true,
+      child: Container(
+        decoration: BoxDecoration(),
+        child: Column(
+          children: [
+            Container(),
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 100,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Orange,
+                          border: Border.all(color: Black, width: 0.1)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            padding: EdgeInsets.all(1),
+                            child: Text(
+                              "Checkout these Amazing products!!",
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: White,
+                                fontSize: 20,
+                              ),
                             ),
                           ),
-                        ),
-                        RaisedButton(
-                          onPressed: () {
-                            debugPrint("See all");
-                          },
-                          elevation: 0,
-                          color: FakeWhite,
-                          child: Text(
-                            "See all",
-                            style: TextStyle(color: Black),
+                          RaisedButton(
+                            onPressed: () {
+                              debugPrint("See all");
+                            },
+                            elevation: 0,
+                            color: FakeWhite,
+                            child: Text(
+                              "See all",
+                              style: TextStyle(color: Black),
+                            ),
                           ),
-                        ),SizedBox(width: 4,)
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [ProductGridItem()],
-              )
-            ],
-          )
-        ],
+                          SizedBox(
+                            width: 4,
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [ProductGridItem()],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -83,12 +109,19 @@ class _ProductGridItemState extends State<ProductGridItem> {
         color: White,
         border: Border.all(width: 0.1),
       ),
-child: GridView.count(  physics: NeverScrollableScrollPhysics(),
-  shrinkWrap: true,
-  crossAxisCount: 2,
-  children: List.generate(4, (index) {
-    return Container(alignment: Alignment.center,child: _item(),decoration: BoxDecoration(border: Border.all(width: 0.02,color: Black)),);
-  }),),
+      child: GridView.count(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        crossAxisCount: 2,
+        children: List.generate(4, (index) {
+          return Container(
+            alignment: Alignment.center,
+            child: _item(),
+            decoration:
+                BoxDecoration(border: Border.all(width: 0.02, color: Black)),
+          );
+        }),
+      ),
 //      child: Column(
 //        mainAxisAlignment: MainAxisAlignment.center,
 //        children: [
@@ -107,7 +140,9 @@ child: GridView.count(  physics: NeverScrollableScrollPhysics(),
 
   Widget _item() {
     return InkWell(
-      onTap: (){debugPrint("Explore this category");},
+      onTap: () {
+        debugPrint("Explore this category");
+      },
       child: Container(
         height: 150,
         width: 100,

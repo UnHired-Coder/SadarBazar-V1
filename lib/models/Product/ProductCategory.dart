@@ -16,9 +16,9 @@ class ProductCategory {
 
   final int categoryId;
   final String categoryName;
-  final CategoryDesc categoryDesc;
+  final String categoryDesc;
   final String categoryPictureUrl;
-  final String categoryTags;
+  final List<String> categoryTags;
 
   factory ProductCategory.fromRawJson(String str) => ProductCategory.fromJson(json.decode(str));
 
@@ -27,36 +27,16 @@ class ProductCategory {
   factory ProductCategory.fromJson(Map<String, dynamic> json) => ProductCategory(
     categoryId: json["categoryID"],
     categoryName: json["categoryName"],
-    categoryDesc: categoryDescValues.map[json["categoryDesc"]],
+    categoryDesc: json["categoryDesc"],
     categoryPictureUrl: json["categoryPictureUrl"],
-    categoryTags: json["categoryTags"],
+    categoryTags: List<String>.from(json["categoryTags"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "categoryID": categoryId,
     "categoryName": categoryName,
-    "categoryDesc": categoryDescValues.reverse[categoryDesc],
+    "categoryDesc": categoryDesc,
     "categoryPictureUrl": categoryPictureUrl,
-    "categoryTags": categoryTags,
+    "categoryTags": List<dynamic>.from(categoryTags.map((x) => x)),
   };
-}
-
-enum CategoryDesc { TASTIEST_FOODS_ARE_LISTED_IN_THIS_CATEGORY }
-
-final categoryDescValues = EnumValues({
-  "Tastiest Foods are listed in this category": CategoryDesc.TASTIEST_FOODS_ARE_LISTED_IN_THIS_CATEGORY
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

@@ -53,27 +53,43 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SliverList(
           delegate: SliverChildListDelegate(<Widget>[
-            CategoriesListWidget(),
-            OffersHighlightedProductsSlider(),
-            ShopItemGrid(),
+            CategoriesListWidget(
+              productCategory: [],
+            ),
+            OffersHighlightedProductsSlider(
+              highlightList: [],
+            ),
+            ShopItemGrid(
+              gridOfProducts: [],
+            ),
             PromoteItem(
               height: 100,
+              productItem: null,
             ),
             OffersHighlightedProductsSlider(
               flag: true,
+              highlightList: [],
             ),
-            ShopItemGrid(),
-            ListProductHorizontal(),
+            ShopItemGrid(
+              gridOfProducts: [],
+            ),
+            ListProductHorizontal(
+              productItemsHorizontal: [],
+            ),
             CategoriesGrid(
               height: _height * 0.4,
               width: _width,
             ),
-            ImageProductHighlight(),
+            ImageProductHighlight(
+              productItem: null,
+            ),
             PromoteItem(
               height: 100,
+              productItem: null,
             ),
             ImageProductHighlight(
               flag: true,
+              productItem: null,
             ),
           ]),
         )
