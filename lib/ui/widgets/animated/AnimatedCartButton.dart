@@ -12,6 +12,13 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton>
   AnimationController _animationController;
   int _count;
 
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();

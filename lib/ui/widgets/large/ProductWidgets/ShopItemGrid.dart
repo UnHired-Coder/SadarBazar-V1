@@ -83,7 +83,7 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                   ],
                 ),
                 Row(
-                  children: [ProductGridItem()],
+                  children: [ProductGridItem(gridOfProducts: widget.gridOfProducts,)],
                 )
               ],
             )
@@ -95,6 +95,11 @@ class _ShopItemGridState extends State<ShopItemGrid> {
 }
 
 class ProductGridItem extends StatefulWidget {
+
+  final bool flag;
+  final List<ProductItem> gridOfProducts;
+
+  ProductGridItem({this.flag, this.gridOfProducts});
   @override
   _ProductGridItemState createState() => _ProductGridItemState();
 }
@@ -116,7 +121,7 @@ class _ProductGridItemState extends State<ProductGridItem> {
         children: List.generate(4, (index) {
           return Container(
             alignment: Alignment.center,
-            child: _item(),
+            child: _item(index),
             decoration:
                 BoxDecoration(border: Border.all(width: 0.02, color: Black)),
           );
@@ -138,7 +143,7 @@ class _ProductGridItemState extends State<ProductGridItem> {
     );
   }
 
-  Widget _item() {
+  Widget _item(int index) {
     return InkWell(
       onTap: () {
         debugPrint("Explore this category");
@@ -151,10 +156,10 @@ class _ProductGridItemState extends State<ProductGridItem> {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: NetworkImage(
-                    "https://www.bigbasket.com/media/uploads/p/s/40139744_3-kapiva-ayurveda-wild-honey-pure-natural-healthy.jpg"))),
+                    widget.gridOfProducts.elementAt(index).productPictureUrl))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [_text("Food", true), _text("34% off", false)],
+          children: [_text(widget.gridOfProducts.elementAt(index).productName, true), _text(widget.gridOfProducts.elementAt(index).productDiscount.toString()+"% Off", false)],
         ),
       ),
     );

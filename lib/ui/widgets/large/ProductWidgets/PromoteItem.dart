@@ -3,12 +3,10 @@ import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:flutter/material.dart';
 
 class PromoteItem extends StatefulWidget {
-  final double width;
-  final double height;
   final bool flag;
-  final ProductItem productItem;
+  final List<ProductItem> products;
 
-  PromoteItem({this.width, this.height,this.flag, @required this.productItem});
+  PromoteItem({this.flag, @required this.products});
 
   @override
   _PromoteItemState createState() => _PromoteItemState();
@@ -20,11 +18,13 @@ class _PromoteItemState extends State<PromoteItem> {
   @override
   void initState() {
     super.initState();
-    _flag = widget.productItem != null ? true : false;
+    _flag = widget.products[0] != null ? true : false;
   }
 
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height* 0.15;
+    double _width = MediaQuery.of(context).size.width;
     return Visibility(
 //      visible: true,
       visible: _flag,
@@ -37,14 +37,14 @@ class _PromoteItemState extends State<PromoteItem> {
           padding: EdgeInsets.all(0.1),
           margin: EdgeInsets.all(2),
           child: Container(
-            width: widget.width,
-            height: widget.height,
+            width: _width,
+            height: _height,
             color: White,
             margin: EdgeInsets.all(1),
             child: Row(children: [
               Flexible(
                 child: Container(
-                  height: widget.height,
+                  height: _height,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
@@ -55,7 +55,7 @@ class _PromoteItemState extends State<PromoteItem> {
               Flexible(
                 child: Container(
                   alignment: Alignment.centerRight,
-                  height: widget.height,
+                  height: _height,
                   color: White,
                   child: InkWell(
                     onTap: () {

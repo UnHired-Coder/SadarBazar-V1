@@ -37,7 +37,7 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         debugPrint("Open for this Item");
       },
       child: Container(

@@ -29,15 +29,21 @@ class _AnimatedNotificationButtonState extends State<AnimatedNotificationButton>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      key:PageStorageKey("AnimatedNotificationButton"),
+      key: PageStorageKey("AnimatedNotificationButton"),
       width: 35,
       height: 30,
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: () {
-          debugPrint("Cart Icon Tapped");
+          debugPrint("Notification Icon Tapped");
           _updateCount();
         },
         child: Stack(

@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final productItem = productItemFromMap(jsonString);
+//     final productItem = productItemFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
@@ -34,11 +34,11 @@ class ProductItem {
   final int productCategoryId;
   final String productTags;
 
-  factory ProductItem.fromJson(String str) => ProductItem.fromMap(json.decode(str));
+  factory ProductItem.fromRawJson(String str) => ProductItem.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory ProductItem.fromMap(Map<String, dynamic> json) => ProductItem(
+  factory ProductItem.fromJson(Map<String, dynamic> json) => ProductItem(
     productId: json["productID"],
     productName: json["productName"],
     productDesc: json["productDesc"],
@@ -53,7 +53,7 @@ class ProductItem {
     productTags: json["productTags"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
     "productID": productId,
     "productName": productName,
     "productDesc": productDesc,

@@ -1,13 +1,14 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageProductHighlight extends StatefulWidget {
   final bool flag;
-  final ProductItem productItem;
+  final List<ProductCategory> products;
 
-  ImageProductHighlight({this.flag, @required this.productItem});
+  ImageProductHighlight({this.flag, @required this.products});
 
   @override
   _ImageProductHighlightState createState() => _ImageProductHighlightState();
@@ -20,7 +21,7 @@ class _ImageProductHighlightState extends State<ImageProductHighlight> {
   void initState() {
     super.initState();
 
-    _flag = widget.productItem != null ? true : false;
+    _flag = widget.products != null ? true : false;
   }
 
   @override

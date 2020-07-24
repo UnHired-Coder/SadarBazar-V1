@@ -52,5 +52,59 @@
     "categoryTags": [
       "pasta"
     ]
+  },
+  {
+    "categoryID": 100,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": [
+      "sandwiches"
+    ]
+  },
+  {
+    "categoryID": 101,
+    "categoryName": "pasta",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007218_battery-led-bulbs_360.jpg",
+    "categoryTags": [
+      "desserts"
+    ]
+  },
+  {
+    "categoryID": 102,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007219_steel-storage-box_360.jpg",
+    "categoryTags": [
+      "pasta"
+    ]
+  },
+  {
+    "categoryID": 103,
+    "categoryName": "desserts",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": [
+      "salads"
+    ]
+  },
+  {
+    "categoryID": 107,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007217_monsoon-essentials_360.jpg",
+    "categoryTags": [
+      "pies"
+    ]
+  },
+  {
+    "categoryID": 108,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007216_stationery_360.jpg",
+    "categoryTags": [
+      "pasta"
+    ]
   }
 ]

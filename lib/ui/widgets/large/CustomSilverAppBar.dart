@@ -29,11 +29,11 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  margin: EdgeInsets.only(left: 20, right: 20,bottom: 5),
+                  margin: EdgeInsets.only(left: 20, right: 20, bottom: 5),
                   height: 40,
                   width: MediaQuery.of(context).size.width,
                   color: FakeWhite,
-                  child:  Padding(
+                  child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       alignment: Alignment.centerLeft,

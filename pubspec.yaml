@@ -67,6 +67,7 @@ flutter:
     - assets/images/google.jpg
     - assets/images/logoWhite.png
     - lib/Json/PRODUCT_CATEGORIES.json
+    - lib/Json/PRODUCT_ITEM.json
 
   #   - images/a_dot_ham.jpeg
 

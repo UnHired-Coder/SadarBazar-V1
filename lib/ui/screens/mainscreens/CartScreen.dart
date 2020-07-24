@@ -120,7 +120,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return ShopItemHorizontal(
-                    width: _width , height: 120, code: [1, 1, 1, 1]);
+                    width: _width, height: 120, code: [1, 1, 1, 1]);
               },
               childCount: 12,
             ),
@@ -141,9 +141,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             width: _width * 0.5,
             margin: EdgeInsets.only(bottom: 10),
             decoration: BoxDecoration(
-              color: Maroon,
-              borderRadius: BorderRadius.circular(12)
-            ),
+                color: Maroon, borderRadius: BorderRadius.circular(12)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

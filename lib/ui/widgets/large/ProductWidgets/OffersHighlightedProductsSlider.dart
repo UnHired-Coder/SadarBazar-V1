@@ -1,12 +1,13 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class OffersHighlightedProductsSlider extends StatefulWidget {
   final bool flag;
-  final List<String> highlightList;
+  final List<ProductCategory> highlightList;
 
-  OffersHighlightedProductsSlider({this.flag,@required this.highlightList});
+  OffersHighlightedProductsSlider({this.flag, @required this.highlightList});
 
   @override
   _OffersHighlightedProductsSliderState createState() =>
@@ -25,11 +26,13 @@ class _OffersHighlightedProductsSliderState
   ];
 
   bool _flag;
+
   @override
   void initState() {
     super.initState();
-    _flag = widget.highlightList!=null && widget.highlightList.length>=1?true:false;
-
+    _flag = widget.highlightList != null && widget.highlightList.length >= 1
+        ? true
+        : false;
   }
 
   @override

@@ -6,8 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesListWidget extends StatefulWidget {
+  final bool flag;
   final List<ProductCategory> productCategory;
-  CategoriesListWidget({@required this.productCategory});
+  CategoriesListWidget({@required this.productCategory,this.flag});
   @override
   _CategoriesListWidgetState createState() => _CategoriesListWidgetState();
 }
@@ -49,7 +50,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
           .map((i) => ProductCategory.fromJson(i))
           .toList();
     }).then((value) {
-      setState(() {});
+//      setState(() {});
     });
   }
 
@@ -57,59 +58,77 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return (_productCategory == null)?Container(width: 50,height: 50,padding: EdgeInsets.all(4),alignment: Alignment.center,child: CircularProgressIndicator(strokeWidth: 1,backgroundColor: Orange,),):Container(
-      height: _height * 0.08,
-      width: _width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 60,
-            width: _width,
-            child: ListView.builder(
-                itemCount: _productCategory.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return (index == 0)
-                      ? InkWell(
-                          splashColor: Colors.transparent,
-                          onTap: () {
-                            debugPrint("All Categories");
-                            if (_productCategory != null)
-                              for (int i = 0; i < _productCategory.length; i++)
-                                debugPrint(
-                                    _productCategory[i].categoryId.toString());
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(5),
-                            height: 50,
-                            width: 60,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(color: White),
-                            child: Text(
-                              "All",
-                              style: TextStyle(color: Orange, fontSize: 15),
-                            ),
-                          ),
-                        )
-                      : InkWell(
-                          onTap: () {
-                            debugPrint("Explore This Category from list");
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(left: 2, right: 2, top: 2),
-                            height: 60,
-                            width: 70,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: NetworkImage(_productCategory[index].categoryPictureUrl))),
-                          ),
-                        );
-                }),
+    return (_productCategory == null)
+        ? Container(
+            width: 50,
+            height: 50,
+            padding: EdgeInsets.all(4),
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(
+              strokeWidth: 1,
+              backgroundColor: Orange,
+            ),
           )
-        ],
-      ),
-    );
+        : Container(
+            height: _height * 0.08,
+            width: _width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: 60,
+                  width: _width,
+                  child: ListView.builder(
+                      itemCount: _productCategory.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return (index == 0)
+                            ? InkWell(
+                                splashColor: Colors.transparent,
+                                onTap: () {
+                                  debugPrint("All Categories");
+                                  if (_productCategory != null)
+                                    for (int i = 0;
+                                        i < _productCategory.length;
+                                        i++)
+                                      debugPrint(_productCategory[i]
+                                          .categoryId
+                                          .toString());
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.all(5),
+                                  height: 50,
+                                  width: 60,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(color: White),
+                                  child: Text(
+                                    "All",
+                                    style:
+                                        TextStyle(color: Orange, fontSize: 15),
+                                  ),
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {
+                                  debugPrint("Explore This Category from list");
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                      left: 2, right: 2, top: 2),
+                                  height: 60,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(
+                                              _productCategory[index]
+                                                  .categoryPictureUrl))),
+                                ),
+                              );
+                      }),
+                )
+              ],
+            ),
+          );
   }
 }

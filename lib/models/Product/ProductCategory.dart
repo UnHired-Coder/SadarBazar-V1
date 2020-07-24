@@ -20,23 +20,25 @@ class ProductCategory {
   final String categoryPictureUrl;
   final List<String> categoryTags;
 
-  factory ProductCategory.fromRawJson(String str) => ProductCategory.fromJson(json.decode(str));
+  factory ProductCategory.fromRawJson(String str) =>
+      ProductCategory.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ProductCategory.fromJson(Map<String, dynamic> json) => ProductCategory(
-    categoryId: json["categoryID"],
-    categoryName: json["categoryName"],
-    categoryDesc: json["categoryDesc"],
-    categoryPictureUrl: json["categoryPictureUrl"],
-    categoryTags: List<String>.from(json["categoryTags"].map((x) => x)),
-  );
+  factory ProductCategory.fromJson(Map<String, dynamic> json) =>
+      ProductCategory(
+        categoryId: json["categoryID"],
+        categoryName: json["categoryName"],
+        categoryDesc: json["categoryDesc"],
+        categoryPictureUrl: json["categoryPictureUrl"],
+        categoryTags: List<String>.from(json["categoryTags"].map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "categoryID": categoryId,
-    "categoryName": categoryName,
-    "categoryDesc": categoryDesc,
-    "categoryPictureUrl": categoryPictureUrl,
-    "categoryTags": List<dynamic>.from(categoryTags.map((x) => x)),
-  };
+        "categoryID": categoryId,
+        "categoryName": categoryName,
+        "categoryDesc": categoryDesc,
+        "categoryPictureUrl": categoryPictureUrl,
+        "categoryTags": List<dynamic>.from(categoryTags.map((x) => x)),
+      };
 }

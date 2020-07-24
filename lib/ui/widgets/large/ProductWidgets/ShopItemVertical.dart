@@ -37,7 +37,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         debugPrint("Open for this Item");
       },
       child: Container(
@@ -107,7 +107,8 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                           child: Text(
                             "Rs 233/-",
                             style: TextStyle(
-                                color: LightBlack.withOpacity(0.8), fontSize: 13),
+                                color: LightBlack.withOpacity(0.8),
+                                fontSize: 13),
                           )),
                       Container(
                           alignment: Alignment.centerLeft,
@@ -136,7 +137,10 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
             Visibility(
               visible: (code[3] == 1) ? true : false,
               child: Flexible(
-                child: AddProductButton(width:  widget.width,height:  widget.height,),
+                child: AddProductButton(
+                  width: widget.width,
+                  height: widget.height,
+                ),
 //              Container(
 //                height: widget.height * 0.2,
 //                width: widget.width,
