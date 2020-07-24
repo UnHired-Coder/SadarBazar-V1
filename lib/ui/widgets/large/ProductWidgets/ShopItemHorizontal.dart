@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -107,6 +108,7 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
                 margin: EdgeInsets.all(3),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Visibility(
                       visible: (code[2] == 1) ? true : false,
@@ -125,61 +127,16 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: (code[3] == 1) ? true : false,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Orange,
-                                borderRadius: BorderRadius.circular(5)),
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.all(4),
-                            height: 30,
-                            width: 100,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    debugPrint("Add Item");
-                                  },
-                                  child: Container(
-                                    width: 40,
-                                    margin: EdgeInsets.only(left: 4),
-                                    child: Text(
-                                      "Add",
-                                      style: TextStyle(
-                                          color: White,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  width: 0.5,
-                                  color: White,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    debugPrint("Add More");
-                                  },
-                                  child: Container(
-                                      width: 15,
-                                      child: Icon(
-                                        FontAwesomeIcons.plus,
-                                        size: 10,
-                                        color: White,
-                                      )),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Visibility(
+                            visible: (code[3] == 1) ? true : false,
+                            child: AddProductButton(
+                              width: widget.height,
+                              height: widget.width,
+                            ))
+                      ],
                     ),
                   ],
                 ),
@@ -192,5 +149,3 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
     );
   }
 }
-
-

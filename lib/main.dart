@@ -42,6 +42,10 @@ class _RestartWidgetState extends State<RestartWidget> {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Maroon
     ));
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return KeyedSubtree(
       key: key,
       child: widget.child,

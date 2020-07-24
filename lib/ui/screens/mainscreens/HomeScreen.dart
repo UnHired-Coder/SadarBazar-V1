@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/large/CustomSilverAppBar.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ImageProductHighlight.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ListProductsHorizontal.dart';
@@ -26,17 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Maroon,
           title:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Container(height: 40,width: 40,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/logoWhite.png"))),),
+            Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/logoWhite.png"))),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    FontAwesomeIcons.shoppingCart,
-                    size: 15,
-                  ),
-                ),
+                AnimatedCartButton(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
@@ -59,14 +60,18 @@ class _HomeScreenState extends State<HomeScreen> {
             PromoteItem(
               height: 100,
             ),
-            OffersHighlightedProductsSlider(flag: true,),
+            OffersHighlightedProductsSlider(
+              flag: true,
+            ),
             ShopItemGrid(),
-            ListItemHorizontal(),
+            ListProductHorizontal(),
             ImageProductHighlight(),
             PromoteItem(
               height: 100,
             ),
-            ImageProductHighlight(flag: true,),
+            ImageProductHighlight(
+              flag: true,
+            ),
           ]),
         )
       ],

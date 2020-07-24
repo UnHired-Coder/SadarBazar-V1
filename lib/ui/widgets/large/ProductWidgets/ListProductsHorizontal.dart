@@ -3,13 +3,13 @@ import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemVertical.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class ListItemHorizontal extends StatefulWidget {
+class ListProductHorizontal extends StatefulWidget {
   @override
-  _ListItemHorizontalState createState() => _ListItemHorizontalState();
+  _ListProductHorizontalState createState() => _ListProductHorizontalState();
 }
 
-class _ListItemHorizontalState extends State<ListItemHorizontal> {
-  List<String> litems = ["1","2","Third","4"];
+class _ListProductHorizontalState extends State<ListProductHorizontal> {
+  List<String> _list = ["1","2","Third","4"];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _ListItemHorizontalState extends State<ListItemHorizontal> {
       height: 230,
       child:  new ListView.builder
         (
-          itemCount: litems.length,
+          itemCount: _list.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) =>  ShopItemVertical(
               width: _width * 0.35,
@@ -30,7 +30,7 @@ class _ListItemHorizontalState extends State<ListItemHorizontal> {
       ),
     );
   }
-  Widget buildBody(BuildContext ctxt, int index) {
-    return new Text(litems[index]);
+  Widget buildBody(BuildContext context, int index) {
+    return new Text(_list[index]);
   }
 }

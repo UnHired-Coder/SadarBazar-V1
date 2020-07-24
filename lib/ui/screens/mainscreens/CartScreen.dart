@@ -14,7 +14,6 @@ enum ScrollState { EXPANDED, COLLAPSED, BUSY }
 class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
   ScrollController _scrollController;
   ScrollState _scrollState;
-  bool _checkOut;
   AnimationController _animationController;
 
   @override
@@ -23,15 +22,14 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(
-        milliseconds: 400,
+        milliseconds: 600,
       ),
       lowerBound: 0.0,
       upperBound: 200.0,
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
 
-    _checkOut = true;
     _scrollState = ScrollState.EXPANDED;
     _scrollController = new ScrollController()
       ..addListener(() => !_isAppBarExpanded
@@ -45,9 +43,6 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                   _animationController.reverse(),
                   Future.delayed(Duration(milliseconds: 200), () {
                     debugPrint("Done");
-                    setState(() {
-                      _checkOut = true;
-                    });
                     _scrollState = ScrollState.EXPANDED;
                   }),
                 }
@@ -62,9 +57,6 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                   _scrollState = ScrollState.BUSY,
                   Future.delayed(Duration(microseconds: 200), () {
                     debugPrint("Done");
-                    setState(() {
-                      _checkOut = false;
-                    });
                     _scrollState = ScrollState.COLLAPSED;
                   }),
                 }
@@ -127,7 +119,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 return ShopItemHorizontal(
-                    width: _width * 0.8, height: 120, code: [1, 1, 1, 0]);
+                    width: _width , height: 120, code: [1, 1, 1, 1]);
               },
               childCount: 30,
             ),
@@ -138,15 +130,19 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: Transform.translate(
         offset: Offset(0, _animationController.value),
-        child: RaisedButton(
-          onPressed: () {
+        child: InkWell(
+          onTap: () {
             debugPrint("Proceed to Checkout");
           },
-          color: Maroon,
           child: Container(
             alignment: Alignment.center,
-            height: _height * 0.04,
+            height: _height * 0.05,
             width: _width * 0.5,
+            margin: EdgeInsets.only(bottom: 10),
+            decoration: BoxDecoration(
+              color: Maroon,
+              borderRadius: BorderRadius.circular(12)
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
