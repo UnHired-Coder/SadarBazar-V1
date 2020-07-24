@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final productCategory = productCategoryFromMap(jsonString);
+//     final productCategory = productCategoryFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
@@ -20,11 +20,11 @@ class ProductCategory {
   final String categoryPictureUrl;
   final String categoryTags;
 
-  factory ProductCategory.fromJson(String str) => ProductCategory.fromMap(json.decode(str));
+  factory ProductCategory.fromRawJson(String str) => ProductCategory.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory ProductCategory.fromMap(Map<String, dynamic> json) => ProductCategory(
+  factory ProductCategory.fromJson(Map<String, dynamic> json) => ProductCategory(
     categoryId: json["categoryID"],
     categoryName: json["categoryName"],
     categoryDesc: categoryDescValues.map[json["categoryDesc"]],
@@ -32,7 +32,7 @@ class ProductCategory {
     categoryTags: json["categoryTags"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
     "categoryID": categoryId,
     "categoryName": categoryName,
     "categoryDesc": categoryDescValues.reverse[categoryDesc],

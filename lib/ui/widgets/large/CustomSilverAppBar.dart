@@ -11,7 +11,7 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: PageStorageKey("SilverAppBar"),
+      // Key::PageStorageKey("SilverAppBar"),
       height: 100,
       width: MediaQuery.of(context).size.width,
       color: Maroon,

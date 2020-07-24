@@ -1,702 +1,100 @@
 [
-	{
-		"categoryID": 100,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 101,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 102,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 103,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 104,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 105,
-		"categoryName": "cereals",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 106,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 107,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 108,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 109,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 110,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 111,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 112,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 113,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 114,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 115,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 116,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 117,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 118,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 119,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 120,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 121,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 122,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 123,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 124,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 125,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 126,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 127,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 128,
-		"categoryName": "cereals",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 129,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 130,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 131,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 132,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 133,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 134,
-		"categoryName": "cereals",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 135,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 136,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 137,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 138,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 139,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 140,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 141,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 142,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 143,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 144,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 145,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 146,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 147,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 148,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 149,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 150,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 151,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 152,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 153,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 154,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 155,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 156,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 157,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 158,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 159,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 160,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 161,
-		"categoryName": "cereals",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 162,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 163,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 164,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 165,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 166,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 167,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 168,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 169,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 170,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 171,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 172,
-		"categoryName": "salads",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 173,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 174,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 175,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 176,
-		"categoryName": "seafood",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 177,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 178,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 179,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "pasta"
-	},
-	{
-		"categoryID": 180,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 181,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "stews"
-	},
-	{
-		"categoryID": 182,
-		"categoryName": "stews",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 183,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 184,
-		"categoryName": "pies",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 185,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 186,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "soups"
-	},
-	{
-		"categoryID": 187,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40020581_2-fresho-fresh-turmeric-organically-grown.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 188,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 189,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 190,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 191,
-		"categoryName": "cereals",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/10000024_20-fresho-baby-potato.jpg",
-		"categoryTags": "salads"
-	},
-	{
-		"categoryID": 192,
-		"categoryName": "desserts",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 193,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "sandwiches"
-	},
-	{
-		"categoryID": 194,
-		"categoryName": "soups",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "cereals"
-	},
-	{
-		"categoryID": 195,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/50000555_5-fresho-sweet-potato-organically-grown.jpghttps://www.bigbasket.com/media/uploads/p/s/20002407_1-haldirams-namkeen-aloo-bhujia.jpg",
-		"categoryTags": "seafood"
-	},
-	{
-		"categoryID": 196,
-		"categoryName": "pasta",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "pies"
-	},
-	{
-		"categoryID": 197,
-		"categoryName": "noodles",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "noodles"
-	},
-	{
-		"categoryID": 198,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "desserts"
-	},
-	{
-		"categoryID": 199,
-		"categoryName": "sandwiches",
-		"categoryDesc": "Tastiest Foods are listed in this category",
-		"categoryPictureUrl": "https://www.bigbasket.com/media/uploads/p/s/40105338_6-fresho-mosambi-economy.jpg",
-		"categoryTags": "stews"
-	}
+  {
+    "categoryID": 100,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": "sandwiches"
+  },
+  {
+    "categoryID": 101,
+    "categoryName": "pasta",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007218_battery-led-bulbs_360.jpg",
+    "categoryTags": "desserts"
+  },
+  {
+    "categoryID": 102,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007219_steel-storage-box_360.jpg",
+    "categoryTags": "pasta"
+  },
+  {
+    "categoryID": 103,
+    "categoryName": "desserts",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": "salads"
+  },
+  {
+    "categoryID": 107,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007217_monsoon-essentials_360.jpg",
+    "categoryTags": "pies"
+  },
+  {
+    "categoryID": 108,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007216_stationery_360.jpg",
+    "categoryTags": "pasta"
+  },
+  {
+    "categoryID": 112,
+    "categoryName": "seafood",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007215_rs-150-299-store_360.jpg",
+    "categoryTags": "salads"
+  },
+  {
+    "categoryID": 100,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": "sandwiches"
+  },
+  {
+    "categoryID": 101,
+    "categoryName": "pasta",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007218_battery-led-bulbs_360.jpg",
+    "categoryTags": "desserts"
+  },
+  {
+    "categoryID": 102,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007219_steel-storage-box_360.jpg",
+    "categoryTags": "pasta"
+  },
+  {
+    "categoryID": 103,
+    "categoryName": "desserts",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
+    "categoryTags": "salads"
+  },
+  {
+    "categoryID": 107,
+    "categoryName": "pies",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007217_monsoon-essentials_360.jpg",
+    "categoryTags": "pies"
+  },
+  {
+    "categoryID": 108,
+    "categoryName": "sandwiches",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007216_stationery_360.jpg",
+    "categoryTags": "pasta"
+  },
+  {
+    "categoryID": 112,
+    "categoryName": "seafood",
+    "categoryDesc": "Tastiest Foods are listed in this category",
+    "categoryPictureUrl": "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007215_rs-150-299-store_360.jpg",
+    "categoryTags": "salads"
+  }
 ]

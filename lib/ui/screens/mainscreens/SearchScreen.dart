@@ -25,7 +25,7 @@ class _SearchScreenState extends State<SearchScreen>
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: PageStorageKey("SearchScreen"),
+      // Key::PageStorageKey("SearchScreen"),
       backgroundColor: White,
       body: SingleChildScrollView(
         child: Column(

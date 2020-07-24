@@ -26,7 +26,7 @@ class _AddProductButtonState extends State<AddProductButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: PageStorageKey("AddCartButton"),
+      // Key::PageStorageKey("AddCartButton"),
       height: widget.height * 0.2,
       width: widget.width,
       color: White,

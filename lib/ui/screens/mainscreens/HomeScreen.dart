@@ -7,11 +7,9 @@ import 'package:bazar/ui/widgets/large/ProductWidgets/ListProductsHorizontal.dar
 import 'package:bazar/ui/widgets/large/ProductWidgets/OffersHighlightedProductsSlider.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/PromoteItem.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemGrid.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
 import 'package:bazar/ui/widgets/small/CategoriesGrid.dart';
 import 'package:bazar/ui/widgets/small/CategoriesListWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -24,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return CustomScrollView(
-      key: PageStorageKey("HomeScreen"),
+      // Key::PageStorageKey("HomeScreen"),
       slivers: [
         SliverAppBar(
           pinned: true,

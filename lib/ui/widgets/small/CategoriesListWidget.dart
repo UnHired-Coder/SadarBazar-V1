@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +12,12 @@ class CategoriesListWidget extends StatefulWidget {
 
 class _CategoriesListWidgetState extends State<CategoriesListWidget> {
   List<String> _list;
+  List<ProductCategory> _productCategory;
 
   @override
   void initState() {
     super.initState();
+    fetchCategories(context);
     _list = [
       "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007214_under-rs-149-store_360.jpg",
       "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/ae1f038a-b1ba-4145-b00d-b20bd5127774/2007215_rs-150-299-store_360.jpg",
@@ -33,11 +38,24 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
     ];
   }
 
+  void fetchCategories(BuildContext context) async {
+    await DefaultAssetBundle.of(context)
+        .loadString("lib/Json/PRODUCT_CATEGORIES.json")
+        .then((value) {
+      debugPrint(value);
+      _productCategory = (json.decode(value) as List)
+          .map((i) => ProductCategory.fromJson(i))
+          .toList();
+    }).then((value) {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return Container(
+    return (_productCategory == null)?Container(width: 50,height: 50,padding: EdgeInsets.all(4),alignment: Alignment.center,child: CircularProgressIndicator(strokeWidth: 1,backgroundColor: Orange,),):Container(
       height: _height * 0.08,
       width: _width,
       child: Row(
@@ -45,9 +63,9 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
         children: [
           Container(
             height: 60,
-            width: _width ,
+            width: _width,
             child: ListView.builder(
-                itemCount: _list.length,
+                itemCount: _productCategory.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return (index == 0)
@@ -55,6 +73,10 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                           splashColor: Colors.transparent,
                           onTap: () {
                             debugPrint("All Categories");
+                            if (_productCategory != null)
+                              for (int i = 0; i < _productCategory.length; i++)
+                                debugPrint(
+                                    _productCategory[i].categoryId.toString());
                           },
                           child: Container(
                             margin: EdgeInsets.all(5),
@@ -79,7 +101,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     fit: BoxFit.fill,
-                                    image: NetworkImage(_list[index]))),
+                                    image: NetworkImage(_productCategory[index].categoryPictureUrl))),
                           ),
                         );
                 }),
