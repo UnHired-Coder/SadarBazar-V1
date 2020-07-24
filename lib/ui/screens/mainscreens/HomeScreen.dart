@@ -8,6 +8,8 @@ import 'package:bazar/ui/widgets/large/ProductWidgets/OffersHighlightedProductsS
 import 'package:bazar/ui/widgets/large/ProductWidgets/PromoteItem.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemGrid.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
+import 'package:bazar/ui/widgets/small/CategoriesGrid.dart';
+import 'package:bazar/ui/widgets/small/CategoriesListWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,6 +21,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    double _height = MediaQuery.of(context).size.height;
+    double _width = MediaQuery.of(context).size.width;
     return CustomScrollView(
       key: PageStorageKey("HomeScreen"),
       slivers: [
@@ -40,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 AnimatedCartButton(),
-               AnimatedNotificationButton(),
+                AnimatedNotificationButton(),
               ],
             )
           ]),
@@ -51,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SliverList(
           delegate: SliverChildListDelegate(<Widget>[
+            CategoriesListWidget(),
             OffersHighlightedProductsSlider(),
             ShopItemGrid(),
             PromoteItem(
@@ -61,6 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ShopItemGrid(),
             ListProductHorizontal(),
+            CategoriesGrid(
+              height: _height * 0.4,
+              width: _width,
+            ),
             ImageProductHighlight(),
             PromoteItem(
               height: 100,

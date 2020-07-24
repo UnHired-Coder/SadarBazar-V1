@@ -106,18 +106,21 @@ child: GridView.count(  physics: NeverScrollableScrollPhysics(),
   }
 
   Widget _item() {
-    return Container(
-      height: 150,
-      width: 100,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://www.bigbasket.com/media/uploads/p/s/40139744_3-kapiva-ayurveda-wild-honey-pure-natural-healthy.jpg"))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [_text("Food", true), _text("34% off", false)],
+    return InkWell(
+      onTap: (){debugPrint("Explore this category");},
+      child: Container(
+        height: 150,
+        width: 100,
+        alignment: Alignment.bottomCenter,
+        margin: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage(
+                    "https://www.bigbasket.com/media/uploads/p/s/40139744_3-kapiva-ayurveda-wild-honey-pure-natural-healthy.jpg"))),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [_text("Food", true), _text("34% off", false)],
+        ),
       ),
     );
   }

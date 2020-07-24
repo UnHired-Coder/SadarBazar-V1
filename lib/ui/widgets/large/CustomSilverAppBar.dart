@@ -11,6 +11,7 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: PageStorageKey("SilverAppBar"),
       height: 100,
       width: MediaQuery.of(context).size.width,
       color: Maroon,
@@ -27,22 +28,22 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Icon(
-                      FontAwesomeIcons.search,
-                      color: White,
-                      size: 15,
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20,bottom: 5),
+                  height: 40,
+                  width: MediaQuery.of(context).size.width,
+                  color: FakeWhite,
+                  child:  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Icon(
+                        FontAwesomeIcons.search,
+                        color: Maroon,
+                        size: 15,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 20),
-                  height: 2,
-                  width: MediaQuery.of(context).size.width,
-                  color: White,
                 )
               ],
             ),
@@ -103,6 +104,7 @@ class ProductSearch extends SearchDelegate<String> {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       icon: AnimatedIcon(
+        color: Black,
         icon: AnimatedIcons.menu_arrow,
         progress: transitionAnimation,
       ),

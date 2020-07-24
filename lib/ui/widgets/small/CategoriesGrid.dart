@@ -26,23 +26,46 @@ class _CategoriesGridState extends State<CategoriesGrid> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height*0.8,
-      width: widget.width*0.8,
+      height: widget.height * 0.8,
+      width: widget.width * 0.8,
+      margin: EdgeInsets.all(4),
+      decoration: BoxDecoration(border: Border.all(width: 0.4,color: Maroon)),
       child: GridView.count(
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         crossAxisCount: 3,
         children: List.generate(9, (index) {
           return Container(
-            width: widget.width,
-            height: widget.height,
+            height: widget.height * 0.8,
+            width: widget.width * 0.8,
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Flexible(child: Icon(_list[index].iconData,color: Orange,),flex: 8,),
-                  Flexible(child: SizedBox(height: 10,),flex: 2,),
-                  Flexible(child: Container(alignment: Alignment.center,child: Text(_list[index].title,style: TextStyle(fontSize: 10,color: Orange),),),flex: 2,)
+                  Flexible(
+                    child: Icon(
+                      _list[index].iconData,
+                      color: Orange,
+                    ),
+                    flex: 8,
+                  ),
+                  Flexible(
+                    child: SizedBox(
+                      height: 4,
+                    ),
+                    flex: 2,
+                  ),
+                  Flexible(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        _list[index].title,
+                        style: TextStyle(fontSize: 10, color: Orange),
+                      ),
+                    ),
+                    flex: 2,
+                  )
                 ],
               ),
               color: White,

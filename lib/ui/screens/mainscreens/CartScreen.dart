@@ -122,7 +122,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 return ShopItemHorizontal(
                     width: _width , height: 120, code: [1, 1, 1, 1]);
               },
-              childCount: 30,
+              childCount: 12,
             ),
           )
         ],

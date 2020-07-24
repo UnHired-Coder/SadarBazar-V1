@@ -36,103 +36,107 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      color: Maroon,
-      margin: EdgeInsets.all(1),
-      child: Column(
-        children: [
-          Visibility(
-            visible: (code[0] == 1) ? true : false,
-            child: Flexible(
-              child: Container(
-                height: widget.height * 0.1,
-                width: widget.width,
-                color: White,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 20,
-                      color: Green,
-                      padding: EdgeInsets.all(1),
-                      child: Text(
-                        "20%",
-                        style: TextStyle(fontSize: 12, color: FakeWhite),
+    return InkWell(
+      onTap: (){
+        debugPrint("Open for this Item");
+      },
+      child: Container(
+        width: widget.width,
+        height: widget.height,
+        color: Maroon,
+        margin: EdgeInsets.all(1),
+        child: Column(
+          children: [
+            Visibility(
+              visible: (code[0] == 1) ? true : false,
+              child: Flexible(
+                child: Container(
+                  height: widget.height * 0.1,
+                  width: widget.width,
+                  color: White,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 20,
                       ),
-                    )
-                  ],
+                      Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        height: 20,
+                        color: Green,
+                        padding: EdgeInsets.all(1),
+                        child: Text(
+                          "20%",
+                          style: TextStyle(fontSize: 12, color: FakeWhite),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
+                flex: 1,
               ),
-              flex: 1,
             ),
-          ),
-          Visibility(
-            visible: (code[1] == 1) ? true : false,
-            child: Flexible(
-              child: Container(
-                height: widget.height * 0.5,
-                width: widget.width,
-                decoration: BoxDecoration(
-                    color: White,
-                    image: DecorationImage(
-                        image: NetworkImage(
-                            "https://www.bigbasket.com/media/uploads/p/mm/20000745_5-fresho-bottle-gourd.jpg"))),
-              ),
-              flex: 5,
-            ),
-          ),
-          Visibility(
-            visible: (code[2] == 1) ? true : false,
-            child: Flexible(
-              child: Container(
-                height: widget.height * 0.3,
-                width: widget.width,
-                color: White,
-                padding: EdgeInsets.only(left: 10, top: 4),
-                child: Column(
-                  children: [
-                    Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Rs 233/-",
-                          style: TextStyle(
-                              color: LightBlack.withOpacity(0.8), fontSize: 13),
-                        )),
-                    Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Tomato",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
-                        )),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "3 Kg",
-                          style: TextStyle(
-                            color: LightBlack.withOpacity(0.6),
-                          ),
-                        )),
-                  ],
+            Visibility(
+              visible: (code[1] == 1) ? true : false,
+              child: Flexible(
+                child: Container(
+                  height: widget.height * 0.5,
+                  width: widget.width,
+                  decoration: BoxDecoration(
+                      color: White,
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              "https://www.bigbasket.com/media/uploads/p/mm/20000745_5-fresho-bottle-gourd.jpg"))),
                 ),
+                flex: 5,
               ),
-              flex: 3,
             ),
-          ),
-          Visibility(
-            visible: (code[3] == 1) ? true : false,
-            child: Flexible(
-              child: AddProductButton(width:  widget.width,height:  widget.height,),
+            Visibility(
+              visible: (code[2] == 1) ? true : false,
+              child: Flexible(
+                child: Container(
+                  height: widget.height * 0.3,
+                  width: widget.width,
+                  color: White,
+                  padding: EdgeInsets.only(left: 10, top: 4),
+                  child: Column(
+                    children: [
+                      Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Rs 233/-",
+                            style: TextStyle(
+                                color: LightBlack.withOpacity(0.8), fontSize: 13),
+                          )),
+                      Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Tomato",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          )),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "3 Kg",
+                            style: TextStyle(
+                              color: LightBlack.withOpacity(0.6),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+                flex: 3,
+              ),
+            ),
+            Visibility(
+              visible: (code[3] == 1) ? true : false,
+              child: Flexible(
+                child: AddProductButton(width:  widget.width,height:  widget.height,),
 //              Container(
 //                height: widget.height * 0.2,
 //                width: widget.width,
@@ -190,10 +194,11 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
 //                  ],
 //                ),
 //              ),
-              flex: 2,
-            ),
-          )
-        ],
+                flex: 2,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
