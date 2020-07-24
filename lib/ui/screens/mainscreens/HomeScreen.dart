@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
+import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/ui/widgets/large/CustomSilverAppBar.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ImageProductHighlight.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ListProductsHorizontal.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      key: PageStorageKey("HomeScreen"),
       slivers: [
         SliverAppBar(
           pinned: true,
@@ -38,13 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 AnimatedCartButton(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    FontAwesomeIcons.solidBell,
-                    size: 15,
-                  ),
-                )
+               AnimatedNotificationButton(),
               ],
             )
           ]),

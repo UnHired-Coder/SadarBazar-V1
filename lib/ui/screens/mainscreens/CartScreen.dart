@@ -79,6 +79,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: PageStorageKey("CartScreen"),
       backgroundColor: FakeWhite,
       body: CustomScrollView(
         controller: _scrollController,
