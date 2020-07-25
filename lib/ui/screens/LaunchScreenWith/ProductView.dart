@@ -11,7 +11,7 @@ class ProductView extends StatefulWidget {
   final ProductItem productItem;
   final bool flag;
 
-  ProductView({ @ required this.productItem, this.flag});
+  ProductView({@required this.productItem, this.flag});
 
   @override
   _ProductViewState createState() => _ProductViewState();
@@ -31,7 +31,6 @@ class _ProductViewState extends State<ProductView>
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-
 
     return Scaffold(
       // Key::PageStorageKey("SearchScreen"),
@@ -109,11 +108,11 @@ class _ProductViewState extends State<ProductView>
                             alignment: Alignment.centerLeft,
                             child: Text(
                               "Rs " +
-                                  (widget.productItem.productUnitPrice +
-                                          (widget.productItem.productDiscount *
-                                                  widget.productItem
-                                                      .productUnitPrice) /
-                                              100)
+                                  ((widget.productItem.productUnitPrice * 100) /
+                                          (100 -
+                                              widget
+                                                  .productItem.productDiscount))
+                                      .floor()
                                       .toString() +
                                   "/-",
                               style: TextStyle(
@@ -329,7 +328,8 @@ class _ProductViewState extends State<ProductView>
                       style: TextStyle(fontSize: 20, color: Orange),
                     )),
                 ListProductHorizontal(
-                  productItemsHorizontal: ProductLoader.getFourProducts(context),
+                  productItemsHorizontal:
+                      ProductLoader.getFourProducts(context),
                   flag: false,
                 ),
                 Container(
@@ -345,7 +345,8 @@ class _ProductViewState extends State<ProductView>
                       style: TextStyle(fontSize: 20, color: Orange),
                     )),
                 ListProductHorizontal(
-                  productItemsHorizontal: ProductLoader.getFourProducts(context),
+                  productItemsHorizontal:
+                      ProductLoader.getFourProducts(context),
                   flag: false,
                 ),
               ],

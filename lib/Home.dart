@@ -2,7 +2,7 @@ import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/screens/mainscreens/CartScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
-import 'package:bazar/ui/screens/mainscreens/SearchScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/EasyFindScreen.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -145,7 +145,7 @@ class _HomeState extends State<Home>{
 
   TabBarView _tabBarView() {
     return new TabBarView(
-      children: [HomeScreen(), SearchScreen(), CartScreen(), ProfileScreen()],
+      children: [HomeScreen(), EasyFindScreen(), CartScreen(), ProfileScreen()],
     );
   }
 
@@ -214,7 +214,7 @@ class _HomeState extends State<Home>{
           icon: new Icon(FontAwesomeIcons.home,size: 18,),
         ),
         Tab(
-          icon: new Icon(FontAwesomeIcons.search,size: 18,),
+          icon: new Icon(FontAwesomeIcons.magento,size: 18,),
         ),
         Tab(
           icon: new Icon(FontAwesomeIcons.shoppingCart,size: 18,),

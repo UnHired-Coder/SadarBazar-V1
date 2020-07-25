@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -96,13 +97,10 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 Container(
                   child: Text(
                     "My Cart",
-                    style: TextStyle(color: White, fontSize: 12),
+                    style: TextStyle(color: White, fontSize: 15,fontWeight: FontWeight.bold),
                   ),
                 ),
-                Icon(
-                  FontAwesomeIcons.shoppingCart,
-                  size: 15,
-                )
+                AnimatedCartButton()
               ],
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -119,8 +117,12 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return ShopItemHorizontal(
-                    width: _width, height: 120, code: [1, 1, 1, 1]);
+                return Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(left: 4, right: 4, top: 5, bottom: 5),
+                  child: ShopItemHorizontal(
+                      width: _width * 0.9, height: 120, code: [1, 1, 1, 1]),
+                );
               },
               childCount: 12,
             ),
@@ -131,34 +133,37 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
       floatingActionButton: Transform.translate(
         offset: Offset(0, _animationController.value),
-        child: InkWell(
-          onTap: () {
-            debugPrint("Proceed to Checkout");
-          },
-          child: Container(
-            alignment: Alignment.center,
-            height: _height * 0.05,
-            width: _width * 0.5,
-            margin: EdgeInsets.only(bottom: 10),
-            decoration: BoxDecoration(
-                color: Maroon, borderRadius: BorderRadius.circular(12)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Proceed to Checkout",
-                  style: TextStyle(
-                      color: White, fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Icon(
-                  FontAwesomeIcons.arrowRight,
-                  color: White,
-                  size: 14,
-                )
-              ],
+        child: Transform.scale(
+          scale: 1 - _animationController.value/100,
+          child: InkWell(
+            onTap: () {
+              debugPrint("Proceed to Checkout");
+            },
+            child: Container(
+              alignment: Alignment.center,
+              height: _height * 0.05,
+              width: _width * 0.5,
+              margin: EdgeInsets.only(bottom: 10),
+              decoration: BoxDecoration(
+                  color: Maroon, borderRadius: BorderRadius.circular(12)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Proceed to Checkout",
+                    style: TextStyle(
+                        color: White, fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(
+                    FontAwesomeIcons.arrowRight,
+                    color: White,
+                    size: 14,
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -177,7 +182,8 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return Card(
+    return Container(
+      margin: EdgeInsets.only(top: 12),
       child: Container(
         child: Column(
           children: [
@@ -189,7 +195,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                   Container(
                     child: Text("Sub Total",
                         style: TextStyle(
-                            color: Black,
+                            color: White,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -197,7 +203,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                     width: 80,
                     alignment: Alignment.center,
                     child: Text("Rs 234/-",
-                        style: TextStyle(color: Black, fontSize: 16)),
+                        style: TextStyle(color: White, fontSize: 16)),
                   )
                 ],
               ),
@@ -210,7 +216,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                   Container(
                     child: Text("Delivery Charges",
                         style: TextStyle(
-                            color: Black,
+                            color: White,
                             fontSize: 14,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -232,7 +238,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
             Container(
               height: 2,
               width: _width,
-              color: Black,
+              color: White,
             ),
             Container(
               padding: EdgeInsets.all(10),
@@ -242,7 +248,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                   Container(
                     child: Text("Total",
                         style: TextStyle(
-                            color: Maroon,
+                            color: White,
                             fontSize: 16,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -253,7 +259,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                       "Rs 342/-",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Maroon,
+                          color: White,
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
