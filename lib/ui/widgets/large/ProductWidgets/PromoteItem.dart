@@ -23,7 +23,7 @@ class _PromoteItemState extends State<PromoteItem> {
 
   @override
   Widget build(BuildContext context) {
-    double _height = MediaQuery.of(context).size.height* 0.15;
+    double _height = MediaQuery.of(context).size.height * 0.15;
     double _width = MediaQuery.of(context).size.width;
     return Visibility(
 //      visible: true,
@@ -45,10 +45,11 @@ class _PromoteItemState extends State<PromoteItem> {
               Flexible(
                 child: Container(
                   height: _height,
+                  margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: NetworkImage(
-                              "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/f4b21a4e-9109-4ce4-843c-7a2d2c2aec0d/T1_All_Fresh-Fruits_DT_1_480x360_25thJune.jpg"))),
+                              widget.products[0].productPictureUrl))),
                 ),
                 flex: 3,
               ),

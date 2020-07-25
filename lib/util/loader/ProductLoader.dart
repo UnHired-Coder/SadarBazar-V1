@@ -20,6 +20,20 @@ import 'package:flutter/cupertino.dart';
     return products;
   }
 
+  Future<List<ProductCategory>> getMoreCategories(BuildContext context) async {
+    List<ProductCategory> categories;
+    await DefaultAssetBundle.of(context)
+        .loadString("lib/Json/PRODUCT_CATEGORIES.json")
+        .then((value) {
+      categories = (json.decode(value) as List)
+          .map((i) => ProductCategory.fromJson(i))
+          .toList();
+      debugPrint("Loaded Categories");
+    });
+    return categories;
+  }
+
+
   List<ProductItem> getFourProducts() {}
 
   ProductItem getProduct() {}

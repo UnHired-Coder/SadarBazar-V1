@@ -45,6 +45,7 @@ class _ListProductHorizontalState extends State<ListProductHorizontal> {
             width: _width * 0.35,
             height: 230,
             code: [1, 1, 1, 1],
+            productItem: widget.productItemsHorizontal[index],
           ),
         ),
       ),

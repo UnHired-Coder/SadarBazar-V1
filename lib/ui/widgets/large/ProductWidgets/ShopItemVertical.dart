@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,20 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ShopItemVertical extends StatefulWidget {
   final double width;
   final double height;
-  final String price;
-  final String name;
-  final String qty;
-  final String offer;
   final List<int> code;
-
-  ShopItemVertical(
-      {this.width,
-      this.height,
-      this.price,
-      this.name,
-      this.qty,
-      this.offer,
-      this.code});
+  final ProductItem productItem;
+  ShopItemVertical({this.width, this.height, this.productItem,this.code});
 
   @override
   _ShopItemVerticalState createState() => _ShopItemVerticalState();
@@ -67,7 +57,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                         color: Green,
                         padding: EdgeInsets.all(1),
                         child: Text(
-                          "20%",
+                          widget.productItem.productDiscount.toString()+"%",
                           style: TextStyle(fontSize: 12, color: FakeWhite),
                         ),
                       )
@@ -87,7 +77,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       color: White,
                       image: DecorationImage(
                           image: NetworkImage(
-                              "https://www.bigbasket.com/media/uploads/p/mm/20000745_5-fresho-bottle-gourd.jpg"))),
+                              widget.productItem.productPictureUrl))),
                 ),
                 flex: 5,
               ),
@@ -105,7 +95,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Rs 233/-",
+                            "Rs "+widget.productItem.productUnitPrice.toString()+"/-",
                             style: TextStyle(
                                 color: LightBlack.withOpacity(0.8),
                                 fontSize: 13),
@@ -113,7 +103,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Tomato",
+                            widget.productItem.productName,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15),
                           )),
@@ -123,7 +113,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "3 Kg",
+                            widget.productItem.productQtyPerUnit.toString()+" Kg ",
                             style: TextStyle(
                               color: LightBlack.withOpacity(0.6),
                             ),
