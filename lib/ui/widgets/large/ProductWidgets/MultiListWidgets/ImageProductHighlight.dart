@@ -44,10 +44,8 @@ class _ImageProductHighlightState extends State<ImageProductHighlight> {
               color: White,
               border: Border.all(width: 0.1),
               image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage((widget.flag != null && widget.flag)
-                      ? "https://www.bigbasket.com/media/uploads/banner_images/2007245_bbstar-exclusive_460_18th.jpg"
-                      : "https://www.bigbasket.com/media/customPage/b01eee88-e6bc-410e-993c-dedd012cf04b/4ec5c320-719c-4c16-bbb4-5dc4be672239/1254ad92-9857-498f-8ff3-7d7f3c4b68a6/2007033_namkeens_378.jpg"))),
+                  fit: BoxFit.scaleDown,
+                  image: NetworkImage(widget.products[0].categoryPictureUrl))),
         ),
       ),
     );

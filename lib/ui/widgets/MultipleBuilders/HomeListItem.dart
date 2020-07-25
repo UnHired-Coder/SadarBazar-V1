@@ -1,10 +1,10 @@
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/ImageProductHighlight.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/ListProductsHorizontal.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/OffersHighlightedProductsSlider.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/PromoteItem.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemGrid.dart';
+import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/ImageProductHighlight.dart';
+import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/ListProductsHorizontal.dart';
+import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/OffersHighlightedProductsSlider.dart';
+import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/PromoteItem.dart';
+import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/ShopItemGrid.dart';
 import 'package:bazar/ui/widgets/small/CategoriesListWidget.dart';
 import 'package:flutter/cupertino.dart';
 

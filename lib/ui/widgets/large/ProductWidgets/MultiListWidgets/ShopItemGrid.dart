@@ -82,8 +82,12 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                     )
                   ],
                 ),
-                Row(
-                  children: [ProductGridItem(gridOfProducts: widget.gridOfProducts,)],
+                Container(
+                  color: Orange,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [ProductGridItem(gridOfProducts: widget.gridOfProducts,)],
+                  ),
                 )
               ],
             )
@@ -109,7 +113,8 @@ class _ProductGridItemState extends State<ProductGridItem> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width*0.9,
+      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: White,
         border: Border.all(width: 0.1),
@@ -152,8 +157,9 @@ class _ProductGridItemState extends State<ProductGridItem> {
         height: 150,
         width: 100,
         alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.all(5),
+        margin: EdgeInsets.all(2),
         decoration: BoxDecoration(
+          color: White,
             image: DecorationImage(
                 image: NetworkImage(
                     widget.gridOfProducts.elementAt(index).productPictureUrl))),

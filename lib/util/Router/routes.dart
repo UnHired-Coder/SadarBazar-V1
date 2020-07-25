@@ -1,3 +1,4 @@
+import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/ui/screens/auth/screens/login.dart';
 import 'package:bazar/ui/screens/auth/screens/register.dart';
 import 'package:bazar/ui/screens/static/UndefinedScreen.dart';

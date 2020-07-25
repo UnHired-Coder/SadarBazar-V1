@@ -1,6 +1,8 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
+import 'package:bazar/util/Router/routeConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,7 +11,8 @@ class ShopItemVertical extends StatefulWidget {
   final double height;
   final List<int> code;
   final ProductItem productItem;
-  ShopItemVertical({this.width, this.height, this.productItem,this.code});
+
+  ShopItemVertical({this.width, this.height, this.productItem, this.code});
 
   @override
   _ShopItemVerticalState createState() => _ShopItemVerticalState();
@@ -29,6 +32,14 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
     return InkWell(
       onTap: () {
         debugPrint("Open for this Item");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductView(
+                productItem: widget.productItem,
+                flag: false,
+              ),
+            ));
       },
       child: Container(
         width: widget.width,
@@ -57,7 +68,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                         color: Green,
                         padding: EdgeInsets.all(1),
                         child: Text(
-                          widget.productItem.productDiscount.toString()+"%",
+                          widget.productItem.productDiscount.toString() + "%",
                           style: TextStyle(fontSize: 12, color: FakeWhite),
                         ),
                       )
@@ -95,7 +106,9 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Rs "+widget.productItem.productUnitPrice.toString()+"/-",
+                            "Rs " +
+                                widget.productItem.productUnitPrice.toString() +
+                                "/-",
                             style: TextStyle(
                                 color: LightBlack.withOpacity(0.8),
                                 fontSize: 13),
@@ -113,7 +126,8 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                       Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            widget.productItem.productQtyPerUnit.toString()+" Kg ",
+                            widget.productItem.productQtyPerUnit.toString() +
+                                " Kg ",
                             style: TextStyle(
                               color: LightBlack.withOpacity(0.6),
                             ),

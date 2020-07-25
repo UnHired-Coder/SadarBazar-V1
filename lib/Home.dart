@@ -3,6 +3,7 @@ import 'package:bazar/ui/screens/mainscreens/CartScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
 import 'package:bazar/ui/screens/mainscreens/SearchScreen.dart';
+import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

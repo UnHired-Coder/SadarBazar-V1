@@ -58,7 +58,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return (_productCategory == null)
+    return (widget.productCategory == null)
         ? Container(
             width: 50,
             height: 50,
@@ -79,7 +79,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                   height: 60,
                   width: _width,
                   child: ListView.builder(
-                      itemCount: _productCategory.length,
+                      itemCount: widget.productCategory.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return (index == 0)
@@ -87,11 +87,11 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                                 splashColor: Colors.transparent,
                                 onTap: () {
                                   debugPrint("All Categories");
-                                  if (_productCategory != null)
+                                  if (widget.productCategory != null)
                                     for (int i = 0;
-                                        i < _productCategory.length;
+                                        i < widget.productCategory.length;
                                         i++)
-                                      debugPrint(_productCategory[i]
+                                      debugPrint(widget.productCategory[i]
                                           .categoryId
                                           .toString());
                                 },
@@ -121,7 +121,7 @@ class _CategoriesListWidgetState extends State<CategoriesListWidget> {
                                       image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image: NetworkImage(
-                                              _productCategory[index]
+                                              widget.productCategory[index]
                                                   .categoryPictureUrl))),
                                 ),
                               );

@@ -5,6 +5,7 @@ import 'package:bazar/ui/widgets/MultipleBuilders/HomeListItem.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/ui/widgets/large/CustomSilverAppBar.dart';
+import 'package:bazar/ui/widgets/large/ProductWidgets/MultiListWidgets/ShopItemGrid.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<HomeListItem> _homeItems;
   int _currentItemIndex, _lastItemFetch;
   int _currentCategoryIndex, _lastCategoryFetch;
-
-//  final List<int> _scheme = [0,1,2,3,4,5,6]
   bool _loading;
 
-  final List<int> _scheme = [3,1,0,0,6,2,1,5,0,1,4,6,1,5];
+  final List<int> _scheme = [7,3,1,0,2,6,1,5,0,2,1,4,0,6,1,0,5];
 
   @override
   void initState() {
@@ -41,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _loadMoreItems() async {
-    await ProductLoader().getMoreProducts(context).then((value) async {
+    await ProductLoader.getMoreProducts(context).then((value) async {
       _productItems.addAll(value);
     }).then((value) {
       _lastItemFetch = _productItems.length;
@@ -51,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _loadMoreCategories() async {
-    await ProductLoader().getMoreCategories(context).then((value) async {
+    await ProductLoader.getMoreCategories(context).then((value) async {
       _productCategories.addAll(value);
     }).then((value) async {
       _lastCategoryFetch = _productCategories.length;
@@ -65,10 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _fillList() async {
     for (int i = 0; i < _scheme.length; i++) {
+//      debugPrint(_currentItemIndex.toString());
+//      debugPrint(_currentCategoryIndex.toString());
       switch (_scheme[i]) {
         case 0:
           {
-            _homeItems.add(new PromoteItemTile(
+            _homeItems.add( PromoteItemTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 1),
                 flag: false));
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 1:
           {
-            _homeItems.add(new ShopItemGridTile(
+            _homeItems.add( ShopItemGridTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 4),
                 flag: false));
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 2:
           {
-            _homeItems.add(new ProductsListHTile(
+            _homeItems.add( ProductsListHTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 4),
                 flag: false));
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 3:
           {
-            _homeItems.add(new OffersHighlightedTile(
+            _homeItems.add( OffersHighlightedTile(
                 categories: _productCategories.sublist(
                     _currentCategoryIndex, _currentCategoryIndex + 4),flag: false));
             _currentCategoryIndex += 4;
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 4:
           {
-            _homeItems.add(new ImageProductTile(
+            _homeItems.add( ImageProductTile(
                 categories: _productCategories.sublist(
                     _currentCategoryIndex, _currentCategoryIndex + 1),flag: false));
             _currentCategoryIndex += 1;
@@ -111,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 5:
           {
-            _homeItems.add(new OffersHighlightedTile(
+            _homeItems.add( OffersHighlightedTile(
                 categories: _productCategories.sublist(
                     _currentCategoryIndex, _currentCategoryIndex + 4),flag: true));
             _currentCategoryIndex += 4;
@@ -119,10 +120,18 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 6:
           {
-            _homeItems.add(new ImageProductTile(
+            _homeItems.add( ImageProductTile(
                 categories: _productCategories.sublist(
                     _currentCategoryIndex, _currentCategoryIndex + 1),flag: true));
             _currentCategoryIndex += 1;
+            break;
+          }
+        case 7:
+          {
+            _homeItems.add( CategoryTile(
+                categories: _productCategories.sublist(
+                    _currentCategoryIndex, _currentCategoryIndex + 8),flag: true));
+            _currentCategoryIndex += 8;
             break;
           }
       }
@@ -171,6 +180,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Maroon,
                   );
           }, childCount: _scheme.length),
+//        delegate: SliverChildListDelegate([
+//          ShopItemGrid(gridOfProducts: _productItems.sublist(0,4),flag: false,)
+//        ]),
         )
       ],
     );
@@ -212,6 +224,11 @@ class _HomeScreenState extends State<HomeScreen> {
       case 6:
         {
           w = _homeItems[index].imageProductTile(context);
+          break;
+        }
+      case 7:
+        {
+          w = _homeItems[index].categoryTile(context);
           break;
         }
     }
