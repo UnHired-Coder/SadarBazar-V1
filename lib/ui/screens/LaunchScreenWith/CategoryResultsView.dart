@@ -35,6 +35,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: FakeWhite,
       appBar: AppBar(
         backgroundColor: Maroon,
         title: Row(
@@ -75,7 +76,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
                                   Flexible(
                                     flex: 6,
                                     child: Container(
-                                      width: _width * 0.3,
+                                      width: _width * 0.3,margin: EdgeInsets.only(top: 10),
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -158,7 +159,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Container(
-                                                  padding: EdgeInsets.all(2),
+                                                  padding: EdgeInsets.only(left: 4,right: 4,top: 2,bottom: 2),
                                                   color: Green,
                                                   margin: EdgeInsets.only(
                                                     left: 5,
@@ -233,7 +234,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
                         ),
                       ),
                       decoration: BoxDecoration(
-                          color: Maroon,
+                          color: FakeWhite,
                           border: Border.all(width: 0.02, color: Black)),
                     );
                   }),

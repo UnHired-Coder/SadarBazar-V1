@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/screens/LaunchScreenWith/SearchResultsView.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -104,7 +105,7 @@ class ProductSearch extends SearchDelegate<String> {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       icon: AnimatedIcon(
-        color: Black,
+        color: White,
         icon: AnimatedIcons.menu_arrow,
         progress: transitionAnimation,
       ),
@@ -116,6 +117,27 @@ class ProductSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return null;
+    return SearchResultsView();
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return ThemeData(
+      primaryColorDark: Maroon,
+      primaryColor: Maroon,
+      // Define the default brightness and colors.
+      brightness: Brightness.dark,
+      accentColor: Colors.cyan[600],
+      // Define the default font family.
+      fontFamily: 'Georgia',
+      cursorColor: White,
+      // Define the default TextTheme. Use this to specify the default
+      // text styling for headlines, titles, bodies of text, and more.
+      textTheme: TextTheme(
+        headline1: TextStyle(fontWeight: FontWeight.normal, color: White),
+        headline6: TextStyle(fontStyle: FontStyle.normal, color: White),
+//             bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+      ),
+    );
   }
 }

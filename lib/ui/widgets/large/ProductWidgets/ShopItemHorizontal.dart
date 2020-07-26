@@ -41,7 +41,7 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
         debugPrint("Open for this Item");
       },
       child: Container(
-        color: Maroon.withOpacity(0.2),
+        color: FakeWhite,
         padding: EdgeInsets.all(0.1),
         child: Container(
           width: widget.width,
