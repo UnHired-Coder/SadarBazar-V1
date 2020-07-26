@@ -7,7 +7,7 @@ class EasyFindHighlightedCategories extends StatefulWidget {
   final List<ProductCategory> categories;
   final bool flag;
 
-  EasyFindHighlightedCategories({ @required this.categories, this.flag});
+  EasyFindHighlightedCategories({@required this.categories, this.flag});
 
   @override
   _EasyFindHighlightedCategoriesState createState() =>
@@ -33,7 +33,6 @@ class _EasyFindHighlightedCategoriesState
     _flag = !(widget.categories.length == 0);
   }
 
-
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -46,11 +45,15 @@ class _EasyFindHighlightedCategoriesState
               padding: EdgeInsets.all(5),
               child: InkWell(
                 onTap: () {
-                  debugPrint("Open Items in this category "+ widget.categories[index].categoryName);
+                  debugPrint("Open Items in this category " +
+                      widget.categories[index].categoryName);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CategoryResultsView(),
+                        builder: (context) => CategoryResultsView(
+                          categories: widget.categories,
+                          flag: widget.flag,
+                        ),
                       ));
                 },
                 child: Container(
@@ -58,7 +61,9 @@ class _EasyFindHighlightedCategoriesState
                   width: _width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(widget.categories[index].categoryPictureUrl), fit: BoxFit.contain)),
+                          image: NetworkImage(
+                              widget.categories[index].categoryPictureUrl),
+                          fit: BoxFit.contain)),
                 ),
               ),
             );

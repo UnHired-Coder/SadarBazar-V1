@@ -4,30 +4,26 @@ import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:flutter/material.dart';
+
 class EasyFindCategories extends StatefulWidget {
-
-
   final List<ProductCategory> categories;
   final List<ProductItem> products;
   final bool flag;
 
-
-  EasyFindCategories({@required this.categories,@required this.products, this.flag});
+  EasyFindCategories(
+      {@required this.categories, @required this.products, this.flag});
 
   @override
   _EasyFindCategoriesState createState() => _EasyFindCategoriesState();
 }
 
 class _EasyFindCategoriesState extends State<EasyFindCategories> {
-
-
-
   bool _flag;
 
   @override
   void initState() {
     super.initState();
-    _flag = !(widget.products.length<4 || widget.categories.length<1);
+    _flag = !(widget.products.length < 4 || widget.categories.length < 1);
   }
 
   @override
@@ -59,22 +55,25 @@ class _EasyFindCategoriesState extends State<EasyFindCategories> {
                     )),
                 InkWell(
                     onTap: () {
-                      debugPrint("See All form this categories "+ widget.categories[0].categoryName);
+                      debugPrint("See All form this categories " +
+                          widget.categories[0].categoryName);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CategoryResultsView(
+                              categories: widget.categories,
+                              flag: widget.flag,
                             ),
                           ));
                     },
                     child: Container(
                         child: Text(
-                          "See All",
-                          style: TextStyle(
-                              color: Maroon,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ))),
+                      "See All",
+                      style: TextStyle(
+                          color: Maroon,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ))),
               ],
             ),
             Container(
@@ -100,9 +99,13 @@ class _EasyFindCategoriesState extends State<EasyFindCategories> {
                       height: 130,
                       margin: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                          image: DecorationImage(fit: BoxFit.contain,image: NetworkImage(widget.products[index].productPictureUrl)),
-                          borderRadius: BorderRadius.circular(10),
-                          color: FakeWhite,),
+                        image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image: NetworkImage(
+                                widget.products[index].productPictureUrl)),
+                        borderRadius: BorderRadius.circular(10),
+                        color: FakeWhite,
+                      ),
                     ),
                   );
                 },
