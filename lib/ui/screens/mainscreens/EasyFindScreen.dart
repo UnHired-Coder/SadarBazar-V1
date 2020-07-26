@@ -1,4 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -44,13 +45,24 @@ class _EasyFindScreenState extends State<EasyFindScreen> {
                 itemBuilder: (context, index) {
                   return Container(
                     padding: EdgeInsets.all(5),
-                    child: Container(
-                      height: _height * 0.1,
-                      width: _width,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(_list[index]),
-                              fit: BoxFit.fill)),
+                    child: InkWell(
+                      onTap: (){
+                        debugPrint("Open Items in this category");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoryResultsView(
+                              ),
+                            ));
+                      },
+                      child: Container(
+                        height: _height * 0.1,
+                        width: _width,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(_list[index]),
+                                fit: BoxFit.fill)),
+                      ),
                     ),
                   );
                 },
