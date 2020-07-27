@@ -162,7 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                AnimatedCartButton(),
+                AnimatedCartButton(cartButtonCallback: (){
+
+                },),
                 AnimatedNotificationButton(),
               ],
             )
