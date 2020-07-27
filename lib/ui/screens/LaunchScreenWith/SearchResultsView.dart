@@ -65,10 +65,11 @@ class _SearchResultsViewState extends State<SearchResultsView> {
                 height: _height,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return ShopItemHorizontal(
-                      code: [1, 1, 1, 1],
+                    return Container(
+                      margin: EdgeInsets.only(top: 10,bottom: 10),
+                      height: 100,
                       width: _width,
-                      height: 120,
+                      color: FakeWhite,
                     );
                   },
                   itemCount: 12,

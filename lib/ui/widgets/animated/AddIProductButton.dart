@@ -1,14 +1,18 @@
 import 'dart:ffi';
 
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class AddProductButton extends StatefulWidget {
   final double width;
   final double height;
+  final ProductItem productItem;
 
-  AddProductButton({this.width, this.height});
+  AddProductButton({this.width, this.height, @required this.productItem});
 
   @override
   _AddProductButtonState createState() => _AddProductButtonState();
@@ -35,7 +39,8 @@ class _AddProductButtonState extends State<AddProductButton> {
         children: [
           Container(
             decoration: BoxDecoration(
-                color: (_count == 0)?Orange:White, borderRadius: BorderRadius.circular(5)),
+                color: (_count == 0) ? Orange : White,
+                borderRadius: BorderRadius.circular(5)),
             alignment: Alignment.center,
             margin: EdgeInsets.all(4),
             height: 30,
@@ -48,15 +53,19 @@ class _AddProductButtonState extends State<AddProductButton> {
                       ? InkWell(
                           onTap: () {
                             debugPrint("Add Item");
+                            Provider.of<CartViewModel>(context, listen: false)
+                                .addToCart(widget.productItem);
                             setState(() {
-                              if(_count!=5)_count++;
+                              if (_count != 5) _count++;
                             });
                           },
                           child: Container(
                             width: 30,
                             height: 30,
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(color: Orange,borderRadius: BorderRadius.circular(12)),
+                            decoration: BoxDecoration(
+                                color: Orange,
+                                borderRadius: BorderRadius.circular(12)),
                             margin: EdgeInsets.only(left: 4),
                             child: Text(
                               "Add",
@@ -68,6 +77,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                       : InkWell(
                           onTap: () {
                             debugPrint("Remove More");
+                            Provider.of<CartViewModel>(context, listen: false)
+                                .removeFromCart(widget.productItem);
                             setState(() {
                               _count--;
                             });
@@ -75,7 +86,9 @@ class _AddProductButtonState extends State<AddProductButton> {
                           child: Container(
                               width: 30,
                               height: 30,
-                              decoration: BoxDecoration(color: Orange,borderRadius: BorderRadius.circular(12)),
+                              decoration: BoxDecoration(
+                                  color: Orange,
+                                  borderRadius: BorderRadius.circular(12)),
                               alignment: Alignment.center,
                               child: Icon(
                                 FontAwesomeIcons.minus,
@@ -108,21 +121,25 @@ class _AddProductButtonState extends State<AddProductButton> {
                 InkWell(
                   onTap: () {
                     debugPrint("Add More");
+                    Provider.of<CartViewModel>(context, listen: false)
+                        .addToCart(widget.productItem);
                     setState(() {
-                      if(_count!=5)_count++;
+                      if (_count != 5) _count++;
                     });
                   },
                   child: Container(
                       width: 30,
                       height: 30,
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(color: Orange,borderRadius: BorderRadius.circular(12)),
+                      decoration: BoxDecoration(
+                          color: Orange,
+                          borderRadius: BorderRadius.circular(12)),
                       child: Icon(
                         FontAwesomeIcons.plus,
                         size: 10,
                         color: White,
                       )),
-                )
+                ),
               ],
             ),
           )

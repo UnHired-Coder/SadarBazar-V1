@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
-import 'package:bazar/ui/screens/mainscreens/CartScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/CartUtil/CartScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
 import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
 import 'package:bazar/ui/screens/mainscreens/EasyFindScreen.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override

@@ -144,6 +144,7 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                 child: AddProductButton(
                   width: widget.width,
                   height: widget.height,
+                  productItem: widget.productItem,
                 ),
 //              Container(
 //                height: widget.height * 0.2,
