@@ -50,6 +50,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
+                    height: 30,
                     child: (cart.getItemCount(widget.productItem) == 0)
                         ? InkWell(
                       onTap: () {
@@ -61,7 +62,6 @@ class _AddProductButtonState extends State<AddProductButton> {
                       },
                       child: Expanded(
                         child: Container(
-//                              width: 30,
                           height: 30,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -69,7 +69,7 @@ class _AddProductButtonState extends State<AddProductButton> {
                               borderRadius: BorderRadius.circular(12)),
                           margin: EdgeInsets.only(left: 4),
                           child: Text(
-                            "Add",
+                            "Add  ",
                             style: TextStyle(
                                 color: White, fontWeight: FontWeight.bold),
                           ),
