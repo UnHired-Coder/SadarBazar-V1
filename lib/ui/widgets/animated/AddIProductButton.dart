@@ -60,19 +60,17 @@ class _AddProductButtonState extends State<AddProductButton> {
                         setState(() {
                         });
                       },
-                      child: Expanded(
-                        child: Container(
-                          height: 30,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Orange,
-                              borderRadius: BorderRadius.circular(12)),
-                          margin: EdgeInsets.only(left: 4),
-                          child: Text(
-                            "Add  ",
-                            style: TextStyle(
-                                color: White, fontWeight: FontWeight.bold),
-                          ),
+                      child: Container(
+                        height: 30,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Orange,
+                            borderRadius: BorderRadius.circular(12)),
+                        margin: EdgeInsets.only(left: 4),
+                        child: Text(
+                          "Add  ",
+                          style: TextStyle(
+                              color: White, fontWeight: FontWeight.bold),
                         ),
                       ),
                     )

@@ -106,7 +106,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                AnimatedCartButton()
+                AnimatedCartButton(cartButtonCallback: null,)
               ],
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -127,7 +127,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                 height: _height * 0.2,
                 width: _width,
                 productItem: cart.getUserCart(index),
-                code: [1, 1, 1, 0, 1],
+                code: [1, 1, 1, 1, 0],
               );
             }, childCount: cart.getLength()));
           })
@@ -210,107 +210,131 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
     return Consumer<CartViewModel>(
       builder: (context, cart, child) {
         return Container(
-          margin: EdgeInsets.only(top: 12),
-          child: Container(
-            child: Column(
+            margin: EdgeInsets.only(top: 12),
+            child: Stack(
               children: [
-                Container(
-                    padding: EdgeInsets.all(10),
+                Visibility(
+                  visible: cart.isEmpty(),
+                  child: Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(4),
+                    child: Text("Your cart is empty!",style: TextStyle(color: White,fontSize: 20,fontWeight: FontWeight.bold),),
+                  ),
+                ),
+                Visibility(
+                  visible: !cart.isEmpty(),
+                  child: Container(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: Text("Sub Total",
-                                  style: TextStyle(
-                                      color: White,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Container(
-                              width: 80,
-                              alignment: Alignment.center,
-                              child: Text(
-                                  "Rs " + cart.getSubTotal().toString() + "/-",
-                                  style: TextStyle(color: White, fontSize: 16)),
-                            )
-                          ],
+                        Container(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Text("Sub Total",
+                                          style: TextStyle(
+                                              color: White,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold)),
+                                    ),
+                                    Container(
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                          "Rs " +
+                                              cart.getSubTotal().toString() +
+                                              "/-",
+                                          style: TextStyle(
+                                              color: White, fontSize: 16)),
+                                    )
+                                  ],
+                                ),
+                                Container(
+                                  alignment: Alignment.centerRight,
+                                  margin: EdgeInsets.only(top: 4),
+                                  child: Text(
+                                      "Rs " +
+                                          (cart.getDiscountAmount() +
+                                                  cart.getSubTotal())
+                                              .toString() +
+                                          "/-",
+                                      style: TextStyle(
+                                          color: FakeWhite,
+                                          fontSize: 10,
+                                          decoration: TextDecoration.lineThrough,
+                                          decorationColor: Green,
+                                          decorationThickness: 3)),
+                                )
+                              ],
+                            )),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Text("Delivery Charges",
+                                    style: TextStyle(
+                                        color: White,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(right: 10),
+                                child: Text(
+                                  "Free",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(color: Green, fontSize: 15),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Container(
-                          width: 80,
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.only(top: 4),
-                          child: Text(
-                              "Rs " + (cart.getDiscountAmount()+cart.getSubTotal()).toString()+ "/-",
-                              style: TextStyle(color:FakeWhite, fontSize: 10,decoration: TextDecoration.lineThrough,decorationColor: Green,decorationThickness: 3)),
+                          height: 2,
+                          width: _width,
+                          color: White,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Text("Total",
+                                    style: TextStyle(
+                                        color: White,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  "Rs " + cart.getTotalAmount().toString() + "/-",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: White,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                            ],
+                          ),
                         )
                       ],
-                    )),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Text("Delivery Charges",
-                            style: TextStyle(
-                                color: White,
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      Container(
-                        width: 80,
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Free",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(color: Green, fontSize: 15),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 2,
-                  width: _width,
-                  color: White,
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Text("Total",
-                            style: TextStyle(
-                                color: White,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      Container(
-                        width: 80,
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Rs " + cart.getTotalAmount().toString() + "/-",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              color: White,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                )
               ],
-            ),
-          ),
-        );
+            ));
       },
     );
   }

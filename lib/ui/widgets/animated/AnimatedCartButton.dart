@@ -42,9 +42,9 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton>
   @override
   Widget build(BuildContext context) {
     return Consumer<CartViewModel>(builder: (context, cart, child) {
-      if (cart.getLength() != _count) {
+      if (cart.getTotalItemCount() != _count) {
         debugPrint("Animate");
-        _updateCount(cart.getLength());
+        _updateCount(cart.getTotalItemCount());
       }
 
       return Container(

@@ -26,6 +26,13 @@ class _LocationChooserState extends State<LocationScreen> {
   TextEditingController _lane3;
 
   @override
+  void initState() {
+    super.initState();
+    _lane1 = new TextEditingController();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
@@ -36,8 +43,9 @@ class _LocationChooserState extends State<LocationScreen> {
           children: [
             GoogleMap(
               mapToolbarEnabled: false,
-              myLocationEnabled: true,
+//              myLocationEnabled: true,
 //              myLocationButtonEnabled:true,
+            zoomControlsEnabled: false,
               onMapCreated: _onMapCreated,
               initialCameraPosition:
                   CameraPosition(target: _center, zoom: 11.0),
@@ -282,6 +290,7 @@ class _LocationChooserState extends State<LocationScreen> {
     setState(() {
       _title = first.featureName;
       _detail = first.addressLine;
+      _lane1.text = _title+"   "+_detail;
     });
   }
 
@@ -305,6 +314,7 @@ class _LocationChooserState extends State<LocationScreen> {
     setState(() {
       _title = first.featureName;
       _detail = first.addressLine;
+      _lane1.text = _title+"   "+_detail;
     });
   }
 }
