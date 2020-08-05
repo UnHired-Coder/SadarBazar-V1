@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/ui/screens/secondaryScreens/CardDetailsScreen.dart';
+import 'package:bazar/ui/screens/secondaryScreens/FavouritesScreen.dart';
 import 'package:bazar/ui/screens/secondaryScreens/LocationScreen.dart';
+import 'package:bazar/ui/screens/secondaryScreens/OrdersScreen.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:flutter/material.dart';
@@ -96,9 +99,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   color: White,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18),
-                            )
+                            ),
                           ],
                         ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                              icon: Icon(FontAwesomeIcons.pen,color: White, size: 14,),
+                              onPressed: () {
+                                debugPrint("Edit");
+                              }),
+                          SizedBox(width: 10,)
+                        ],
                       ),
                     ],
                   )
@@ -111,14 +125,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   cardWidget("My Orders", FontAwesomeIcons.shoppingCart,
                       "View All Orders", () {
                     debugPrint("View All Orders");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrdersScreen(),
+                        ));
                   }, _width, _height),
                   cardWidget("My Favourites", FontAwesomeIcons.solidHeart,
                       "View All Favourites", () {
                     debugPrint("View All Favourites");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavouritesScreen(),
+                        ));
                   }, _width, _height),
                   cardWidget("My Cards & Wallets", FontAwesomeIcons.wallet,
                       "View Details", () {
                     debugPrint("View Card Details");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CardDetailsScreen(),
+                        ));
                   }, _width, _height),
                   cardWidget("Address ", FontAwesomeIcons.mapPin, "Edit/View",
                       () {
@@ -153,7 +182,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   bottomTiles("Profile Settings", Icons.settings, "", () {
                     debugPrint("Profile Settings");
                   }, _width, _height),
-                  bottomTiles("Preferences", FontAwesomeIcons.objectGroup, "", () {
+                  bottomTiles("Preferences", FontAwesomeIcons.objectGroup, "",
+                      () {
                     debugPrint("Preferences Settings");
                   }, _width, _height),
                   bottomTiles("Logout", FontAwesomeIcons.signOutAlt, "", () {
@@ -165,22 +195,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   bottomTiles("Report problem", FontAwesomeIcons.bug, "", () {
                     debugPrint("Report Problem");
                   }, _width, _height),
-                  bottomTiles("Frequent Q&A", FontAwesomeIcons.question, "", () {
+                  bottomTiles("Frequent Q&A", FontAwesomeIcons.question, "",
+                      () {
                     debugPrint("Frequent Q&A ");
                   }, _width, _height),
-                  bottomTiles("Contact Support", FontAwesomeIcons.comment, "", () {
+                  bottomTiles("Contact Support", FontAwesomeIcons.comment, "",
+                      () {
                     debugPrint("Contact Support");
                   }, _width, _height),
                   Container(
-                    height: _height*0.1,
+                    height: _height * 0.1,
                     width: _width,
                     alignment: Alignment.center,
                     child: Column(
                       children: [
-                        SizedBox(height: 15,),
-                        Container(child: Text("Sadar Bazar INC",style: TextStyle(color: LightBlack.withOpacity(0.5)),)),
-                        SizedBox(height: 5,),
-                        Container(child: Text("RT - 121 -West delhi, Delhi -110013",style: TextStyle(color: LightBlack.withOpacity(0.5))))
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Container(
+                            child: Text(
+                          "Sadar Bazar INC",
+                          style: TextStyle(color: LightBlack.withOpacity(0.5)),
+                        )),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            child: Text("RT - 121 -West delhi, Delhi -110013",
+                                style: TextStyle(
+                                    color: LightBlack.withOpacity(0.5))))
                       ],
                     ),
                   )

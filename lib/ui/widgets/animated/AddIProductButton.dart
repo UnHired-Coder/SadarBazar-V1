@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
