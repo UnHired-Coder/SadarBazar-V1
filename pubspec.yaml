@@ -80,7 +80,13 @@ flutter:
     - assets/images/google.jpg
     - assets/images/logoWhite.png
     - lib/Json/PRODUCT_CATEGORIES.json
-    - lib/Json/PRODUCT_ITEM.json
+#    - lib/Json/PRODUCT_ITEM.json
+#    - lib/Json/New/_PRODUCT_BEAUTY.json
+    - lib/Json/New/_PRODUCT_DAIRY.json
+    - lib/Json/New/_PRODUCT_ELECT.json
+    - lib/Json/New/_PRODUCT_FASHION.json
+    - lib/Json/New/_PRODUCT_PHONE.json
+    - lib/Json/New/_PRODUCT_VEG.json
 
   #   - images/a_dot_ham.jpeg
 
