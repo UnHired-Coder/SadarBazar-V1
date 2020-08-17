@@ -14,7 +14,7 @@ class ProductCategory {
     @required this.categoryTags,
   });
 
-  final int categoryId;
+  final String categoryId;
   final String categoryName;
   final String categoryDesc;
   final String categoryPictureUrl;

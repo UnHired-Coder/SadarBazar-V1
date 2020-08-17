@@ -92,13 +92,14 @@ final productStockStatusValues = EnumValues({
   "OUT_OF_STOCK": ProductStockStatus.OUT_OF_STOCK
 });
 
-enum ProductUnitType { PCS, GRM, NA, UNIT }
+enum ProductUnitType { PCS, GRM, NA, UNIT, KG }
 
 final productUnitTypeValues = EnumValues({
   "GRM": ProductUnitType.GRM,
   "NA": ProductUnitType.NA,
   "PCS": ProductUnitType.PCS,
-  "UNIT": ProductUnitType.UNIT
+  "UNIT": ProductUnitType.UNIT,
+  "KG": ProductUnitType.KG
 });
 
 class EnumValues<T> {

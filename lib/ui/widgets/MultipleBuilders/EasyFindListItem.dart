@@ -1,5 +1,6 @@
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindCategories.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindGridCategories.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindHighlightedCategories.dart';

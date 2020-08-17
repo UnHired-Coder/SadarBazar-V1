@@ -1,5 +1,5 @@
 import 'package:bazar/models/Product/ProductCategory.dart';
-import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/ImageProductHighlight.dart';
 import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/ListProductsHorizontal.dart';
 import 'file:///F:/Sadar/bazar/lib/ui/widgets/large/ProductWidgets/MultiListWidgets/OffersHighlightedProductsSlider.dart';
@@ -226,7 +226,7 @@ class ProductsListHTile implements HomeListItem {
 
 //IMAGE PRODUCT TILE
 class ImageProductTile implements HomeListItem {
-  List<ProductCategory> categories;
+  List<ProductItem> categories;
   bool flag;
 
   ImageProductTile({this.categories, this.flag});

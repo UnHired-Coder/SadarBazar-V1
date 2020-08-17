@@ -1,12 +1,13 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HeaderImagesProductView extends StatefulWidget {
   final bool flag;
-  final List<ProductItem> products;
+  final List<String> products;
 
   HeaderImagesProductView({this.flag, this.products});
 
@@ -60,8 +61,8 @@ class _HeaderImagesProductViewState extends State<HeaderImagesProductView> {
                         ? BoxFit.scaleDown
                         : BoxFit.scaleDown,
                     image: NetworkImage((widget.flag != null && widget.flag)
-                        ? widget.products[itemIndex].productPictureUrl
-                        : widget.products[itemIndex].productPictureUrl))),
+                        ? widget.products[itemIndex]
+                        : widget.products[itemIndex]))),
           ),
         ),
       ),

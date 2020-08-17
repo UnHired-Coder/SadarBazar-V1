@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,7 @@ class _OffersHighlightedProductsSliderState
                 color: White,
                 border: Border.all(width: 0.1),
                 image: DecorationImage(
-                    fit: (widget.flag != null && widget.flag)?BoxFit.scaleDown:BoxFit.fill,
+                    fit: (widget.flag != null && widget.flag)?BoxFit.scaleDown:BoxFit.cover,
                     image: NetworkImage((widget.flag != null && widget.flag)
                         ? widget.highlightList[itemIndex].categoryPictureUrl
                         : widget.highlightList[itemIndex].categoryPictureUrl))),

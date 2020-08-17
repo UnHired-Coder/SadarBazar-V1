@@ -1,5 +1,9 @@
+import 'dart:math';
+import 'dart:math';
+
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:flutter/material.dart';
 
 class ShopItemGrid extends StatefulWidget {
@@ -14,10 +18,14 @@ class ShopItemGrid extends StatefulWidget {
 
 class _ShopItemGridState extends State<ShopItemGrid> {
   bool _flag;
+  List<Color> colors  = [Colors.cyanAccent,Colors.greenAccent,Colors.pinkAccent];
+  Random  rnd= new Random();
+  Color color;
 
   @override
   void initState() {
     super.initState();
+    color = colors[rnd.nextInt(2)];
     _flag = widget.gridOfProducts != null && widget.gridOfProducts.length == 4
         ? true
         : false;
@@ -42,7 +50,7 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                       width: MediaQuery.of(context).size.width,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          color: Orange,
+                          color: color,
                           border: Border.all(color: Black, width: 0.1)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,7 +66,7 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                               maxLines: 2,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: White,
+                                color: Black,
                                 fontSize: 20,
                               ),
                             ),
@@ -83,7 +91,7 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                   ],
                 ),
                 Container(
-                  color: Orange,
+                  color: color,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [ProductGridItem(gridOfProducts: widget.gridOfProducts,)],

@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
 import 'package:bazar/util/Router/routeConstants.dart';
@@ -115,8 +116,10 @@ class _ShopItemVerticalState extends State<ShopItemVertical> {
                           )),
                       Container(
                           alignment: Alignment.centerLeft,
+                          width: widget.width,
                           child: Text(
                             widget.productItem.productName,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15),
                           )),

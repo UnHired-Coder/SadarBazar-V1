@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^0.4.0+9
   firebase_auth: ^0.14.0+5
   firebase_analytics: ^5.0.2
+  cloud_firestore: ^0.13.7
 
   google_sign_in: ^4.5.1
 
@@ -79,7 +80,15 @@ flutter:
     - assets/images/logo.png
     - assets/images/google.jpg
     - assets/images/logoWhite.png
-    - lib/Json/PRODUCT_CATEGORIES.json
+    - assets/highlights/approve.png
+    - assets/highlights/best.png
+    - assets/highlights/delivery.png
+    - assets/highlights/emi.png
+    - assets/highlights/money.png
+    - assets/highlights/offer.png
+    - assets/highlights/safe.png
+    - assets/highlights/tested.png
+    - assets/highlights/verified.png
 #    - lib/Json/PRODUCT_ITEM.json
 #    - lib/Json/New/_PRODUCT_BEAUTY.json
     - lib/Json/New/_PRODUCT_DAIRY.json

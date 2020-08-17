@@ -1,12 +1,11 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
-import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/widgets/MultipleBuilders/HomeListItem.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/ui/widgets/large/CustomSilverAppBar.dart';
-import 'package:bazar/ui/widgets/large/ProductWidgets/MultiListWidgets/ShopItemGrid.dart';
-import 'package:bazar/util/loader/ProductLoader.dart';
+import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +21,41 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentCategoryIndex, _lastCategoryFetch;
   bool _loading;
 
-  final List<int> _scheme = [7,3,1,0,2,6,1,5,0,2,1,4,0,6,1,0,5];
+//  final List<int> _scheme = [7,3,1,0,2,6,1,5,0,2,1,4,0,6,1,0,5];
+  final List<int> _scheme = [
+    3,
+    1,
+    0,
+    2,
+    6,
+    1,
+    5,
+    0,
+    2,
+    1,
+    4,
+    0,
+    6,
+    1,
+    0,
+    5,
+    3,
+    1,
+    0,
+    2,
+    6,
+    1,
+    5,
+    0,
+    2,
+    1,
+    4,
+    0,
+    6,
+    1,
+    0,
+    5
+  ];
 
   @override
   void initState() {
@@ -40,36 +73,62 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _loadMoreItems() async {
-    await ProductLoader.getMoreProducts(context).then((value) async {
+    await ProductLoaderUtil.getMoreProducts(context).then((value) {
+      debugPrint("1");
       _productItems.addAll(value);
     }).then((value) {
+      debugPrint("2");
       _lastItemFetch = _productItems.length;
       debugPrint(_productItems.length.toString() + " Items Fetched");
-       _loadMoreCategories();
+      _loadMoreCategories();
     });
+
+//    await ProductLoader.getMoreProducts(context).then((value) async {
+//      _productItems.addAll(value);
+//    }).then((value) {
+//      _lastItemFetch = _productItems.length;
+//      debugPrint(_productItems.length.toString() + " Items Fetched");
+//       _loadMoreCategories();
+//    });
   }
 
   void _loadMoreCategories() async {
-    await ProductLoader.getMoreCategories(context).then((value) async {
+    debugPrint("3");
+    await ProductLoaderUtil.getMoreCategories(context).then((value) {
       _productCategories.addAll(value);
-    }).then((value) async {
+      debugPrint("4");
+    }).then((value) {
       _lastCategoryFetch = _productCategories.length;
       debugPrint(_productCategories.length.toString() + " Items Fetched");
-      if (this.mounted) setState(() {
-        _loading = false;
-      });
+      if (this.mounted)
+        setState(() {
+          _loading = false;
+          debugPrint("5");
+        });
       _fillList();
     });
+
+//    await ProductLoader.getMoreCategories(context).then((value) async {
+//      _productCategories.addAll(value);
+//    }).then((value) async {
+//      _lastCategoryFetch = _productCategories.length;
+//      debugPrint(_productCategories.length.toString() + " Items Fetched");
+//      if (this.mounted) setState(() {
+//        _loading = false;
+//      });
+//      _fillList();
+//    });
   }
 
   Future<void> _fillList() async {
+    debugPrint("6");
     for (int i = 0; i < _scheme.length; i++) {
 //      debugPrint(_currentItemIndex.toString());
 //      debugPrint(_currentCategoryIndex.toString());
       switch (_scheme[i]) {
         case 0:
           {
-            _homeItems.add( PromoteItemTile(
+            _homeItems.add(PromoteItemTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 1),
                 flag: false));
@@ -78,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 1:
           {
-            _homeItems.add( ShopItemGridTile(
+            _homeItems.add(ShopItemGridTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 4),
                 flag: false));
@@ -87,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 2:
           {
-            _homeItems.add( ProductsListHTile(
+            _homeItems.add(ProductsListHTile(
                 products: _productItems.sublist(
                     _currentItemIndex, _currentItemIndex + 4),
                 flag: false));
@@ -96,42 +155,47 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         case 3:
           {
-            _homeItems.add( OffersHighlightedTile(
+            _homeItems.add(OffersHighlightedTile(
                 categories: _productCategories.sublist(
-                    _currentCategoryIndex, _currentCategoryIndex + 4),flag: false));
-            _currentCategoryIndex += 4;
+                    _currentCategoryIndex, _currentCategoryIndex + 4),
+                flag: false));
+            _currentCategoryIndex += 2;
             break;
           }
         case 4:
           {
-            _homeItems.add( ImageProductTile(
-                categories: _productCategories.sublist(
-                    _currentCategoryIndex, _currentCategoryIndex + 1),flag: false));
-            _currentCategoryIndex += 1;
+            _homeItems.add(ImageProductTile(
+                categories: _productItems.sublist(
+                    _currentItemIndex, _currentItemIndex + 1),
+                flag: false));
+            _currentItemIndex += 1;
             break;
           }
         case 5:
           {
-            _homeItems.add( OffersHighlightedTile(
+            _homeItems.add(OffersHighlightedTile(
                 categories: _productCategories.sublist(
-                    _currentCategoryIndex, _currentCategoryIndex + 4),flag: true));
-            _currentCategoryIndex += 4;
+                    _currentCategoryIndex, _currentCategoryIndex + 4),
+                flag: true));
+//            _currentCategoryIndex += 4;
             break;
           }
         case 6:
           {
-            _homeItems.add( ImageProductTile(
-                categories: _productCategories.sublist(
-                    _currentCategoryIndex, _currentCategoryIndex + 1),flag: true));
-            _currentCategoryIndex += 1;
+            _homeItems.add(ImageProductTile(
+                categories: _productItems.sublist(
+                    _currentItemIndex, _currentItemIndex + 1),
+                flag: true));
+            _currentItemIndex += 1;
             break;
           }
         case 7:
           {
-            _homeItems.add( CategoryTile(
+            _homeItems.add(CategoryTile(
                 categories: _productCategories.sublist(
-                    _currentCategoryIndex, _currentCategoryIndex + 8),flag: true));
-            _currentCategoryIndex += 8;
+                    _currentCategoryIndex, _currentCategoryIndex + 6),
+                flag: true));
+//            _currentCategoryIndex += 6;
             break;
           }
       }
@@ -162,9 +226,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                AnimatedCartButton(cartButtonCallback: (){
-
-                },),
+                AnimatedCartButton(
+                  cartButtonCallback: () {},
+                ),
                 AnimatedNotificationButton(),
               ],
             )
@@ -177,10 +241,16 @@ class _HomeScreenState extends State<HomeScreen> {
         SliverList(
           delegate: SliverChildBuilderDelegate((BuildContext context, index) {
             return (_homeItems != null)
-                ? (_loading)?Container(color: FakeWhite,):_buildItem(index)
+                ? (_loading)
+                    ? Container(
+                        height: 200,
+                        alignment: Alignment.center,
+                        child: Container(width: 30,height: 30,child: CircularProgressIndicator(backgroundColor:  Maroon,strokeWidth: 2)),
+                      )
+                    : _buildItem(index)
                 : Container(
-                    color: Maroon,
-                  );
+              child: Container(width: 30,height: 30,child: CircularProgressIndicator(backgroundColor: Maroon,strokeWidth: 2,)),
+            );
           }, childCount: _scheme.length),
 //        delegate: SliverChildListDelegate([
 //          ShopItemGrid(gridOfProducts: _productItems.sublist(0,4),flag: false,)

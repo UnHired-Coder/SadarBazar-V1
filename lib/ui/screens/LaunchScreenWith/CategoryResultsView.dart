@@ -1,6 +1,7 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:flutter/cupertino.dart';

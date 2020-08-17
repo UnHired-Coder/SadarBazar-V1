@@ -1,6 +1,7 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
 import 'package:bazar/ui/widgets/MultipleBuilders/EasyFindListItem.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindCategories.dart';
@@ -36,7 +37,7 @@ class _EasyFindScreenState extends State<EasyFindScreen> {
     _easyFindItems = new List();
     _productCategories = new List();
     _loading = true;
-    _loadMoreItems();
+//    _loadMoreItems();
   }
 
   void _loadMoreItems() async {

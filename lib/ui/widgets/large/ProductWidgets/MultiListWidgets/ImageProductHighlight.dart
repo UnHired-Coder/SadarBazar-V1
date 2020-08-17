@@ -1,12 +1,13 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ImageProductHighlight extends StatefulWidget {
   final bool flag;
-  final List<ProductCategory> products;
+  final List<ProductItem> products;
 
   ImageProductHighlight({this.flag, @required this.products});
 
@@ -45,7 +46,7 @@ class _ImageProductHighlightState extends State<ImageProductHighlight> {
               border: Border.all(width: 0.1),
               image: DecorationImage(
                   fit: BoxFit.scaleDown,
-                  image: NetworkImage(widget.products[0].categoryPictureUrl))),
+                  image: NetworkImage(widget.products[0].productPictureUrl))),
         ),
       ),
     );
