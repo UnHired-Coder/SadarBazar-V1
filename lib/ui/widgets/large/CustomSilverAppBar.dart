@@ -174,6 +174,7 @@ class ProductSearch extends SearchDelegate<String> {
           if(val.hasData && (!val.hasError))
           return SearchResultsView(
             products: val.data,
+            searchCallBack: _searchCallBack,
           );
           else return  Container(
             width: MediaQuery.of(context).size.width,
@@ -216,5 +217,10 @@ class ProductSearch extends SearchDelegate<String> {
       });
     });
     return results;
+  }
+
+  _searchCallBack(context,String q) async{
+     query = q;
+     showResults(context);
   }
 }
