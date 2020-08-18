@@ -14,7 +14,9 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin<HomeScreen>{
+
+
   List<ProductItem> _productItems;
   List<ProductCategory> _productCategories;
   List<HomeListItem> _homeItems;
@@ -80,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await ProductLoaderUtil.getMoreProducts(context).then((value) {
       debugPrint("1");
       _productItems.addAll(value);
+      ProductLoaderUtil.cacheLoadedProducts(_productItems);
     }).then((value) {
       debugPrint("2");
       _lastItemFetch = _productItems.length;
@@ -100,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
     debugPrint("3");
     await ProductLoaderUtil.getMoreCategories(context).then((value) {
       _productCategories.addAll(value);
+      ProductLoaderUtil.cacheLoadedCategories(_productCategories);
       debugPrint("4");
     }).then((value) {
       _lastCategoryFetch = _productCategories.length;
@@ -324,5 +328,10 @@ class _HomeScreenState extends State<HomeScreen> {
         }
     }
     return w;
+  }
+
+  @override
+  bool get wantKeepAlive {
+    return true;
   }
 }

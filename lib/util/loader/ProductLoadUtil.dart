@@ -5,7 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 abstract class ProductLoaderUtil {
-  static Map<String, ProductItem> cachedProducts = new Map();
+  static List<ProductItem> cachedProducts = new List();
+  static List<ProductCategory> cachedCategories = new List();
 
   static List<String> categories = [
     "DAIRY_PRODUCTS",
@@ -17,6 +18,8 @@ abstract class ProductLoaderUtil {
   ];
 
   static Future<List<ProductItem>> getMoreProducts(BuildContext context) async {
+    if(cachedProducts!=null && cachedProducts.length!=0)
+      return cachedProducts;
     List<ProductItem> products = [];
     for (int i = 0; i < categories.length; i++)
       await Firestore.instance
@@ -35,6 +38,8 @@ abstract class ProductLoaderUtil {
 
   static Future<List<ProductCategory>> getMoreCategories(
       BuildContext context) async {
+    if(cachedCategories!=null && cachedCategories.length!=0)
+      return cachedCategories;
     List<ProductCategory> categoriesFetched = [];
     for (int i = 0; i < categories.length; i++)
       await Firestore.instance
@@ -131,5 +136,13 @@ abstract class ProductLoaderUtil {
         });
       });
     return products;
+  }
+
+ static cacheLoadedProducts( List<ProductItem> products){
+    cachedProducts.addAll(products);
+  }
+
+  static cacheLoadedCategories( List<ProductCategory> products){
+    cachedCategories.addAll(products);
   }
 }

@@ -147,6 +147,7 @@ class _HomeState extends State<Home>{
 
   TabBarView _tabBarView() {
     return new TabBarView(
+//      key: new PageStorageKey("asasasas"),
       children: [HomeScreen(), EasyFindScreen(), CartScreen(), ProfileScreen()],
     );
   }
