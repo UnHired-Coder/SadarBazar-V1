@@ -43,7 +43,7 @@ abstract class ProductLoaderUtil {
           .collection(categories[i])
           .getDocuments()
           .then((value) {
-        debugPrint(value.documents.toString());
+//        debugPrint(value.documents.toString());
         value.documents.forEach((element) {
 //        debugPrint(element.data.toString());
           categoriesFetched.add(ProductCategory.fromJson(element.data));
@@ -82,8 +82,54 @@ abstract class ProductLoaderUtil {
           .getDocuments()
           .then((value) {
         productMetaData = ProductMetaData.fromJson(value.documents[0].data);
-        debugPrint(productMetaData.highlightsPoints.toString());
+//        debugPrint(productMetaData.highlightsPoints.toString());
       }).then((value) {});
     return productMetaData;
+  }
+
+  /////////////////////
+  //  SEARCH PRODUCT
+  /////////////////////
+
+  static Future<List<ProductItem>> getSearchResults(
+      BuildContext context, String query) async {
+    List<ProductItem> products = [];
+    for (int i = 0; i < categories.length; i++)
+      await Firestore.instance
+          .collection("GlobalDataBase")
+          .document(categories[i])
+          .collection("ITEMS")
+          .limit(8)
+          .where("SEARCH_KEYWORDS",
+          arrayContains: query[0].toUpperCase() + query.substring(1))
+          .getDocuments()
+          .then((value) {
+        value.documents.forEach((element) {
+          products.add(ProductItem.fromJson(element.data));
+        });
+      });
+    return products;
+  }
+
+
+
+  static Future<List<String>> searchProducts(
+    BuildContext context, String query) async {
+    List<String> products = [];
+    for (int i = 0; i < categories.length; i++)
+      await Firestore.instance
+          .collection("GlobalDataBase")
+          .document(categories[i])
+          .collection("ITEMS")
+          .limit(8)
+          .where("SEARCH_KEYWORDS",
+              arrayContains: query[0].toUpperCase() + query.substring(1))
+          .getDocuments()
+          .then((value) {
+        value.documents.forEach((element) {
+          products.add(ProductItem.fromJson(element.data).productName);
+        });
+      });
+    return products;
   }
 }

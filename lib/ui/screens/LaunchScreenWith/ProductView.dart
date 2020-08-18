@@ -6,6 +6,7 @@ import 'package:bazar/ui/widgets/large/ProductWidgets/HeaderImagesProductView.da
 import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductView extends StatefulWidget {
   final ProductItem productItem;
@@ -33,7 +34,7 @@ class _ProductViewState extends State<ProductView>
     super.initState();
   }
 
-  _getMetadata() async {
+  Future<void> _getMetadata() async {
     await ProductLoaderUtil.getProductMetadata(
             context, widget.productItem.productId)
         .then((value) {
@@ -46,6 +47,7 @@ class _ProductViewState extends State<ProductView>
         _loading = false;
       });
     });
+    return;
   }
 
   @override
@@ -58,13 +60,28 @@ class _ProductViewState extends State<ProductView>
       backgroundColor: White,
       body: SingleChildScrollView(
         child: (_loading)
-            ? Container()
+            ? fakeContainer(_width)
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  HeaderImagesProductView(
-                    products: _productMetaData.pictureUrls,
-                    flag: false,
+                  SizedBox(
+                    height: 20,
+                  ),
+                  FutureBuilder(
+                    future: _getMetadata(),
+                    builder: (context, val) {
+                      if (_productMetaData.pictureUrls != null)
+                        return HeaderImagesProductView(
+                          products: _productMetaData.pictureUrls,
+                          flag: false,
+                        );
+                      else
+                        return Container(
+                          width: _width,
+                          height: 200,
+                          color: Maroon,
+                        );
+                    },
                   ),
                   Container(
                     height: 2,
@@ -207,7 +224,8 @@ class _ProductViewState extends State<ProductView>
                                         border: Border.all(
                                             color: Orange, width: 0.4)),
                                     child: Text(
-                                      _list[index] +" "+
+                                      _list[index] +
+                                          " " +
                                           unitType[widget.productItem
                                               .productUnitType.index],
                                       style: TextStyle(
@@ -364,52 +382,47 @@ class _ProductViewState extends State<ProductView>
   Widget _getHighlightIcon(int index) {
     String url = "";
     switch (index) {
-      case 0:
+      case 2:
         {
           url = "assets/highlights/approve.png";
         }
         break;
-      case 1:
+      case 3:
         {
           url = "assets/highlights/best.png";
         }
         break;
-      case 2:
+      case 5:
         {
           url = "assets/highlights/delivery.png";
         }
         break;
-      case 3:
+      case 6:
         {
           url = "assets/highlights/emi.png";
         }
         break;
-      case 4:
+      case 7:
         {
           url = "assets/highlights/money.png";
         }
         break;
-      case 5:
+      case 8:
         {
           url = "assets/highlights/offer.png";
         }
         break;
-      case 6:
+      case 0:
         {
           url = "assets/highlights/safe.png";
         }
         break;
-      case 7:
+      case 1:
         {
           url = "assets/highlights/tested.png";
         }
         break;
-      case 8:
-        {
-          url = "assets/highlights/verified.png";
-        }
-        break;
-      case 9:
+      case 4:
         {
           url = "assets/highlights/verified.png";
         }
@@ -429,7 +442,11 @@ class _ProductViewState extends State<ProductView>
             height: 10,
             padding: EdgeInsets.all(2),
             child: Text(
-              Highlight.values.elementAt(index).toString().substring(10).replaceAll("_", " "),
+              Highlight.values
+                  .elementAt(index)
+                  .toString()
+                  .substring(10)
+                  .replaceAll("_", " "),
               style: TextStyle(fontSize: 6),
             ),
             decoration: BoxDecoration(color: FakeWhite),
@@ -519,5 +536,84 @@ class _ProductViewState extends State<ProductView>
         child: Column(
           children: _items,
         ));
+  }
+
+  Widget fakeContainer(_width) {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            width: _width,
+            height: 300.0,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.withOpacity(0.1),
+              highlightColor: FakeWhite,
+              child: Container(
+                width: _width,
+                height: 200,
+                color: White,
+                margin: EdgeInsets.all(4),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: _width,
+            height: 150.0,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.withOpacity(0.1),
+              highlightColor: FakeWhite,
+              child: Container(
+                width: _width,
+                height: 150,
+                color: LightBlack,
+                margin: EdgeInsets.all(4),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: _width,
+            height: 100.0,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.withOpacity(0.1),
+              highlightColor: FakeWhite,
+              child: Container(
+                width: _width,
+                height: 100,
+                color: LightBlack,
+                margin: EdgeInsets.all(4),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: _width,
+            height: 150.0,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.withOpacity(0.1),
+              highlightColor: FakeWhite,
+              child: Container(
+                width: _width,
+                height: 150,
+                color: LightBlack,
+                margin: EdgeInsets.all(4),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: _width,
+            height: 400.0,
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.withOpacity(0.1),
+              highlightColor: FakeWhite,
+              child: Container(
+                width: _width,
+                height: 400,
+                color: LightBlack,
+                margin: EdgeInsets.all(4),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

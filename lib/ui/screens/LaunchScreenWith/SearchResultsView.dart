@@ -1,10 +1,15 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchResultsView extends StatefulWidget {
+  final List<ProductItem> products;
+
+  SearchResultsView({this.products});
+
   @override
   _SearchResultsViewState createState() => _SearchResultsViewState();
 }
@@ -35,12 +40,12 @@ class _SearchResultsViewState extends State<SearchResultsView> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: (){
+                    onTap: () {
                       debugPrint("");
                     },
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 15,right: 15),
+                      padding: EdgeInsets.only(left: 15, right: 15),
                       margin: EdgeInsets.only(
                         left: 5,
                         right: 5,
@@ -65,14 +70,14 @@ class _SearchResultsViewState extends State<SearchResultsView> {
                 height: _height,
                 child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(top: 10,bottom: 10),
-                      height: 100,
+                    return ShopItemHorizontal(
+                      productItem: widget.products[index],
+                      code: [1, 1, 1, 1, 0],
                       width: _width,
-                      color: FakeWhite,
+                      height: 120,
                     );
                   },
-                  itemCount: 12,
+                  itemCount: widget.products.length,
                 ))
           ],
         ),

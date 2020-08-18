@@ -8,7 +8,7 @@ import 'assets/colors/ThemeColors.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (context)=> CartViewModel(),
+    create: (context) => CartViewModel(),
     child: RestartWidget(
         child: new MaterialApp(
       home: UndefinedScreen(),
@@ -17,8 +17,7 @@ void main() {
   ));
 }
 
-onWillPopup() {
-}
+onWillPopup() {}
 
 class RestartWidget extends StatefulWidget {
   final Widget child;
@@ -44,9 +43,8 @@ class _RestartWidgetState extends State<RestartWidget> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Maroon
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Maroon));
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -56,5 +54,4 @@ class _RestartWidgetState extends State<RestartWidget> {
       child: widget.child,
     );
   }
-
 }

@@ -4,11 +4,11 @@ import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:flutter/cupertino.dart';
 
- abstract class ProductLoader {
-  static List<ProductItem> productItems= [];
-  static List<ProductCategory> productCategory= [];
+abstract class ProductLoader {
+  static List<ProductItem> productItems = [];
+  static List<ProductCategory> productCategory = [];
 
- static Future<List<ProductItem>> getMoreProducts(BuildContext context) async {
+  static Future<List<ProductItem>> getMoreProducts(BuildContext context) async {
     List<ProductItem> products;
 //    await DefaultAssetBundle.of(context)
 //        .loadString("lib/Json/PRODUCT_ITEM.json")
@@ -22,7 +22,8 @@ import 'package:flutter/cupertino.dart';
     return products;
   }
 
- static Future<List<ProductCategory>> getMoreCategories(BuildContext context) async {
+  static Future<List<ProductCategory>> getMoreCategories(
+      BuildContext context) async {
     List<ProductCategory> categories;
 //    await DefaultAssetBundle.of(context)
 //        .loadString("lib/Json/PRODUCT_CATEGORIES.json")
@@ -36,17 +37,13 @@ import 'package:flutter/cupertino.dart';
     return categories;
   }
 
-
- static List<ProductItem> getFourProducts(BuildContext context) {
-
-    if(productItems.length == 0)
-       getMoreProducts(context);
-    return productItems.sublist(0,0+4);
+  static List<ProductItem> getFourProducts(BuildContext context) {
+    if (productItems.length == 0) getMoreProducts(context);
+    return productItems.sublist(0, 0 + 4);
   }
 
- static ProductItem getProduct(BuildContext context) {
-    if(productItems.length == 0)
-      getMoreProducts(context);
+  static ProductItem getProduct(BuildContext context) {
+    if (productItems.length == 0) getMoreProducts(context);
     return productItems[0];
   }
 
@@ -55,4 +52,4 @@ import 'package:flutter/cupertino.dart';
   List<ProductItem> getProductsByCategory(String category) {}
 
   List<ProductItem> getSimilarProducts(List<ProductItem> products) {}
- }
+}

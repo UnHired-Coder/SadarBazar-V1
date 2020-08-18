@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/SearchResultsView.dart';
+import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -55,6 +56,12 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
   }
 }
 
+///////////////////////
+
+//SEARCH PRODUCT
+
+//////////////////////
+
 class ProductSearch extends SearchDelegate<String> {
   List<String> _suggestions = [" pasta", " maggie", " potato", "tomato"];
   List<String> _result = [
@@ -67,26 +74,70 @@ class ProductSearch extends SearchDelegate<String> {
     " potato",
     "tomato"
   ];
+  List<String> suggestions = [];
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = query.isEmpty ? _suggestions : _result;
-    return ListView.builder(
-        itemCount: suggestions.length,
-        itemBuilder: (context, index) => ListTile(
-              onTap: () {
-                query = suggestions[index];
-              },
-              leading: Icon(
-                FontAwesomeIcons.longArrowAltUp,
-                color: LightBlack,
-                size: 15,
-              ),
-              title: Padding(
-                padding: EdgeInsets.all(8),
-                child: Text(suggestions[index]),
-              ),
-            ));
+//    final suggestions = query.isEmpty ? _suggestions : _result;
+    if (query.isNotEmpty) {
+      _getResults(context, query).then((value) {
+        suggestions.clear();
+        suggestions.addAll(value);
+      });
+    } else {
+      suggestions.clear();
+      suggestions.addAll(_suggestions);
+    }
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      body: FutureBuilder(
+        future: _getResults(context, query),
+        builder: (context, val) {
+          if (val.hasData) {
+            return ListView.builder(
+                itemCount: val.data.length,
+                itemBuilder: (context, index) => ListTile(
+                      onTap: () {
+                        query = val.data[index];
+                      },
+                      leading: Icon(
+                        FontAwesomeIcons.longArrowAltUp,
+                        color: LightBlack,
+                        size: 15,
+                      ),
+                      title: Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text(val.data[index]),
+                      ),
+                    ));
+          } else
+            return (query.isEmpty)
+                ? ListView.builder(
+                    itemCount: suggestions.length,
+                    itemBuilder: (context, index) => ListTile(
+                          onTap: () {},
+                          leading: Icon(
+                            FontAwesomeIcons.longArrowAltUp,
+                            color: LightBlack,
+                            size: 15,
+                          ),
+                          title: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text(suggestions[index]),
+                          ),
+                        ))
+                : Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: CircularProgressIndicator(
+                      backgroundColor: Maroon,
+                      strokeWidth: 2,
+                    ),
+                    alignment: Alignment.center,
+                  );
+        },
+      ),
+    );
   }
 
   @override
@@ -117,7 +168,23 @@ class ProductSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return SearchResultsView();
+    return FutureBuilder(
+        future: ProductLoaderUtil.getSearchResults(context, query),
+        builder: (context, val) {
+          if(val.hasData && (!val.hasError))
+          return SearchResultsView(
+            products: val.data,
+          );
+          else return  Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.5,
+            child: CircularProgressIndicator(
+              backgroundColor: Maroon,
+              strokeWidth: 2,
+            ),
+            alignment: Alignment.center,
+          );
+        });
   }
 
   @override
@@ -139,5 +206,15 @@ class ProductSearch extends SearchDelegate<String> {
 //             bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
       ),
     );
+  }
+
+  Future<List<String>> _getResults(context, String query) async {
+    List<String> results = new List();
+    await ProductLoaderUtil.searchProducts(context, query).then((value) {
+      value.forEach((element) {
+        results.add(element.toString());
+      });
+    });
+    return results;
   }
 }

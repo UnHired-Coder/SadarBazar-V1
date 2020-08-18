@@ -7,6 +7,7 @@ import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/ui/widgets/large/CustomSilverAppBar.dart';
 import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -51,8 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
     1,
     4,
     0,
+    2,
     6,
     1,
+    0,
+    2,
     0,
     5
   ];
@@ -242,15 +246,30 @@ class _HomeScreenState extends State<HomeScreen> {
           delegate: SliverChildBuilderDelegate((BuildContext context, index) {
             return (_homeItems != null)
                 ? (_loading)
-                    ? Container(
-                        height: 200,
-                        alignment: Alignment.center,
-                        child: Container(width: 30,height: 30,child: CircularProgressIndicator(backgroundColor:  Maroon,strokeWidth: 2)),
+                    ? SizedBox(
+                        width: _width,
+                        height: 300.0,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey.withOpacity(0.3),
+                          highlightColor: FakeWhite,
+                          child: Container(
+                            width: _width,
+                            height: 200,
+                            color: LightBlack,
+                            margin: EdgeInsets.all(10),
+                          ),
+                        ),
                       )
                     : _buildItem(index)
                 : Container(
-              child: Container(width: 30,height: 30,child: CircularProgressIndicator(backgroundColor: Maroon,strokeWidth: 2,)),
-            );
+                    child: Container(
+                        width: 30,
+                        height: 30,
+                        child: CircularProgressIndicator(
+                          backgroundColor: Maroon,
+                          strokeWidth: 2,
+                        )),
+                  );
           }, childCount: _scheme.length),
 //        delegate: SliverChildListDelegate([
 //          ShopItemGrid(gridOfProducts: _productItems.sublist(0,4),flag: false,)
