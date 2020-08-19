@@ -20,6 +20,7 @@ class ProductItem {
     @required this.productPictureUrl,
     @required this.productSupplierId,
     @required this.productCategoryId,
+    @required this.productCategoryName,
     @required this.productTags,
     @required this.productRating,
     @required this.productMetaDataId,
@@ -38,6 +39,7 @@ class ProductItem {
   final String productPictureUrl;
   final String productSupplierId;
   final String productCategoryId;
+  final String productCategoryName;
   final List<String> productTags;
   final double productRating;
   final String productMetaDataId;
@@ -60,6 +62,7 @@ class ProductItem {
     productPictureUrl: json["productPictureUrl"],
     productSupplierId: json["productSupplierId"],
     productCategoryId: json["productCategoryId"],
+    productCategoryName: json["productCategoryName"],
     productTags: List<String>.from(json["productTags"].map((x) => x)),
     productRating: json["productRating"].toDouble(),
     productMetaDataId: json["productMetaDataId"],
@@ -79,6 +82,7 @@ class ProductItem {
     "productPictureUrl": productPictureUrl,
     "productSupplierId": productSupplierId,
     "productCategoryId": productCategoryId,
+    "productCategoryName": productCategoryName,
     "productTags": List<dynamic>.from(productTags.map((x) => x)),
     "productRating": productRating,
     "productMetaDataId": productMetaDataId,

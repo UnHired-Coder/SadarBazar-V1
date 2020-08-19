@@ -57,7 +57,7 @@ class _EasyFindGridCategoriesState extends State<EasyFindGridCategories> {
                   return InkWell(
                     onTap: () {
                       debugPrint("Open Items in this category " +
-                          widget.categories[0].categoryName);
+                          widget.products[0].productCategoryName);
                     },
                     child: Container(
                       width: 150,

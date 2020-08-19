@@ -7,6 +7,7 @@ import 'package:bazar/ui/widgets/MultipleBuilders/EasyFindListItem.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindCategories.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindGridCategories.dart';
 import 'package:bazar/ui/widgets/large/EasyFindWidgets/EasyFindHighlightedCategories.dart';
+import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,11 @@ class _EasyFindScreenState extends State<EasyFindScreen> {
     _easyFindItems = new List();
     _productCategories = new List();
     _loading = true;
-//    _loadMoreItems();
+    _loadMoreItems();
   }
 
   void _loadMoreItems() async {
-    await ProductLoader.getMoreProducts(context).then((value) async {
+    await ProductLoaderUtil.getMoreProducts(context).then((value) async {
       _productItems.addAll(value);
     }).then((value) {
       _lastItemFetch = _productItems.length;
@@ -51,7 +52,7 @@ class _EasyFindScreenState extends State<EasyFindScreen> {
   }
 
   void _loadMoreCategories() async {
-    await ProductLoader.getMoreCategories(context).then((value) async {
+    await ProductLoaderUtil.getMoreCategories(context).then((value) async {
       _productCategories.addAll(value);
     }).then((value) async {
       _lastCategoryFetch = _productCategories.length;

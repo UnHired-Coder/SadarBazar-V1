@@ -106,7 +106,9 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                AnimatedCartButton(cartButtonCallback: null,)
+                AnimatedCartButton(
+                  cartButtonCallback: null,
+                )
               ],
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -123,12 +125,16 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
           Consumer<CartViewModel>(builder: (context, cart, child) {
             return SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
-              return ShopItemHorizontal(
-                height: _height * 0.2,
-                width: _width,
-                productItem: cart.getUserCart(index),
-                code: [1, 1, 1, 1, 0],
-              );
+              return Opacity(
+                  opacity: (cart.getItemCount(cart.getUserCart(index)) == 0)
+                      ? 0.2
+                      : 1,
+                  child: ShopItemHorizontal(
+                    height: _height * 0.2,
+                    width: _width,
+                    productItem: cart.getUserCart(index),
+                    code: [1, 1, 1, 1, 0],
+                  ));
             }, childCount: cart.getLength()));
           })
         ],
@@ -218,7 +224,13 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                   child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.all(4),
-                    child: Text("Your cart is empty!",style: TextStyle(color: White,fontSize: 20,fontWeight: FontWeight.bold),),
+                    child: Text(
+                      "Your cart is empty!",
+                      style: TextStyle(
+                          color: White,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 Visibility(
@@ -265,7 +277,8 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                                       style: TextStyle(
                                           color: FakeWhite,
                                           fontSize: 10,
-                                          decoration: TextDecoration.lineThrough,
+                                          decoration:
+                                              TextDecoration.lineThrough,
                                           decorationColor: Green,
                                           decorationThickness: 3)),
                                 )
@@ -318,7 +331,9 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                               Container(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  "Rs " + cart.getTotalAmount().toString() + "/-",
+                                  "Rs " +
+                                      cart.getTotalAmount().toString() +
+                                      "/-",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       color: White,

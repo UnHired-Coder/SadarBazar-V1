@@ -46,7 +46,7 @@ class _EasyFindHighlightedCategoriesState
               child: InkWell(
                 onTap: () {
                   debugPrint("Open Items in this category " +
-                      widget.categories[index].categoryName);
+                      widget.categories[0].categoryName);
                   Navigator.push(
                       context,
                       MaterialPageRoute(

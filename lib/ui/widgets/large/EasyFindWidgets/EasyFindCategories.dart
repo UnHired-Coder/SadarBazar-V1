@@ -48,7 +48,7 @@ class _EasyFindCategoriesState extends State<EasyFindCategories> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(2),
                     child: Text(
-                      widget.categories[0].categoryName,
+                      widget.products[0].productCategoryName,
                       style: TextStyle(
                           color: Black,
                           fontSize: 18,

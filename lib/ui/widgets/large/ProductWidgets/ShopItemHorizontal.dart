@@ -12,9 +12,10 @@ class ShopItemHorizontal extends StatefulWidget {
   final double width;
   final double height;
   final ProductItem productItem;
+  final Function zeroProductCallback;
   final List<int> code;
 
-  ShopItemHorizontal({this.width, this.height, this.productItem, this.code});
+  ShopItemHorizontal({this.width, this.height, this.productItem,this.zeroProductCallback, this.code});
 
   @override
   _ShopItemHorizontalState createState() => _ShopItemHorizontalState();

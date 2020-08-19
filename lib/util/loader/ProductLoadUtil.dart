@@ -79,36 +79,32 @@ abstract class ProductLoaderUtil {
   //  SIMILAR PRODUCTS
   /////////////////////
 
-                  static Future<List<ProductItem>> getSimilarProducts(
-                    BuildContext context, String category) async {
-                    List<ProductItem> products = [];
-                    String categoryName = categories[0];
+  static Future<List<ProductItem>> getSimilarProducts(
+      BuildContext context, String category) async {
+    List<ProductItem> products = [];
 
-                    debugPrint(categoryName + " --- ");
-                    await Firestore.instance
-                        .collection("GlobalDataBase")
-                        .document(categoryName)
-                        .collection("ITEMS")
-                        .limit(4)
-                        .getDocuments()
-                        .then((value) {
-                      value.documents.forEach((element) {
-                //        debugPrint(element.data.toString());
-                        products.add(ProductItem.fromJson(element.data));
-                      });
-                    });
-                    return products;
-                  }
-
+    await Firestore.instance
+        .collection("GlobalDataBase")
+        .document(category)
+        .collection("ITEMS")
+        .limit(4)
+        .getDocuments()
+        .then((value) {
+      value.documents.forEach((element) {
+        //        debugPrint(element.data.toString());
+        products.add(ProductItem.fromJson(element.data));
+      });
+    });
+    return products;
+  }
 
   static Future<List<ProductItem>> getPopularProducts(
       BuildContext context, String category) async {
     List<ProductItem> products = [];
-    String categoryName = categories[2];
 
     await Firestore.instance
         .collection("GlobalDataBase")
-        .document(categoryName)
+        .document(category)
         .collection("ITEMS")
         .limit(4)
         .getDocuments()

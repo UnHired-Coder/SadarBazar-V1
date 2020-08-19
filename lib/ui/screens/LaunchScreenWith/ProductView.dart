@@ -35,10 +35,10 @@ class _ProductViewState extends State<ProductView>
     _loading = true;
     _tabController = new TabController(length: 2, vsync: this);
     _getMetadata();
-    getSimilarProductsFuture =ProductLoaderUtil.getSimilarProducts(
-        context, widget.productItem.productCategoryId);
-    getPopularProductsFuture =ProductLoaderUtil.getPopularProducts(
-        context, widget.productItem.productCategoryId);
+    getSimilarProductsFuture = ProductLoaderUtil.getSimilarProducts(
+        context, widget.productItem.productCategoryName);
+    getPopularProductsFuture = ProductLoaderUtil.getPopularProducts(
+        context, widget.productItem.productCategoryName);
     super.initState();
   }
 

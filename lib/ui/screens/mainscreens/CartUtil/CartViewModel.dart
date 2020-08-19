@@ -44,7 +44,8 @@ class CartViewModel extends ChangeNotifier {
   }
 
   addToCart(ProductItem product) {
-    if (!_productCount.containsKey(product.productId)) _productsInCart.add(product);
+    if (!_productCount.containsKey(product.productId))
+      _productsInCart.add(product);
     subTotalAmount += product.productUnitPrice;
     totalDiscountAmount += product.productDiscount;
 
@@ -68,6 +69,13 @@ class CartViewModel extends ChangeNotifier {
       _productCount[product.productId]--;
     }
     _count--;
+
+    if (_count <= 0) {
+      Future.delayed(Duration(seconds: 1)).then((value) {
+        _productsInCart.remove(product);
+        _productCount.remove(product.productId);
+      });
+    }
     notifyListeners();
   }
 }

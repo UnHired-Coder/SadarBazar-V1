@@ -11,8 +11,9 @@ class AddProductButton extends StatefulWidget {
   final double width;
   final double height;
   final ProductItem productItem;
+  final Function valueZeroCallback;
 
-  AddProductButton({this.width, this.height, @required this.productItem});
+  AddProductButton({this.width, this.height, @required this.productItem,this.valueZeroCallback});
 
   @override
   _AddProductButtonState createState() => _AddProductButtonState();
