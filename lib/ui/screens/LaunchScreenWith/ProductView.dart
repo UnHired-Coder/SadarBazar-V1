@@ -3,6 +3,7 @@ import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductMetaData.dart';
 import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/HeaderImagesProductView.dart';
+import 'package:bazar/ui/widgets/large/ProductWidgets/MultiListWidgets/ListProductsHorizontal.dart';
 import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,11 +27,18 @@ class _ProductViewState extends State<ProductView>
 
   List<String> unitType = ["Pcs", "Grm", "NA", "Unit", "Kg"];
 
+  Future getSimilarProductsFuture;
+  Future getPopularProductsFuture;
+
   @override
   void initState() {
     _loading = true;
     _tabController = new TabController(length: 2, vsync: this);
     _getMetadata();
+    getSimilarProductsFuture =ProductLoaderUtil.getSimilarProducts(
+        context, widget.productItem.productCategoryId);
+    getPopularProductsFuture =ProductLoaderUtil.getPopularProducts(
+        context, widget.productItem.productCategoryId);
     super.initState();
   }
 
@@ -347,11 +355,21 @@ class _ProductViewState extends State<ProductView>
                             "Similar Products",
                             style: TextStyle(fontSize: 20, color: Orange),
                           )),
-//                ListProductHorizontal(
-//                  productItemsHorizontal:
-//                      ProductLoader.getFourProducts(context),
-//                  flag: false,
-//                ),
+                      FutureBuilder(
+                        future: getSimilarProductsFuture,
+                        builder: (context, val) {
+                          if (val.hasData && (!val.hasError))
+                            return ListProductHorizontal(
+                              productItemsHorizontal: val.data,
+                              flag: false,
+                            );
+                          else
+                            return Container(
+                              height: _height * 0.06,
+                              color: FakeWhite,
+                            );
+                        },
+                      ),
                       Container(
                         height: 4,
                         width: _width,
@@ -364,12 +382,25 @@ class _ProductViewState extends State<ProductView>
                             "Popular Products",
                             style: TextStyle(fontSize: 20, color: Orange),
                           )),
-//                ListProductHorizontal(
-//                  productItemsHorizontal:
-//                      ProductLoader.getFourProducts(context),
-//                  flag: false,
-//                ),
+                      FutureBuilder(
+                        future: getPopularProductsFuture,
+                        builder: (context, val) {
+                          if (val.hasData && (!val.hasError))
+                            return ListProductHorizontal(
+                              productItemsHorizontal: val.data,
+                              flag: false,
+                            );
+                          else
+                            return Container(
+                              height: _height * 0.06,
+                              color: FakeWhite,
+                            );
+                        },
+                      ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 50,
                   )
                 ],
               ),

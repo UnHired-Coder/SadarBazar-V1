@@ -36,58 +36,62 @@ class _SearchResultsViewState extends State<SearchResultsView> {
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 50,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      debugPrint("Similar Item Tapped");
-                      widget.searchCallBack(context, _similar[index]);
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      margin: EdgeInsets.only(
-                        left: 5,
-                        right: 5,
-                        top: 10,
-                        bottom: 4,
+        child: Container(
+          height: _height,
+          width: _width,
+          child: Column(
+            children: [
+              Container(
+                height: 50,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        debugPrint("Similar Item Tapped");
+                        widget.searchCallBack(context, _similar[index]);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.only(left: 15, right: 15),
+                        margin: EdgeInsets.only(
+                          left: 5,
+                          right: 5,
+                          top: 10,
+                          bottom: 4,
+                        ),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Orange, width: 0.4)),
+                        child: Text(
+                          _similar[index],
+                          style: TextStyle(color: Orange, fontSize: 12),
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Orange, width: 0.4)),
-                      child: Text(
-                        _similar[index],
-                        style: TextStyle(color: Orange, fontSize: 12),
-                      ),
-                    ),
-                  );
-                },
-                itemCount: _similar.length,
+                    );
+                  },
+                  itemCount: _similar.length,
+                ),
               ),
-            ),
-            Container(
-                width: _width,
-                height: _height,
-                alignment: Alignment.center,
-                child: widget.products.length == 0
-                    ? Text("No results found")
-                    : ListView.builder(
-                        itemBuilder: (context, index) {
-                          return ShopItemHorizontal(
-                            productItem: widget.products[index],
-                            code: [1, 1, 1, 1, 0],
-                            width: _width,
-                            height: 120,
-                          );
-                        },
-                        itemCount: widget.products.length,
-                      ))
-          ],
+              Container(
+                  width: _width,
+                  height: _height * 0.8,
+                  alignment: Alignment.center,
+                  child: widget.products.length == 0
+                      ? Text("No results found")
+                      : ListView.builder(
+                          itemBuilder: (context, index) {
+                            return ShopItemHorizontal(
+                              productItem: widget.products[index],
+                              code: [1, 1, 1, 1, 0],
+                              width: _width,
+                              height: 120,
+                            );
+                          },
+                          itemCount: widget.products.length,
+                        )),
+            ],
+          ),
         ),
       ),
       persistentFooterButtons: [

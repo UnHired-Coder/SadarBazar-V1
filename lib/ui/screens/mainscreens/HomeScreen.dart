@@ -80,11 +80,11 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
 
   void _loadMoreItems() async {
     await ProductLoaderUtil.getMoreProducts(context).then((value) {
-      debugPrint("1");
+//      debugPrint("1");
       _productItems.addAll(value);
       ProductLoaderUtil.cacheLoadedProducts(_productItems);
     }).then((value) {
-      debugPrint("2");
+//      debugPrint("2");
       _lastItemFetch = _productItems.length;
       debugPrint(_productItems.length.toString() + " Items Fetched");
       _loadMoreCategories();
@@ -100,18 +100,18 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   }
 
   void _loadMoreCategories() async {
-    debugPrint("3");
+//    debugPrint("3");
     await ProductLoaderUtil.getMoreCategories(context).then((value) {
       _productCategories.addAll(value);
       ProductLoaderUtil.cacheLoadedCategories(_productCategories);
-      debugPrint("4");
+//      debugPrint("4");
     }).then((value) {
       _lastCategoryFetch = _productCategories.length;
       debugPrint(_productCategories.length.toString() + " Items Fetched");
       if (this.mounted)
         setState(() {
           _loading = false;
-          debugPrint("5");
+//          debugPrint("5");
         });
       _fillList();
     });
@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   }
 
   Future<void> _fillList() async {
-    debugPrint("6");
+//    debugPrint("6");
     for (int i = 0; i < _scheme.length; i++) {
 //      debugPrint(_currentItemIndex.toString());
 //      debugPrint(_currentCategoryIndex.toString());
