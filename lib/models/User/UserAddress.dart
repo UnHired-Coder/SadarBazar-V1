@@ -13,6 +13,8 @@ class UserAddress {
     @required this.addressCountry,
     @required this.addressPhone,
     @required this.addressCity,
+    @required this.longitude,
+    @required this.latitude,
   });
 
   final String addressId;
@@ -21,7 +23,8 @@ class UserAddress {
   final String addressCountry;
   final String addressPhone;
   final String addressCity;
-
+  final String latitude;
+  final String longitude;
   factory UserAddress.fromRawJson(String str) => UserAddress.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
@@ -33,6 +36,8 @@ class UserAddress {
     addressCountry: json["addressCountry"],
     addressPhone: json["addressPhone"],
     addressCity: json["addressCity"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -42,5 +47,7 @@ class UserAddress {
     "addressCountry": addressCountry,
     "addressPhone": addressPhone,
     "addressCity": addressCity,
+    "latitude": latitude,
+    "longitude": longitude,
   };
 }

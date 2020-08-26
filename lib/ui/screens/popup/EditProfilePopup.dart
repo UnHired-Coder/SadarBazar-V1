@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/User/User.dart';
+import 'package:bazar/ui/screens/secondaryScreens/LocationScreen.dart';
 import 'package:bazar/util/loader/UserDataLoadUtil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,13 @@ class EditProfilePopup extends StatefulWidget {
 }
 
 class _EditProfilePopupState extends State<EditProfilePopup> {
-  ValueNotifier<int> selectedGender;
+  ValueNotifier<String> selectedGender;
   TextEditingController _firstNameController;
   TextEditingController _lastNameController;
 
   @override
   void initState() {
-    selectedGender = new ValueNotifier(0);
+    selectedGender = new ValueNotifier(widget.user.gender);
     _firstNameController = new TextEditingController();
     _lastNameController = new TextEditingController();
 
@@ -234,7 +235,7 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
                         builder: (context, hasError, val) {
                           return InkWell(
                             child: Opacity(
-                                opacity: (selectedGender.value == 0) ? 1 : 0.3,
+                                opacity: (selectedGender.value == "0") ? 1 : 0.3,
                                 child: Container(
                                   height: 80,
                                   width: 80,
@@ -248,7 +249,7 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
                                   ),
                                 )),
                             onTap: () {
-                              selectedGender.value = 0;
+                              selectedGender.value = "0";
                               debugPrint("Male");
                             },
                           );
@@ -259,7 +260,7 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
                         builder: (context, hasError, val) {
                           return InkWell(
                             child: Opacity(
-                                opacity: (selectedGender.value == 1) ? 1 : 0.3,
+                                opacity: (selectedGender.value == "1") ? 1 : 0.3,
                                 child: Container(
                                   height: 80,
                                   width: 80,
@@ -273,7 +274,7 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
                                   ),
                                 )),
                             onTap: () {
-                              selectedGender.value = 1;
+                              selectedGender.value = "1";
                               debugPrint("Female");
                             },
                           );
@@ -290,9 +291,43 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
 //            ),
             Card(
               color: White,
-              child: Container(
-                height: _height * 0.2,
-                width: _width,
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LocationScreen(),
+                      ));
+                },
+                child: Container(
+                  height: _height * 0.2,
+                  width: _width,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.mapPin,
+                        color: Maroon,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        width: _width * 0.8,
+                        height: 60,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "G -45/4 Kabul lines ,Delhi Cant, 110010",
+                          maxLines: 3,
+                          style: TextStyle(
+                              color: LightBlack.withOpacity(0.5), fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
 //            SizedBox(
@@ -306,19 +341,23 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
 
   void _updateData() {
     UserDataLoadUtil.updateData(
-        widget.user.userId,
-        new User(
-            userId: widget.user.userId,
-            userContact: widget.user.userContact,
-            userInfoId: widget.user.userId,
-            userProfileUrl: widget.user.userProfileUrl == "null"
-                ? ""
-                : widget.user.userProfileUrl,
-            userName: _firstNameController.text == ""
-                ? "null"
-                : _firstNameController.text,
-            userLastName: _lastNameController.text == ""
-                ? "null"
-                : _lastNameController.text));
+      widget.user.userId,
+      new User(
+          userId: widget.user.userId,
+          userContact: widget.user.userContact,
+          userInfoId: widget.user.userId,
+          userProfileUrl: widget.user.userProfileUrl == "null"
+              ? ""
+              : widget.user.userProfileUrl,
+          userName: _firstNameController.text == ""
+              ? "null"
+              : _firstNameController.text,
+          userLastName: _lastNameController.text == ""
+              ? "null"
+              : _lastNameController.text,
+          infoId: widget.user.userId,
+          gender: selectedGender.value.toString(),
+          userAddressId: widget.user.userId),
+    );
   }
 }

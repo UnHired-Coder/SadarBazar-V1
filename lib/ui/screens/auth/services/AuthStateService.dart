@@ -57,7 +57,10 @@ class AuthStateService {
                     userLastName: "null",
                     userContact: value.user.phoneNumber.toString(),
                     userInfoId: value.user.uid,
-                    userProfileUrl: "null")
+                    userProfileUrl: "null",
+                    userAddressId: value.user.uid,
+                    gender: "null",
+                    infoId: value.user.uid)
                 .toJson());
       }
 

@@ -10,6 +10,7 @@ import 'package:bazar/ui/screens/secondaryScreens/OrdersScreen.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/util/loader/UserDataLoadUtil.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -26,6 +27,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     _user = UserDataLoadUtil.getUser(context);
     _user.then((value) => user = value);
+    
+    
+    Firestore.instance.collection("GlobalDataBase").getDocuments().then((value) => {
+      debugPrint(value.toString())
+    });
+    
     super.initState();
   }
 

@@ -24,16 +24,15 @@ abstract class UserDataLoadUtil {
       _user = User.fromJson(value.data);
       debugPrint(value.data.toString());
     });
-    return  cachedUser = _user;
+    return cachedUser = _user;
   }
 
-  static void updateData(String id,User user) {
+  static void updateData(String id, User user) {
     Firestore.instance
         .collection("USER")
         .document("Users")
         .collection(id)
         .document("UserData")
         .updateData(user.toJson());
-
   }
 }
