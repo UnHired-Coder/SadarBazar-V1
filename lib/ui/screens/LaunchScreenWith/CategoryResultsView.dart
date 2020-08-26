@@ -3,16 +3,17 @@ import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
+import 'package:bazar/util/loader/ProductLoadUtil.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CategoryResultsView extends StatefulWidget {
-  final List<ProductCategory> categories;
+  final String category;
   final bool flag;
 
-  CategoryResultsView({@required this.categories, this.flag});
+  CategoryResultsView({@required this.category, this.flag});
 
   @override
   _CategoryResultsViewState createState() => _CategoryResultsViewState();
@@ -57,7 +58,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
   }
 
   void _loadMoreItems() async {
-    await ProductLoader.getMoreProducts(context).then((value) async {
+    await ProductLoaderUtil.getPopularProducts(context,widget.category,limit: 24).then((value) async {
       _productItems.addAll(value);
     }).then((value) {
       _lastItemFetch = _productItems.length;
@@ -78,7 +79,7 @@ class _CategoryResultsViewState extends State<CategoryResultsView> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Men's Fashion",
+              widget.category.replaceAll("_", " "),
               style: TextStyle(color: White, fontWeight: FontWeight.bold),
             )
           ],

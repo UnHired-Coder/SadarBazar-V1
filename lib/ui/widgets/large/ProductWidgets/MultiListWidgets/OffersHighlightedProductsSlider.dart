@@ -1,6 +1,5 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
-import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

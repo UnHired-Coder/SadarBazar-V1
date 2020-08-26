@@ -1,9 +1,38 @@
-import 'package:bazar/models/user/UserAddress.dart';
+// To parse this JSON data, do
+//
+//     final userInfo = userInfoFromJson(jsonString);
 
-class UserInfo{
+import 'package:meta/meta.dart';
+import 'dart:convert';
 
-  String infoID;
-  String userId;
-  String gender;
-  String userAddressId;
+class UserInfo {
+  UserInfo({
+    @required this.infoId,
+    @required this.userId,
+    @required this.gender,
+    @required this.userAddressId,
+  });
+
+  final String infoId;
+  final String userId;
+  final String gender;
+  final String userAddressId;
+
+  factory UserInfo.fromRawJson(String str) => UserInfo.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
+    infoId: json["infoID"],
+    userId: json["userId"],
+    gender: json["gender"],
+    userAddressId: json["userAddressId"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "infoID": infoId,
+    "userId": userId,
+    "gender": gender,
+    "userAddressId": userAddressId,
+  };
 }

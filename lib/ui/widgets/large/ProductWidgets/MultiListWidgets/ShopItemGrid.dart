@@ -1,9 +1,8 @@
 import 'dart:math';
-import 'dart:math';
-
 import 'package:bazar/assets/colors/ThemeColors.dart';
-import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
+import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
+import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:flutter/material.dart';
 
 class ShopItemGrid extends StatefulWidget {
@@ -74,6 +73,14 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                           RaisedButton(
                             onPressed: () {
                               debugPrint("See all");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CategoryResultsView(
+                                      category: widget.gridOfProducts[0].productCategoryName,
+                                      flag: false,
+                                    ),
+                                  ));
                             },
                             elevation: 0,
                             color: FakeWhite,
@@ -159,7 +166,15 @@ class _ProductGridItemState extends State<ProductGridItem> {
   Widget _item(int index) {
     return InkWell(
       onTap: () {
-        debugPrint("Explore this category");
+        debugPrint("Explore this category item");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductView(
+                productItem: widget.gridOfProducts.elementAt(index),
+                flag: false,
+              ),
+            ));
       },
       child: Container(
         height: 150,

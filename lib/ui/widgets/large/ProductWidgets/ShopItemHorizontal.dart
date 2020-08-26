@@ -1,11 +1,9 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
-import 'package:bazar/models/Product/ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
 import 'package:bazar/ui/widgets/animated/AddIProductButton.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class ShopItemHorizontal extends StatefulWidget {

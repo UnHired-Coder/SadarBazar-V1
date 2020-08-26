@@ -70,10 +70,13 @@ class CartViewModel extends ChangeNotifier {
     }
     _count--;
 
-    if (_count <= 0) {
-      Future.delayed(Duration(seconds: 1)).then((value) {
-        _productsInCart.remove(product);
-        _productCount.remove(product.productId);
+    if (_productCount[product.productId] <= 0) {
+      Future.delayed(Duration(seconds: 3)).then((value) {
+        if(_productCount[product.productId]<=0) {
+          _productsInCart.remove(product);
+          _productCount.remove(product.productId);
+          notifyListeners();
+        }
       });
     }
     notifyListeners();

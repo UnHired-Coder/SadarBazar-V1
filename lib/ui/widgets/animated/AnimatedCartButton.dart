@@ -55,7 +55,7 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton>
           splashColor: Colors.transparent,
           onTap: () {
             debugPrint("Cart Icon Tapped");
-            widget.cartButtonCallback();
+//            widget.cartButtonCallback();
           },
           child: Stack(
             alignment: Alignment.bottomLeft,

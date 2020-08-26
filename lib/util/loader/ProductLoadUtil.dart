@@ -53,7 +53,21 @@ abstract class ProductLoaderUtil {
         value.documents.forEach((element) {
 //        debugPrint(element.data.toString());
           categoriesFetched.add(ProductCategory.fromJson(element.data));
+//          categoriesFetched.add(ProductCategory.fromJson(element.data));
+        });
+      });
+    for (int i = 0; i < categories.length; i++)
+      await Firestore.instance
+          .collection("GlobalDataBase")
+          .document("Categories")
+          .collection(categories[i])
+          .getDocuments()
+          .then((value) {
+//        debugPrint(value.documents.toString());
+        value.documents.forEach((element) {
+//        debugPrint(element.data.toString());
           categoriesFetched.add(ProductCategory.fromJson(element.data));
+//          categoriesFetched.add(ProductCategory.fromJson(element.data));
         });
       });
     return categoriesFetched;
@@ -80,7 +94,7 @@ abstract class ProductLoaderUtil {
   /////////////////////
 
   static Future<List<ProductItem>> getSimilarProducts(
-      BuildContext context, String category) async {
+      BuildContext context, String category,{int limit = 4}) async {
     List<ProductItem> products = [];
 
     await Firestore.instance
@@ -99,14 +113,13 @@ abstract class ProductLoaderUtil {
   }
 
   static Future<List<ProductItem>> getPopularProducts(
-      BuildContext context, String category) async {
+      BuildContext context, String category,{int limit = 4}) async {
     List<ProductItem> products = [];
-
     await Firestore.instance
         .collection("GlobalDataBase")
         .document(category)
         .collection("ITEMS")
-        .limit(4)
+        .limit(limit)
         .getDocuments()
         .then((value) {
       value.documents.forEach((element) {

@@ -46,12 +46,12 @@ class _EasyFindHighlightedCategoriesState
               child: InkWell(
                 onTap: () {
                   debugPrint("Open Items in this category " +
-                      widget.categories[0].categoryName);
+                      widget.categories[index].categoryName);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => CategoryResultsView(
-                          categories: widget.categories,
+                          category: widget.categories[index].categoryName,
                           flag: widget.flag,
                         ),
                       ));
@@ -69,12 +69,15 @@ class _EasyFindHighlightedCategoriesState
             );
           },
           itemCount: widget.categories.length,
-          options: CarouselOptions(
-            autoPlay: true,
-            aspectRatio: 1,
-            height: _height * 0.2,
+          options:  CarouselOptions(
+            aspectRatio: 1.1,
             viewportFraction: 1,
-          )),
+            height: (widget.flag != null && widget.flag)
+                ? _height * 0.2
+                : _height * 0.3,
+            autoPlay: true,
+            autoPlayAnimationDuration: Duration(milliseconds: 300),
+          ),),
     );
   }
 }

@@ -48,7 +48,7 @@ class _EasyFindCategoriesState extends State<EasyFindCategories> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(2),
                     child: Text(
-                      widget.products[0].productCategoryName,
+                      widget.products[0].productCategoryName.replaceAll("_", " "),
                       style: TextStyle(
                           color: Black,
                           fontSize: 18,
@@ -62,7 +62,7 @@ class _EasyFindCategoriesState extends State<EasyFindCategories> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => CategoryResultsView(
-                              categories: widget.categories,
+                              category: widget.products[0].productCategoryName,
                               flag: widget.flag,
                             ),
                           ));

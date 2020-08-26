@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
+import 'package:bazar/ui/screens/secondaryScreens/CheckOutScreen.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemHorizontal.dart';
 import 'package:bazar/ui/widgets/large/ProductWidgets/ShopItemVertical.dart';
@@ -83,104 +84,115 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
-      // Key::PageStorageKey("CartScreen"),
-      backgroundColor: FakeWhite,
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            floating: true,
-            snap: true,
-            backgroundColor: Maroon,
-            expandedHeight: _height * 0.25,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "My Cart",
-                    style: TextStyle(
-                        color: White,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                AnimatedCartButton(
-                  cartButtonCallback: null,
-                )
-              ],
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
+        // Key::PageStorageKey("CartScreen"),
+        backgroundColor: FakeWhite,
+        body: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              snap: true,
+              backgroundColor: Maroon,
+              expandedHeight: _height * 0.25,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 40,
+                  Container(
+                    child: Text(
+                      "My Cart",
+                      style: TextStyle(
+                          color: White,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  CustomSilverBarCart()
-                ],
-              ),
-            ),
-          ),
-          Consumer<CartViewModel>(builder: (context, cart, child) {
-            return SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-              return Opacity(
-                  opacity: (cart.getItemCount(cart.getUserCart(index)) == 0)
-                      ? 0.2
-                      : 1,
-                  child: ShopItemHorizontal(
-                    height: _height * 0.2,
-                    width: _width,
-                    productItem: cart.getUserCart(index),
-                    code: [1, 1, 1, 1, 0],
-                  ));
-            }, childCount: cart.getLength()));
-          })
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButton: Transform.translate(
-        offset: Offset(0, _animationController.value),
-        child: Transform.scale(
-          scale: 1 - _animationController.value / 100,
-          child: InkWell(
-            onTap: () {
-              debugPrint("Proceed to Checkout");
-            },
-            child: Container(
-              alignment: Alignment.center,
-              height: _height * 0.05,
-              width: _width * 0.5,
-              margin: EdgeInsets.only(bottom: 10),
-              decoration: BoxDecoration(
-                  color: Maroon, borderRadius: BorderRadius.circular(12)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Proceed to Checkout",
-                    style: TextStyle(
-                        color: White,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(
-                    FontAwesomeIcons.arrowRight,
-                    color: White,
-                    size: 14,
+                  AnimatedCartButton(
+                    cartButtonCallback: null,
                   )
                 ],
               ),
+              flexibleSpace: FlexibleSpaceBar(
+                background: Column(
+                  children: [
+                    CustomSilverBarCart()
+                  ],
+                ),
+              ),
             ),
-          ),
+            Consumer<CartViewModel>(builder: (context, cart, child) {
+              return SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                return Opacity(
+                    opacity: (cart.getItemCount(cart.getUserCart(index)) == 0)
+                        ? 0.2
+                        : 1,
+                    child: ShopItemHorizontal(
+                      height: _height * 0.2,
+                      width: _width,
+                      productItem: cart.getUserCart(index),
+                      code: [1, 1, 1, 1, 0],
+                    ));
+              }, childCount: cart.getLength()));
+            })
+          ],
         ),
-      ),
-    );
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButton:
+            Consumer<CartViewModel>(builder: (context, cart, child) {
+          return Transform.translate(
+            offset: (cart.getLength() < 4)
+                ? Offset(0,0)
+                : Offset(0, _animationController.value),
+            child: Transform.scale(
+              scale: (cart.getLength()<4)?1:1 - _animationController.value / 100,
+              child: InkWell(
+                onTap: () {
+                  debugPrint("Proceed to Checkout");
+                  if (!cart.isEmpty())
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return CheckOutScreen();
+                    }));
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  height: _height * 0.05,
+                  width: _width * 0.5,
+                  margin: EdgeInsets.only(bottom: 10),
+                  decoration: BoxDecoration(
+                      color: Maroon, borderRadius: BorderRadius.circular(12)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        cart.isEmpty()
+                            ? "Nothing Here!"
+                            : "Proceed to Checkout",
+                        style: TextStyle(
+                            color: White,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                        textWidthBasis: TextWidthBasis.longestLine,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      (cart.isEmpty())
+                          ? Container()
+                          : Icon(
+                              FontAwesomeIcons.arrowRight,
+                              color: White,
+                              size: 14,
+                            )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }));
   }
 }
 

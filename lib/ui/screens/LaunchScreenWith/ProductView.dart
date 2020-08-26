@@ -46,11 +46,14 @@ class _ProductViewState extends State<ProductView>
     await ProductLoaderUtil.getProductMetadata(
             context, widget.productItem.productId)
         .then((value) {
-      setState(() {
+          if(this.mounted)
+         setState(() {
         _productMetaData = value;
       });
 //      debugPrint(value.highlightsPoints.toString());
     }).then((value) {
+
+      if(this.mounted)
       setState(() {
         _loading = false;
       });
@@ -271,7 +274,7 @@ class _ProductViewState extends State<ProductView>
                   Container(
                       alignment: Alignment.centerLeft,
                       width: _width,
-                      height: _height * 0.5,
+                      height: _height*0.5,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -316,28 +319,37 @@ class _ProductViewState extends State<ProductView>
                                   ),
                                 ),
                               ]),
-                          Container(
-                            width: _width,
-                            height: _height * 0.4,
-                            child: TabBarView(
-                                physics: NeverScrollableScrollPhysics(),
-                                controller: _tabController,
-                                children: [
-                                  Container(
-                                    width: _width,
-                                    color: FakeWhite,
-                                    child: _highlightPointsWidget(
-                                        _productMetaData.highlightsPoints,
-                                        _width),
-                                  ),
-                                  Container(
-                                    width: _width,
-                                    color: FakeWhite,
-                                    child: _infoPointsWidget(
-                                        _productMetaData.infoPoints, _width),
-                                  ),
-                                ]),
+                          Expanded(
+                            child: Container(
+                              width: _width,
+                              height: _height * 0.1,
+                              child: TabBarView(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  controller: _tabController,
+                                  children: [
+                                    Container(
+                                      width: _width,
+                                      color: FakeWhite,
+                                      child: _highlightPointsWidget(
+                                          _productMetaData.highlightsPoints,
+                                          _width),
+                                    ),
+                                    Container(
+                                      width: _width,
+                                      color: FakeWhite,
+                                      child: _infoPointsWidget(
+                                          _productMetaData.infoPoints, _width),
+                                    ),
+                                  ]),
+                            ),
                           ),
+                          Expanded(
+                            child: Container(
+                              width: _width,
+//                              height: _height * 0.6,
+                              color: Maroon,
+                            ),
+                          )
                         ],
                       )),
                   Container(

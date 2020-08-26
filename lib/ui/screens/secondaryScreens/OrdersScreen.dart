@@ -79,9 +79,6 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   height: _height * 0.15,
                   color: FakeWhite,
                 ),
-                SizedBox(
-                  width: 10,
-                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
