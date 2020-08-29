@@ -2,8 +2,11 @@ import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
 import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
+import 'package:bazar/ui/screens/mainscreens/OrdersUtil/OrdersScreen.dart';
 import 'package:bazar/ui/screens/mainscreens/ProfileScrreen.dart';
 import 'package:bazar/ui/screens/mainscreens/EasyFindScreen.dart';
+import 'package:bazar/ui/screens/secondaryScreens/CardDetailsScreen.dart';
+import 'package:bazar/ui/screens/static/AboutScreen.dart';
 import 'package:bazar/util/loader/ProductLoader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,9 +20,15 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>{
+class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
   double height;
   double width;
+  TabController _tabsController;
+ @override
+  void initState() {
+   _tabsController = new TabController(length: 4, vsync: this);
+   super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,23 +89,37 @@ class _HomeState extends State<Home>{
                 color: FakeWhite,
               ),
             ),
-            _drawerItem("Home", FontAwesomeIcons.home, context),
-            _drawerItem("My Orders", FontAwesomeIcons.stickyNote, context),
-            _drawerItem("My cart", FontAwesomeIcons.shoppingCart, context),
+            _drawerItem("Home", FontAwesomeIcons.home, context, () {}),
+            _drawerItem("My Orders", FontAwesomeIcons.stickyNote, context, () {
+              Navigator.push(context, new MaterialPageRoute(builder: (context) {
+                return OrdersScreen();
+              }));
+            }),
+            _drawerItem(
+                "My cart", FontAwesomeIcons.shoppingCart, context, () {
+              _tabsController.animateTo(2);
+            }),
             _breaker(),
-            _drawerItem("My Transactions", FontAwesomeIcons.moneyBill, context),
-            _drawerItem("My Wallet", FontAwesomeIcons.wallet, context),
+            _drawerItem("My Wallet", FontAwesomeIcons.wallet, context, () {
+              Navigator.push(context, new MaterialPageRoute(builder: (context) {
+                return CardDetailsScreen();
+              }));
+            }),
             _breaker(),
             Container(
-              height: 80,
+              height: 60,
               color: White,
             ),
-            _drawerItem(
-                "Refer your friends", FontAwesomeIcons.userFriends, context),
-            _drawerItem("Rate Us!", FontAwesomeIcons.star, context),
-            _drawerItem("Share", FontAwesomeIcons.share, context),
-            _drawerItem("About Us", FontAwesomeIcons.teamspeak, context),
-            _drawerItem("Logout", FontAwesomeIcons.signOutAlt, context,
+            _drawerItem("Refer your friends", FontAwesomeIcons.userFriends,
+                context, () {}),
+            _drawerItem("Rate Us!", FontAwesomeIcons.star, context, () {}),
+            _drawerItem("Share", FontAwesomeIcons.share, context, () {}),
+            _drawerItem("About Us", FontAwesomeIcons.teamspeak, context, () {
+              Navigator.push(context, new MaterialPageRoute(builder: (context) {
+                return AboutScreen();
+              }));
+            }),
+            _drawerItem("Logout", FontAwesomeIcons.signOutAlt, context, () {},
                 color: Maroon),
           ],
         ),
@@ -117,10 +140,13 @@ class _HomeState extends State<Home>{
     );
   }
 
-  InkWell _drawerItem(String title, IconData iconData, context, {Color color}) {
+  InkWell _drawerItem(
+      String title, IconData iconData, context, Function function,
+      {Color color}) {
     return InkWell(
       onTap: () {
         Navigator.of(context).pop();
+        function.call();
       },
       child: Container(
           height: 50,
@@ -147,6 +173,7 @@ class _HomeState extends State<Home>{
 
   TabBarView _tabBarView() {
     return new TabBarView(
+      controller: _tabsController,
 //      key: new PageStorageKey("asasasas"),
       children: [HomeScreen(), EasyFindScreen(), CartScreen(), ProfileScreen()],
     );
@@ -214,16 +241,28 @@ class _HomeState extends State<Home>{
     return new TabBar(
       tabs: [
         Tab(
-          icon: new Icon(FontAwesomeIcons.home,size: 18,),
+          icon: new Icon(
+            FontAwesomeIcons.home,
+            size: 18,
+          ),
         ),
         Tab(
-          icon: new Icon(FontAwesomeIcons.magento,size: 18,),
+          icon: new Icon(
+            FontAwesomeIcons.magento,
+            size: 18,
+          ),
         ),
         Tab(
-          icon: new Icon(FontAwesomeIcons.shoppingCart,size: 18,),
+          icon: new Icon(
+            FontAwesomeIcons.shoppingCart,
+            size: 18,
+          ),
         ),
         Tab(
-          icon: new Icon(FontAwesomeIcons.user,size: 18,),
+          icon: new Icon(
+            FontAwesomeIcons.user,
+            size: 18,
+          ),
         )
       ],
       labelColor: Orange,
@@ -231,6 +270,7 @@ class _HomeState extends State<Home>{
       indicatorSize: TabBarIndicatorSize.label,
       indicatorPadding: EdgeInsets.all(5.0),
       indicatorColor: Black,
+      controller: _tabsController,
     );
   }
 
