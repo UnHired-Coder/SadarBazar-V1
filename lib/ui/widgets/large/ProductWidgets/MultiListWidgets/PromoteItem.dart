@@ -36,7 +36,7 @@ class _PromoteItemState extends State<PromoteItem> {
         child: Container(
           color: Maroon.withOpacity(0.2),
           padding: EdgeInsets.all(0.1),
-          margin: EdgeInsets.all(2),
+          margin: EdgeInsets.only(top: 10, bottom: 10, right: 2, left: 3),
           child: Container(
             width: _width,
             height: _height,

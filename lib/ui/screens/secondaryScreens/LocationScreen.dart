@@ -150,7 +150,7 @@ class _LocationChooserState extends State<LocationScreen> {
                                   latitude: _center.latitude.toString(),
                                   longitude: _center.longitude.toString());
                               SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
+                              await SharedPreferences.getInstance();
                               prefs
                                   .setString("AddressPref",
                                       jsonEncode(address.toJson()))

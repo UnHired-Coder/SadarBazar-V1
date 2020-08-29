@@ -1,4 +1,5 @@
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
+import 'package:bazar/ui/screens/mainscreens/OrdersUtil/OrderViewModel.dart';
 import 'package:bazar/ui/screens/static/UndefinedScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,13 +9,15 @@ import 'assets/colors/ThemeColors.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (context) => CartViewModel(),
-    child: RestartWidget(
-        child: new MaterialApp(
-      home: UndefinedScreen(),
-      debugShowCheckedModeBanner: false,
-    )),
-  ));
+      create: (context) => CartViewModel(),
+      child: RestartWidget(
+        child: ChangeNotifierProvider(
+            create: (context) => OrderViewModel(),
+            child: new MaterialApp(
+              home: UndefinedScreen(),
+              debugShowCheckedModeBanner: false,
+            )),
+      )));
 }
 
 onWillPopup() {}

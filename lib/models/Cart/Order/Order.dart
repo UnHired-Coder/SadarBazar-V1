@@ -1,7 +1,6 @@
 // To parse this JSON data, do
 //
-//     final order = orderFromMap(jsonString);
-
+//     final userInfo = userInfoFromJson(jsonString);
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -9,90 +8,58 @@ class Order {
   Order({
     @required this.orderId,
     @required this.orderUserId,
-    @required this.orderDate,
-    @required this.orderShippedDate,
-    @required this.orderRequiredDate,
-    @required this.orderShipVia,
-    @required this.orderShipperId,
+    @required this.orderThumbUrl,
+    @required this.timeStamp,
+    @required this.dateStamp,
+    @required this.orderedProducts,
+    @required this.orderTotal,
+    @required this.orderCount,
+    @required this.orderSaved,
+    @required this.paymentDetails,
     @required this.orderStatus,
-    @required this.orderDetailsId,
-    @required this.orderNo,
-    @required this.orderPaymentMode,
   });
 
-  final int orderId;
-  final int orderUserId;
-  final String orderDate;
-  final String orderShippedDate;
-  final String orderRequiredDate;
-  final OrderShipVia orderShipVia;
-  final int orderShipperId;
-  final OrderStatus orderStatus;
-  final int orderDetailsId;
-  final int orderNo;
-  final OrderPaymentMode orderPaymentMode;
+  final String orderId;
+  final String orderUserId;
+  final String orderThumbUrl;
+  final String timeStamp;
+  final String dateStamp;
+  final List<String> orderedProducts;
+  final String orderTotal;
+  final String orderCount;
+  final String orderSaved;
+  final String paymentDetails;
+  final String orderStatus;
 
-  factory Order.fromJson(String str) => Order.fromMap(json.decode(str));
+  factory Order.fromRawJson(String str) => Order.fromJson(json.decode(str));
 
-  String toJson() => json.encode(toMap());
+  String toRawJson() => json.encode(toJson());
 
-  factory Order.fromMap(Map<String, dynamic> json) => Order(
-    orderId: json["orderID"],
+  factory Order.fromJson(Map<String, dynamic> json) => Order(
+    orderId: json["orderId"],
     orderUserId: json["orderUserId"],
-    orderDate: json["orderDate"],
-    orderShippedDate: json["orderShippedDate"],
-    orderRequiredDate: json["orderRequiredDate"],
-    orderShipVia: orderShipViaValues.map[json["orderShipVia"]],
-    orderShipperId: json["orderShipperId"],
-    orderStatus: orderStatusValues.map[json["orderStatus"]],
-    orderDetailsId: json["orderDetailsId"],
-    orderNo: json["orderNo"],
-    orderPaymentMode: orderPaymentModeValues.map[json["orderPaymentMode"]],
+    timeStamp: json["timeStamp"],
+    orderedProducts: List<String>.from(json["orderedProducts"].map((x) => x)),
+    orderTotal: json["orderTotal"],
+    orderCount: json["orderCount"],
+    orderSaved: json["orderSaved"],
+    paymentDetails: json["paymentDetails"],
+    orderThumbUrl: json["orderThumbUrl"],
+    dateStamp: json["dateStamp"],
+    orderStatus: json["orderStatus"],
   );
 
-  Map<String, dynamic> toMap() => {
-    "orderID": orderId,
+  Map<String, dynamic> toJson() => {
+    "orderId": orderId,
     "orderUserId": orderUserId,
-    "orderDate": orderDate,
-    "orderShippedDate": orderShippedDate,
-    "orderRequiredDate": orderRequiredDate,
-    "orderShipVia": orderShipViaValues.reverse[orderShipVia],
-    "orderShipperId": orderShipperId,
-    "orderStatus": orderStatusValues.reverse[orderStatus],
-    "orderDetailsId": orderDetailsId,
-    "orderNo": orderNo,
-    "orderPaymentMode": orderPaymentModeValues.reverse[orderPaymentMode],
+    "timeStamp": timeStamp,
+    "orderedProducts": List<dynamic>.from(orderedProducts.map((x) => x)),
+    "orderTotal": orderTotal,
+    "orderCount": orderCount,
+    "orderSaved": orderSaved,
+    "paymentDetails": paymentDetails,
+    "orderThumbUrl": orderThumbUrl,
+    "dateStamp": dateStamp,
+    "orderStatus": orderStatus,
   };
-}
-
-enum OrderPaymentMode { CASH }
-
-final orderPaymentModeValues = EnumValues({
-  "CASH": OrderPaymentMode.CASH
-});
-
-enum OrderShipVia { BIKE }
-
-final orderShipViaValues = EnumValues({
-  "BIKE": OrderShipVia.BIKE
-});
-
-enum OrderStatus { DONE }
-
-final orderStatusValues = EnumValues({
-  "DONE": OrderStatus.DONE
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

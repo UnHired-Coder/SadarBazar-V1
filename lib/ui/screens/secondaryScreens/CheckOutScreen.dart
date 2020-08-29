@@ -1,10 +1,18 @@
+import 'dart:convert';
+
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Cart/Order/Order.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
+import 'package:bazar/models/User/User.dart';
+import 'package:bazar/models/User/UserAddress.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
+import 'package:bazar/ui/screens/mainscreens/OrdersUtil/OrderViewModel.dart';
+import 'package:bazar/ui/screens/mainscreens/OrdersUtil/OrdersScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'LocationScreen.dart';
 
@@ -15,6 +23,14 @@ class CheckOutScreen extends StatefulWidget {
 
 class _CheckOutScreenState extends State<CheckOutScreen> {
   List<String> unitType = ["Pcs", "Grm", "NA", "Unit", "Kg"];
+  User user;
+  UserAddress address;
+
+  Future<String> _setAddress() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    address = UserAddress.fromJson(jsonDecode(prefs.getString("AddressPref")));
+    return address.addressFull;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +110,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 height: 10,
                               ),
                               InkWell(
-                                onTap: (){
+                                onTap: () {
                                   debugPrint("Change delivery address");
                                   Navigator.push(
                                       context,
@@ -116,19 +132,36 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.all(4),
-                                      width: _width*0.8,
-                                      child: Text(
-                                        " New Delhi : Kabul Lines, Delhi Cantonment, Kabul Lines, Delhi Cantonment, New Delhi, Delhi 110010, India",
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: LightBlack, fontSize: 16),
-                                      ),
+                                      width: _width * 0.8,
+                                      child: FutureBuilder(
+                                          future: _setAddress(),
+                                          builder: (context, val) {
+                                            if (val.hasData &&
+                                                (!val.hasError)) {
+                                              String res = val.data.toString();
+                                              return Text(
+                                                res.substring(
+                                                        0,
+                                                        res.length > 60
+                                                            ? 60
+                                                            : res.length) +
+                                                    "..",
+                                                style: TextStyle(
+                                                    color:
+                                                        Black.withOpacity(0.4)),
+                                              );
+                                            } else
+                                              return Container(child: Text("Enter Address",style: TextStyle(color: LightBlack.withOpacity(0.5)),),);
+                                          }),
                                       padding: EdgeInsets.all(2),
                                     ),
                                     Container(
                                       padding: EdgeInsets.all(2),
-                                      child: Icon(FontAwesomeIcons.pen, color: Maroon,size: 14,),
+                                      child: Icon(
+                                        FontAwesomeIcons.pen,
+                                        color: Maroon,
+                                        size: 14,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -201,7 +234,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   ),
                   Expanded(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        debugPrint("Place Order Confirmed");
+                        CartViewModel().toOrder(context).then((value) {
+                          Provider.of<OrderViewModel>(context, listen: false).addNewOrder(value);
+                          Provider.of<CartViewModel>(context, listen: false).clearCart();
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                            return OrdersScreen();
+                          }));
+                        });
+                      },
                       splashColor: Colors.transparent,
                       child: Card(
                         child: Container(

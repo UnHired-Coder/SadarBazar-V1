@@ -3,6 +3,7 @@ import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/CategoryResultsView.dart';
 import 'package:bazar/ui/screens/LaunchScreenWith/ProductView.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ShopItemGrid extends StatefulWidget {
@@ -17,8 +18,12 @@ class ShopItemGrid extends StatefulWidget {
 
 class _ShopItemGridState extends State<ShopItemGrid> {
   bool _flag;
-  List<Color> colors  = [Colors.cyanAccent,Colors.greenAccent,Colors.pinkAccent];
-  Random  rnd= new Random();
+  List<Color> colors = [
+    Colors.cyanAccent,
+    Colors.greenAccent,
+    Colors.pinkAccent
+  ];
+  Random rnd = new Random();
   Color color;
 
   @override
@@ -77,7 +82,8 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CategoryResultsView(
-                                      category: widget.gridOfProducts[0].productCategoryName,
+                                      category: widget.gridOfProducts[0]
+                                          .productCategoryName,
                                       flag: false,
                                     ),
                                   ));
@@ -101,7 +107,11 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                   color: color,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [ProductGridItem(gridOfProducts: widget.gridOfProducts,)],
+                    children: [
+                      ProductGridItem(
+                        gridOfProducts: widget.gridOfProducts,
+                      )
+                    ],
                   ),
                 )
               ],
@@ -114,11 +124,11 @@ class _ShopItemGridState extends State<ShopItemGrid> {
 }
 
 class ProductGridItem extends StatefulWidget {
-
   final bool flag;
   final List<ProductItem> gridOfProducts;
 
   ProductGridItem({this.flag, this.gridOfProducts});
+
   @override
   _ProductGridItemState createState() => _ProductGridItemState();
 }
@@ -128,24 +138,49 @@ class _ProductGridItemState extends State<ProductGridItem> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width*0.9,
+      width: MediaQuery.of(context).size.width * 0.9,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: White,
         border: Border.all(width: 0.1),
       ),
-      child: GridView.count(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        crossAxisCount: 2,
-        children: List.generate(4, (index) {
-          return Container(
-            alignment: Alignment.center,
-            child: _item(index),
-            decoration:
-                BoxDecoration(border: Border.all(width: 0.02, color: Black)),
-          );
-        }),
+      child: Container(
+        height: MediaQuery.of(context).size.width * 0.4,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _item(0),
+                _item(1),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _item(2),
+                _item(3),
+              ],
+            )
+          ],
+        ),
+
+//        child: GridView.count(
+//          physics: NeverScrollableScrollPhysics(),
+//          shrinkWrap: false,
+//          crossAxisCount: 2,
+//          mainAxisSpacing: 0,
+//          children: List.generate(4, (index) {
+//            return Container(
+//              alignment: Alignment.center,
+//              child: _item(index),
+//              decoration:
+//                  BoxDecoration(border: Border.all(width: 0.02, color: Black)),
+//            );
+//          }),
+//        ),
       ),
 //      child: Column(
 //        mainAxisAlignment: MainAxisAlignment.center,
@@ -176,20 +211,40 @@ class _ProductGridItemState extends State<ProductGridItem> {
               ),
             ));
       },
-      child: Container(
-        height: 150,
-        width: 100,
+      child: Stack(
         alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          color: White,
-            image: DecorationImage(
-                image: NetworkImage(
-                    widget.gridOfProducts.elementAt(index).productPictureUrl))),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [_text(widget.gridOfProducts.elementAt(index).productName, true), _text(widget.gridOfProducts.elementAt(index).productDiscount.toString()+"% Off", false)],
-        ),
+        children: [
+          Container(
+            padding: EdgeInsets.all(25),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.height * 0.15,
+              alignment: Alignment.bottomCenter,
+              margin: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                  color: White,
+                  image: DecorationImage(
+                      image: NetworkImage(widget.gridOfProducts
+                          .elementAt(index)
+                          .productPictureUrl))),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              _text(widget.gridOfProducts.elementAt(index).productName, true),
+              Container(
+                child: _text(
+                    widget.gridOfProducts
+                            .elementAt(index)
+                            .productDiscount
+                            .toString() +
+                        "% Off",
+                    false),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -198,11 +253,14 @@ class _ProductGridItemState extends State<ProductGridItem> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(color: FakeWhite),
+      width: MediaQuery.of(context).size.width * 0.3,
       padding: EdgeInsets.all(2),
       child: Text(
         text,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: TextStyle(
-            color: flag ? Black : LightBlack, fontSize: flag ? 15 : 10),
+            color: flag ? Black : LightBlack, fontSize: flag ? 13 : 10),
       ),
     );
   }

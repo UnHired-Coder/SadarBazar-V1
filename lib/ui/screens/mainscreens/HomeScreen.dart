@@ -1,6 +1,7 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/Product/ProductCategory.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
+import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
 import 'package:bazar/ui/widgets/MultipleBuilders/HomeListItem.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
@@ -75,10 +76,17 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
     _productCategories = new List();
     _loading = true;
     _loadMoreItems();
-//    _loadMoreCategories();
+   //    _loadMoreCategories();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void _loadMoreItems() async {
+
+    CartViewModel().getCartItems(context);
     await ProductLoaderUtil.getMoreProducts(context).then((value) {
 //      debugPrint("1");
       _productItems.addAll(value);

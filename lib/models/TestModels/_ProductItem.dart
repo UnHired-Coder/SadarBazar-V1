@@ -44,49 +44,85 @@ class ProductItem {
   final double productRating;
   final String productMetaDataId;
 
-  factory ProductItem.fromRawJson(String str) => ProductItem.fromJson(json.decode(str));
+  factory ProductItem.fromRawJson(String str) =>
+      ProductItem.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory ProductItem.fromJson(Map<String, dynamic> json) => ProductItem(
-    productId: json["productId"],
-    productName: json["productName"],
-    productDesc: json["productDesc"],
-    productQtyPerUnit: json["productQtyPerUnit"],
-    productUnitPrice: json["productUnitPrice"],
-    productUnitWeight: json["productUnitWeight"],
-    productUnitType: productUnitTypeValues.map[json["productUnitType"]],
-    productUnitsInStock: json["productUnitsInStock"],
-    productStockStatus: productStockStatusValues.map[json["productStockStatus"]],
-    productDiscount: json["productDiscount"],
-    productPictureUrl: json["productPictureUrl"],
-    productSupplierId: json["productSupplierId"],
-    productCategoryId: json["productCategoryId"],
-    productCategoryName: json["productCategoryName"],
-    productTags: List<String>.from(json["productTags"].map((x) => x)),
-    productRating: json["productRating"].toDouble(),
-    productMetaDataId: json["productMetaDataId"],
-  );
+        productId: json["productId"],
+        productName: json["productName"],
+        productDesc: json["productDesc"],
+        productQtyPerUnit: json["productQtyPerUnit"],
+        productUnitPrice: json["productUnitPrice"],
+        productUnitWeight: json["productUnitWeight"],
+        productUnitType: productUnitTypeValues.map[json["productUnitType"]],
+        productUnitsInStock: json["productUnitsInStock"],
+        productStockStatus:
+            productStockStatusValues.map[json["productStockStatus"]],
+        productDiscount: json["productDiscount"],
+        productPictureUrl: json["productPictureUrl"],
+        productSupplierId: json["productSupplierId"],
+        productCategoryId: json["productCategoryId"],
+        productCategoryName: json["productCategoryName"],
+        productTags: List<String>.from(json["productTags"].map((x) => x)),
+        productRating: json["productRating"].toDouble(),
+        productMetaDataId: json["productMetaDataId"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "productId": productId,
-    "productName": productName,
-    "productDesc": productDesc,
-    "productQtyPerUnit": productQtyPerUnit,
-    "productUnitPrice": productUnitPrice,
-    "productUnitWeight": productUnitWeight,
-    "productUnitType": productUnitTypeValues.reverse[productUnitType],
-    "productUnitsInStock": productUnitsInStock,
-    "productStockStatus": productStockStatusValues.reverse[productStockStatus],
-    "productDiscount": productDiscount,
-    "productPictureUrl": productPictureUrl,
-    "productSupplierId": productSupplierId,
-    "productCategoryId": productCategoryId,
-    "productCategoryName": productCategoryName,
-    "productTags": List<dynamic>.from(productTags.map((x) => x)),
-    "productRating": productRating,
-    "productMetaDataId": productMetaDataId,
-  };
+        "productId": productId,
+        "productName": productName,
+        "productDesc": productDesc,
+        "productQtyPerUnit": productQtyPerUnit,
+        "productUnitPrice": productUnitPrice,
+        "productUnitWeight": productUnitWeight,
+        "productUnitType": productUnitTypeValues.reverse[productUnitType],
+        "productUnitsInStock": productUnitsInStock,
+        "productStockStatus":
+            productStockStatusValues.reverse[productStockStatus],
+        "productDiscount": productDiscount,
+        "productPictureUrl": productPictureUrl,
+        "productSupplierId": productSupplierId,
+        "productCategoryId": productCategoryId,
+        "productCategoryName": productCategoryName,
+        "productTags": List<dynamic>.from(productTags.map((x) => x)),
+        "productRating": productRating,
+        "productMetaDataId": productMetaDataId,
+      };
+
+  static Map<String, dynamic> toMap(ProductItem product) => {
+        "productId": product.productId,
+        "productName": product.productName,
+        "productDesc": product.productDesc,
+        "productQtyPerUnit": product.productQtyPerUnit,
+        "productUnitPrice": product.productUnitPrice,
+        "productUnitWeight": product.productUnitWeight,
+        "productUnitType":
+            productUnitTypeValues.reverse[product.productUnitType],
+        "productUnitsInStock": product.productUnitsInStock,
+        "productStockStatus":
+            productStockStatusValues.reverse[product.productStockStatus],
+        "productDiscount": product.productDiscount,
+        "productPictureUrl": product.productPictureUrl,
+        "productSupplierId": product.productSupplierId,
+        "productCategoryId": product.productCategoryId,
+        "productCategoryName": product.productCategoryName,
+        "productTags": List<dynamic>.from(product.productTags.map((x) => x)),
+        "productRating": product.productRating,
+        "productMetaDataId": product.productMetaDataId,
+      };
+
+  static String encodeMusics(List<ProductItem> product) => json.encode(
+        product
+            .map<Map<String, dynamic>>((music) => ProductItem.toMap(music))
+            .toList(),
+      );
+
+  static List<ProductItem> decodeProduct(String product) =>
+      (json.decode(product) as List<dynamic>)
+          .map<ProductItem>((item) => ProductItem.fromJson(item))
+          .toList();
 }
 
 enum ProductStockStatus { OUT_OF_STOCK, IN_STOCK }
@@ -119,3 +155,15 @@ class EnumValues<T> {
     return reverseMap;
   }
 }
+
+//class ProductList {
+//  ProductList({this.productsList});
+//  final List<ProductItem> productsList;
+//  factory ProductList.fromJson(Map<String, dynamic> json) => ProductList(
+//        productsList:
+//            List<ProductItem>.from(json["productsList"].map((x) => x)),
+//      );
+//  Map<String, dynamic> toJson() => {
+//        "productsList": List<dynamic>.from(productsList.map((x) => x)),
+//      };
+//}

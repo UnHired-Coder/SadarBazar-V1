@@ -1,18 +1,21 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/User/User.dart';
+import 'package:bazar/models/User/UserAddress.dart';
 import 'package:bazar/ui/screens/popup/EditProfilePopup.dart';
 import 'package:bazar/ui/screens/secondaryScreens/CardDetailsScreen.dart';
 import 'package:bazar/ui/screens/secondaryScreens/FavouritesScreen.dart';
 import 'package:bazar/ui/screens/secondaryScreens/LocationScreen.dart';
-import 'package:bazar/ui/screens/secondaryScreens/OrdersScreen.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedCartButton.dart';
 import 'package:bazar/ui/widgets/animated/AnimatedNotificationButton.dart';
 import 'package:bazar/util/loader/UserDataLoadUtil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'OrdersUtil/OrdersScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -22,30 +25,31 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   Future<User> _user;
   User user;
+  UserAddress address;
 
   @override
   void initState() {
     _user = UserDataLoadUtil.getUser(context);
     _user.then((value) => user = value);
-    
-    
-    Firestore.instance.collection("GlobalDataBase").getDocuments().then((value) => {
-      debugPrint(value.toString())
-    });
-    
+
+    Firestore.instance
+        .collection("GlobalDataBase")
+        .getDocuments()
+        .then((value) => {debugPrint(value.toString())});
+
     super.initState();
+  }
+
+  Future<String> _setAddress() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    address = UserAddress.fromJson(jsonDecode(prefs.getString("AddressPref")));
+    return address.addressFull;
   }
 
   @override
   Widget build(BuildContext context) {
-    double _height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    double _width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double _height = MediaQuery.of(context).size.height;
+    double _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -95,14 +99,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Container(
                         width: _width,
                         alignment: Alignment.center,
-                        padding: EdgeInsets.only(left: 10,right: 10),
+                        padding: EdgeInsets.only(left: 10, right: 10),
                         child: FutureBuilder(
                           builder: (context, val) {
                             if (val.hasData && (val.hasError == false))
                               return Text(
                                 val.data.userName == "null"
                                     ? "No Name"
-                                    : val.data.userName+" "+ val.data.userLastName,
+                                    : val.data.userName +
+                                        " " + (val.data.userLastName == "null"?"":
+                                val.data.userLastName),
                                 style: TextStyle(
                                     color: White,
                                     fontWeight: FontWeight.bold,
@@ -161,11 +167,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               onPressed: () {
                                 debugPrint("Edit Profile");
 
-                                if(user!=null)
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                      return EditProfilePopup(user: user,);
-                                    }));
+                                if (user != null)
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return EditProfilePopup(
+                                      user: user,
+                                    );
+                                  }));
                               }),
                           SizedBox(
                             width: 10,
@@ -182,45 +190,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   cardWidget("My Orders", FontAwesomeIcons.shoppingCart,
                       "View All Orders", () {
-                        debugPrint("View All Orders");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OrdersScreen(),
-                            ));
-                      }, _width, _height),
+                    debugPrint("View All Orders");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrdersScreen(),
+                        ));
+                  }, _width, _height),
                   cardWidget("My Favourites", FontAwesomeIcons.solidHeart,
                       "View All Favourites", () {
-                        debugPrint("View All Favourites");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => FavouritesScreen(),
-                            ));
-                      }, _width, _height),
+                    debugPrint("View All Favourites");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavouritesScreen(),
+                        ));
+                  }, _width, _height),
                   cardWidget("My Cards & Wallets", FontAwesomeIcons.wallet,
                       "View Details", () {
-                        debugPrint("View Card Details");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CardDetailsScreen(),
-                            ));
-                      }, _width, _height),
+                    debugPrint("View Card Details");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CardDetailsScreen(),
+                        ));
+                  }, _width, _height),
                   cardWidget("Address ", FontAwesomeIcons.mapPin, "Edit/View",
-                          () {
-                        debugPrint("View  Address");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LocationScreen(),
-                            ));
-                      }, _width, _height,
+                      () {
+                    debugPrint("View  Address");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LocationScreen(),
+                        ));
+                  }, _width, _height,
                       widget: Container(
-                          child: Text(
-                            "G -45/4 Kabul lines ,Delhi Cant, 110010 ",
-                            style: TextStyle(color: Black.withOpacity(0.4)),
-                          ))),
+                          child: FutureBuilder(
+                              future: _setAddress(),
+                              builder: (context, val) {
+                                if (val.hasData && (!val.hasError))
+                                  return Text(
+                                    val.data.toString().substring(0, 30) +
+                                        ".....",
+                                    style: TextStyle(
+                                        color: Black.withOpacity(0.4)),
+                                  );
+                                else
+                                  return Container();
+                              }))),
                 ],
               ),
             ),
@@ -241,9 +258,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     debugPrint("Profile Settings");
                   }, _width, _height),
                   bottomTiles("Preferences", FontAwesomeIcons.objectGroup, "",
-                          () {
-                        debugPrint("Preferences Settings");
-                      }, _width, _height),
+                      () {
+                    debugPrint("Preferences Settings");
+                  }, _width, _height),
                   bottomTiles("Logout", FontAwesomeIcons.signOutAlt, "", () {
                     debugPrint("Logout Device");
                   }, _width, _height),
@@ -254,13 +271,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     debugPrint("Report Problem");
                   }, _width, _height),
                   bottomTiles("Frequent Q&A", FontAwesomeIcons.question, "",
-                          () {
-                        debugPrint("Frequent Q&A ");
-                      }, _width, _height),
+                      () {
+                    debugPrint("Frequent Q&A ");
+                  }, _width, _height),
                   bottomTiles("Contact Support", FontAwesomeIcons.comment, "",
-                          () {
-                        debugPrint("Contact Support");
-                      }, _width, _height),
+                      () {
+                    debugPrint("Contact Support");
+                  }, _width, _height),
                   Container(
                     height: _height * 0.1,
                     width: _width,
@@ -272,10 +289,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Container(
                             child: Text(
-                              "Sadar Bazar INC",
-                              style: TextStyle(
-                                  color: LightBlack.withOpacity(0.5)),
-                            )),
+                          "Sadar Bazar INC",
+                          style: TextStyle(color: LightBlack.withOpacity(0.5)),
+                        )),
                         SizedBox(
                           height: 5,
                         ),
@@ -343,51 +359,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Expanded(
                 child: Container(
-                  child: Row(
-                    children: [
-                      Icon(
-                        iconData,
-                        color: LightBlack,
-                        size: 14,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        label,
-                        style: TextStyle(color: LightBlack),
-                      ),
-                    ],
+              child: Row(
+                children: [
+                  Icon(
+                    iconData,
+                    color: LightBlack,
+                    size: 14,
                   ),
-                )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    label,
+                    style: TextStyle(color: LightBlack),
+                  ),
+                ],
+              ),
+            )),
             Expanded(
                 child: Container(
-                  child: InkWell(
-                      onTap: function,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: InkWell(
+                  onTap: function,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      (widget != null) ? widget : Container(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          (widget != null) ? widget : Container(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                subLabel,
-                                style: TextStyle(color: Maroon),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                FontAwesomeIcons.arrowRight,
-                                color: LightBlack,
-                                size: 14,
-                              )
-                            ],
+                          Text(
+                            subLabel,
+                            style: TextStyle(color: Maroon),
                           ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.arrowRight,
+                            color: LightBlack,
+                            size: 14,
+                          )
                         ],
-                      )),
-                ))
+                      ),
+                    ],
+                  )),
+            ))
           ],
         ),
       ),

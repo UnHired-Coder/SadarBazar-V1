@@ -537,7 +537,8 @@ class _ProductViewState extends State<ProductView>
         ),
       ));
     }
-
+    if(_items.length>4)
+      _items = _items.sublist(0,4);
     return Container(
         color: White,
         child: Column(
@@ -547,7 +548,7 @@ class _ProductViewState extends State<ProductView>
 
   Widget _infoPointsWidget(List<String> points, width) {
     List<Widget> _items = new List();
-    for (int index = 0; index < points.length; index++) {
+    for (int index = 0; index < (points.length); index++) {
       _items.add(Container(
         height: 20,
         width: width,
@@ -574,6 +575,8 @@ class _ProductViewState extends State<ProductView>
       ));
     }
 
+    if(_items.length>4)
+      _items = _items.sublist(0,4);
     return Container(
         color: White,
         child: Column(

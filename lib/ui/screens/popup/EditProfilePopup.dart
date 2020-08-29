@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/User/User.dart';
+import 'package:bazar/models/User/UserAddress.dart';
 import 'package:bazar/ui/screens/secondaryScreens/LocationScreen.dart';
 import 'package:bazar/util/loader/UserDataLoadUtil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfilePopup extends StatefulWidget {
   final User user;
@@ -32,6 +36,12 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
     _lastNameController.text =
         widget.user.userLastName == "null" ? "" : widget.user.userLastName;
     super.initState();
+  }
+  UserAddress address;
+  Future<String> _setAddress() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    address = UserAddress.fromJson(jsonDecode(prefs.getString("AddressPref")));
+    return address.addressFull;
   }
 
   @override
@@ -317,13 +327,26 @@ class _EditProfilePopupState extends State<EditProfilePopup> {
                         width: _width * 0.8,
                         height: 60,
                         alignment: Alignment.center,
-                        child: Text(
-                          "G -45/4 Kabul lines ,Delhi Cant, 110010",
-                          maxLines: 3,
-                          style: TextStyle(
-                              color: LightBlack.withOpacity(0.5), fontSize: 16),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        child: FutureBuilder(
+                            future: _setAddress(),
+                            builder: (context, val) {
+                              if (val.hasData &&
+                                  (!val.hasError)) {
+                                String res = val.data.toString();
+                                return Text(
+                                  res.substring(
+                                      0,
+                                      res.length > 60
+                                          ? 60
+                                          : res.length) +
+                                      "..",
+                                  style: TextStyle(
+                                      color:
+                                      Black.withOpacity(0.4)),
+                                );
+                              } else
+                                return Container(child: Text("Enter Address",style: TextStyle(color: LightBlack.withOpacity(0.5)),),);
+                            }),
                       )
                     ],
                   ),

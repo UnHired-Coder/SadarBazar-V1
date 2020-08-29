@@ -43,11 +43,11 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
               if (_scrollState != ScrollState.EXPANDED &&
                   _scrollState != ScrollState.BUSY)
                 {
-                  debugPrint("Show --"),
+//                  debugPrint("Show --"),
                   _scrollState = ScrollState.BUSY,
                   _animationController.reverse(),
                   Future.delayed(Duration(milliseconds: 200), () {
-                    debugPrint("Done");
+//                    debugPrint("Done");
                     _scrollState = ScrollState.EXPANDED;
                   }),
                 }
@@ -57,11 +57,11 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
               if (_scrollState != ScrollState.COLLAPSED &&
                   _scrollState != ScrollState.BUSY)
                 {
-                  debugPrint("Hide --"),
+//                  debugPrint("Hide --"),
                   _animationController.forward(),
                   _scrollState = ScrollState.BUSY,
                   Future.delayed(Duration(microseconds: 200), () {
-                    debugPrint("Done");
+//                    debugPrint("Done");
                     _scrollState = ScrollState.COLLAPSED;
                   }),
                 }
@@ -94,7 +94,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
               floating: true,
               snap: true,
               backgroundColor: Maroon,
-              expandedHeight: _height * 0.25,
+              expandedHeight: _height * 0.30,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -114,9 +114,7 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
               ),
               flexibleSpace: FlexibleSpaceBar(
                 background: Column(
-                  children: [
-                    CustomSilverBarCart()
-                  ],
+                  children: [CustomSilverBarCart()],
                 ),
               ),
             ),
@@ -143,10 +141,12 @@ class _CartScreenState extends State<CartScreen> with TickerProviderStateMixin {
             Consumer<CartViewModel>(builder: (context, cart, child) {
           return Transform.translate(
             offset: (cart.getLength() < 4)
-                ? Offset(0,0)
+                ? Offset(0, 0)
                 : Offset(0, _animationController.value),
             child: Transform.scale(
-              scale: (cart.getLength()<4)?1:1 - _animationController.value / 100,
+              scale: (cart.getLength() < 4)
+                  ? 1
+                  : 1 - _animationController.value / 100,
               child: InkWell(
                 onTap: () {
                   debugPrint("Proceed to Checkout");
@@ -232,19 +232,25 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
             child: Stack(
               children: [
                 Visibility(
-                  visible: cart.isEmpty(),
-                  child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.all(4),
-                    child: Text(
-                      "Your cart is empty!",
-                      style: TextStyle(
-                          color: White,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                    visible: cart.isEmpty(),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(4),
+                          child: Text(
+                            "Your cart is empty!",
+                            style: TextStyle(
+                                color: White,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )),
                 Visibility(
                   visible: !cart.isEmpty(),
                   child: Container(
@@ -255,6 +261,9 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                SizedBox(
+                                  height: 30,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -319,9 +328,6 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                               )
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
                         ),
                         Container(
                           height: 2,

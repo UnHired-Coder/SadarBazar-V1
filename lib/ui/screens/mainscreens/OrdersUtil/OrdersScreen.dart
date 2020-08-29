@@ -1,7 +1,10 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
+import 'package:bazar/models/Cart/Order/Order.dart';
+import 'package:bazar/ui/screens/mainscreens/OrdersUtil/OrderViewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class OrdersScreen extends StatefulWidget {
   @override
@@ -9,6 +12,13 @@ class OrdersScreen extends StatefulWidget {
 }
 
 class _OrdersScreenState extends State<OrdersScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    if (this.mounted) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -30,21 +40,51 @@ class _OrdersScreenState extends State<OrdersScreen> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            width: _width,
-            height: _height * 0.9,
-            color: FakeWhite,
-            margin: EdgeInsets.only(bottom: 4),
-            child: ListView.builder(
-              itemBuilder: (context, index) => ordersTile(_width, _height),
-              itemCount: 5,
-            ),
-          ),
+              width: _width,
+              height: _height * 0.9,
+              color: FakeWhite,
+              margin: EdgeInsets.only(bottom: 4),
+              child: Consumer<OrderViewModel>(builder: (context, cart, child) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    if (index == 0)
+                      return Container(
+                        height: _height * 0.2,
+                        width: _width,
+                        alignment: Alignment.center,
+                        child: Card(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    cart.totalOrders.toString() + " Orders",style: TextStyle(fontSize: 16),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+
+                    if (index == cart.orders.length + 1)
+                      return SizedBox(
+                        height: 100,
+                      );
+                    return ordersTile(
+                        cart.orders.elementAt(index - 1), _width, _height);
+                  },
+                  itemCount: cart.orders.length + 2,
+                );
+              })),
         ),
       ),
     );
   }
 
-  Widget ordersTile(double _width, double _height) {
+  Widget ordersTile(Order order, double _width, double _height) {
     return Card(
       margin: EdgeInsets.all(5),
       child: Column(
@@ -56,7 +96,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               children: [
                 Container(
                   child: Text(
-                    "23/02/20",
+                    order.dateStamp,
                     style: TextStyle(
                         color: LightBlack.withOpacity(0.5), fontSize: 14),
                   ),
@@ -73,11 +113,26 @@ class _OrdersScreenState extends State<OrdersScreen> {
             color: White,
             child: Row(
               children: [
-                Container(
-                  margin: EdgeInsets.all(2),
-                  width: _width * 0.25,
-                  height: _height * 0.15,
-                  color: FakeWhite,
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      width: _width * 0.25,
+                      height: _height * 0.15,
+                      child: Container(
+                        width: _width * 0.25,
+                        height: _height * 0.15,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  order.orderThumbUrl,
+                                  scale: 0.2,
+                                ),
+                                fit: BoxFit.contain)),
+                      ),
+                    )
+                  ],
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,7 +205,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 Container(
                                   width: _width * 0.4,
                                   child: Text(
-                                    "BMPCTK23324",
+                                    order.orderId,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -172,7 +227,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           ),
           Container(
             height: 2,
-            width: _width,
+            width: _width * 0.8,
             color: FakeWhite,
           ),
           SizedBox(
@@ -186,7 +241,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ),
               Container(
                 child: Text(
-                  "Paid Amount: ",
+                  "Total Amount: ",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -198,7 +253,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               Container(
                 width: _width * 0.4,
                 child: Text(
-                  "Rs 343.03/- ",
+                  "Rs " + order.orderTotal + "/- ",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -234,7 +289,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                   width: 5,
                 ),
                 Text(
-                  "Delivered",
+                  order.orderStatus,
                   style: TextStyle(
                       color: LightBlack,
                       fontWeight: FontWeight.bold,
