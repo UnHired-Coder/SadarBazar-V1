@@ -59,14 +59,18 @@ class _ShopItemHorizontalState extends State<ShopItemHorizontal> {
                     width: widget.width * 0.3,
                     height: widget.height,
                     padding: EdgeInsets.all(15),
-                    child: Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: White,
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    widget.productItem.productPictureUrl))),
-                      ),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: White,
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        widget.productItem.productPictureUrl))),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                   flex: 5,
