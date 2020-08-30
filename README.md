@@ -16,7 +16,7 @@ Flutter Ecommerce Application
 |![collage](https://user-images.githubusercontent.com/42827589/91656310-6f08c200-ead5-11ea-9568-413aed4ef593.jpg) | 
 | :-------------: | 
 
-### License
+### LICENSE
 ```
 MIT License
 
