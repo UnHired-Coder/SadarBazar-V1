@@ -30,43 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   bool _loading;
 
 //  final List<int> _scheme = [7,3,1,0,2,6,1,5,0,2,1,4,0,6,1,0,5];
-  final List<int> _scheme = [
-    3,
-    1,
-    0,
-    2,
-    6,
-    1,
-    5,
-    0,
-    2,
-    1,
-    4,
-    0,
-    6,
-    1,
-    0,
-    5,
-    3,
-    1,
-    0,
-    2,
-    6,
-    1,
-    5,
-    0,
-    2,
-    1,
-    4,
-    0,
-    2,
-    6,
-    1,
-    0,
-    2,
-    0,
-    5
-  ];
+  final List<int> _scheme = [3, 1, 0, 2, 6, 1, 5, 0, 2, 1, 4, 0, 6, 1, 0, 5, 3, 1, 0, 2, 6, 1, 5, 0, 2, 1, 4, 0, 2, 6, 1, 0, 2, 0, 5];
 
   @override
   void initState() {
