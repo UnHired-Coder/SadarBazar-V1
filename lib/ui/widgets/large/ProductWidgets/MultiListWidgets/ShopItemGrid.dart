@@ -51,7 +51,10 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                   children: [
                     Container(
                       height: 100,
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: color,
@@ -63,7 +66,10 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                             width: 4,
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.7,
                             padding: EdgeInsets.all(1),
                             child: Text(
                               "Checkout these Amazing products!!",
@@ -81,11 +87,12 @@ class _ShopItemGridState extends State<ShopItemGrid> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => CategoryResultsView(
-                                      category: widget.gridOfProducts[0]
-                                          .productCategoryName,
-                                      flag: false,
-                                    ),
+                                    builder: (context) =>
+                                        CategoryResultsView(
+                                          category: widget.gridOfProducts[0]
+                                              .productCategoryName,
+                                          flag: false,
+                                        ),
                                   ));
                             },
                             elevation: 0,
@@ -137,16 +144,28 @@ class _ProductGridItemState extends State<ProductGridItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height * 0.5,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * 0.9,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: White,
         border: Border.all(width: 0.1),
       ),
       child: Container(
-        height: MediaQuery.of(context).size.width * 0.4,
-        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery
+            .of(context)
+            .size
+            .width * 0.4,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.4,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -205,10 +224,11 @@ class _ProductGridItemState extends State<ProductGridItem> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ProductView(
-                productItem: widget.gridOfProducts.elementAt(index),
-                flag: false,
-              ),
+              builder: (context) =>
+                  ProductView(
+                    productItem: widget.gridOfProducts.elementAt(index),
+                    flag: false,
+                  ),
             ));
       },
       child: Stack(
@@ -217,8 +237,14 @@ class _ProductGridItemState extends State<ProductGridItem> {
           Container(
             padding: EdgeInsets.all(25),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.15,
-              width: MediaQuery.of(context).size.height * 0.15,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.15,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.15,
               alignment: Alignment.bottomCenter,
               margin: EdgeInsets.all(2),
               decoration: BoxDecoration(
@@ -232,13 +258,15 @@ class _ProductGridItemState extends State<ProductGridItem> {
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _text(widget.gridOfProducts.elementAt(index).productName, true),
+              _text(widget.gridOfProducts
+                  .elementAt(index)
+                  .productName, true),
               Container(
                 child: _text(
                     widget.gridOfProducts
-                            .elementAt(index)
-                            .productDiscount
-                            .toString() +
+                        .elementAt(index)
+                        .productDiscount
+                        .toString() +
                         "% Off",
                     false),
               )
@@ -253,7 +281,10 @@ class _ProductGridItemState extends State<ProductGridItem> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(color: FakeWhite),
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width * 0.3,
       padding: EdgeInsets.all(2),
       child: Text(
         text,

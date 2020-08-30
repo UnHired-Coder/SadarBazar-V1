@@ -236,7 +236,7 @@ class _CustomSilverBarCartState extends State<CustomSilverBarCart> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 30,
+                          height: 40,
                         ),
                         Container(
                           alignment: Alignment.center,

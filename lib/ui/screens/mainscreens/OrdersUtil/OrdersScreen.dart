@@ -60,7 +60,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    cart.totalOrders.toString() + " Orders",style: TextStyle(fontSize: 16),
+                                    cart.orders.length.toString() + " Orders",
+                                    style: TextStyle(fontSize: 16),
                                   )
                                 ],
                               )
@@ -130,6 +131,28 @@ class _OrdersScreenState extends State<OrdersScreen> {
                                   scale: 0.2,
                                 ),
                                 fit: BoxFit.contain)),
+                        child: (order.orderedProducts.length <= 1)
+                            ? Container()
+                            : Stack(
+                                alignment: Alignment.bottomRight,
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    color: LightBlack.withOpacity(0.2),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.all(5),
+                                    child: Text(
+                                      "+"+order.orderCount,
+                                      style: TextStyle(
+                                          fontSize: 30,
+                                          color: Maroon.withOpacity(1),
+                                          fontWeight: FontWeight.bold,),
+                                    ),
+                                  )
+                                ],
+                              ),
                       ),
                     )
                   ],
