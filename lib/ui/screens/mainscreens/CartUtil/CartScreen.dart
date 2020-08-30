@@ -10,6 +10,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
+
+
+  final Function tabCallBack;
+  CartScreen({this.tabCallBack});
+
   @override
   _CartScreenState createState() => _CartScreenState();
 }

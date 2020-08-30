@@ -18,6 +18,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'OrdersUtil/OrdersScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
+
+
+  final Function tabCallBack;
+  ProfileScreen({this.tabCallBack});
+
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }

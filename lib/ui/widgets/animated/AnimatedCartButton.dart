@@ -1,5 +1,6 @@
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/ui/screens/mainscreens/CartUtil/CartViewModel.dart';
+import 'package:bazar/ui/screens/mainscreens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +56,8 @@ class _AnimatedCartButtonState extends State<AnimatedCartButton>
           splashColor: Colors.transparent,
           onTap: () {
             debugPrint("Cart Icon Tapped");
-//            widget.cartButtonCallback();
+            if(widget.cartButtonCallback!=null)
+            widget.cartButtonCallback();
           },
           child: Stack(
             alignment: Alignment.bottomLeft,

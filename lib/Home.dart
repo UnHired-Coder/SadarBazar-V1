@@ -175,7 +175,7 @@ class _HomeState extends State<Home>with SingleTickerProviderStateMixin {
     return new TabBarView(
       controller: _tabsController,
 //      key: new PageStorageKey("asasasas"),
-      children: [HomeScreen(), EasyFindScreen(), CartScreen(), ProfileScreen()],
+      children: [HomeScreen(tabCallBack: (){_tabsController.animateTo(2);},), EasyFindScreen(), CartScreen(), ProfileScreen()],
     );
   }
 

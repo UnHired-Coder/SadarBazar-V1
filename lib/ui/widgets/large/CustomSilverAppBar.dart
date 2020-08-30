@@ -63,16 +63,19 @@ class _CustomSilverAppBarState extends State<CustomSilverAppBar> {
 //////////////////////
 
 class ProductSearch extends SearchDelegate<String> {
-  List<String> _suggestions = [" pasta", " maggie", " potato", "tomato"];
+  List<String> _suggestions = [
+    "Amul shek",
+    "Amul Butter Masti",
+    "Amul Cream",
+    "Power Bank",
+    "Pants",
+  ];
   List<String> _result = [
-    " pasta",
-    " maggie",
-    " pasta",
-    " maggie",
-    " pasta",
-    " salt",
-    " potato",
-    "tomato"
+    "Amul shek",
+    "Amul Butter Masti",
+    "Amul Cream",
+    "Power Bank",
+    "Pants",
   ];
   List<String> suggestions = [];
 
@@ -115,7 +118,9 @@ class ProductSearch extends SearchDelegate<String> {
                 ? ListView.builder(
                     itemCount: suggestions.length,
                     itemBuilder: (context, index) => ListTile(
-                          onTap: () {},
+                          onTap: () {
+                            query =suggestions[index];
+                          },
                           leading: Icon(
                             FontAwesomeIcons.longArrowAltUp,
                             color: LightBlack,
@@ -171,20 +176,21 @@ class ProductSearch extends SearchDelegate<String> {
     return FutureBuilder(
         future: ProductLoaderUtil.getSearchResults(context, query),
         builder: (context, val) {
-          if(val.hasData && (!val.hasError))
-          return SearchResultsView(
-            products: val.data,
-            searchCallBack: _searchCallBack,
-          );
-          else return  Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.5,
-            child: CircularProgressIndicator(
-              backgroundColor: Maroon,
-              strokeWidth: 2,
-            ),
-            alignment: Alignment.center,
-          );
+          if (val.hasData && (!val.hasError))
+            return SearchResultsView(
+              products: val.data,
+              searchCallBack: _searchCallBack,
+            );
+          else
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: CircularProgressIndicator(
+                backgroundColor: Maroon,
+                strokeWidth: 2,
+              ),
+              alignment: Alignment.center,
+            );
         });
   }
 
@@ -219,8 +225,8 @@ class ProductSearch extends SearchDelegate<String> {
     return results;
   }
 
-  _searchCallBack(context,String q) async{
-     query = q;
-     showResults(context);
+  _searchCallBack(context, String q) async {
+    query = q;
+    showResults(context);
   }
 }

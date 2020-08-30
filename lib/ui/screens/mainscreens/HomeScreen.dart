@@ -11,6 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
+
+  final Function tabCallBack;
+  HomeScreen({this.tabCallBack});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -243,7 +247,9 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 AnimatedCartButton(
-                  cartButtonCallback: () {},
+                  cartButtonCallback: () {
+                     widget.tabCallBack();
+                  },
                 ),
                 AnimatedNotificationButton(),
               ],

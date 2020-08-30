@@ -13,6 +13,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class EasyFindScreen extends StatefulWidget {
+
+  final Function tabCallBack;
+  EasyFindScreen({this.tabCallBack});
+
   @override
   _EasyFindScreenState createState() => _EasyFindScreenState();
 }
