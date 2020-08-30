@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bazar/assets/colors/ThemeColors.dart';
 import 'package:bazar/models/TestModels/_ProductItem.dart';
 import 'package:bazar/models/TestModels/_ProductMetaData.dart';
@@ -29,6 +31,10 @@ class _ProductViewState extends State<ProductView>
 
   Future getSimilarProductsFuture;
   Future getPopularProductsFuture;
+  ValueNotifier<int> unitSelected;
+
+  var rng = new Random();
+  List<int> l = [];
 
   @override
   void initState() {
@@ -39,6 +45,8 @@ class _ProductViewState extends State<ProductView>
         context, widget.productItem.productCategoryName);
     getPopularProductsFuture = ProductLoaderUtil.getPopularProducts(
         context, widget.productItem.productCategoryName);
+    unitSelected = new ValueNotifier(0);
+    l = new List.generate(5, (_) => rng.nextInt(80) + 10);
     super.initState();
   }
 
@@ -46,17 +54,16 @@ class _ProductViewState extends State<ProductView>
     await ProductLoaderUtil.getProductMetadata(
             context, widget.productItem.productId)
         .then((value) {
-          if(this.mounted)
-         setState(() {
-        _productMetaData = value;
-      });
+      if (this.mounted)
+        setState(() {
+          _productMetaData = value;
+        });
 //      debugPrint(value.highlightsPoints.toString());
     }).then((value) {
-
-      if(this.mounted)
-      setState(() {
-        _loading = false;
-      });
+      if (this.mounted)
+        setState(() {
+          _loading = false;
+        });
     });
     return;
   }
@@ -219,30 +226,40 @@ class _ProductViewState extends State<ProductView>
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
                                 List<String> _list = ["1", "3", "5"];
-                                return InkWell(
-                                  onTap: () {
-                                    debugPrint("Unit Index " +
-                                        _list[index] +
-                                        unitType[widget.productItem
-                                            .productUnitType.index]);
+                                return ValueListenableBuilder(
+                                  valueListenable: unitSelected,
+                                  builder: (context, hasError, val) {
+                                    return InkWell(
+                                        onTap: () {
+                                          debugPrint("Unit Index " +
+                                              _list[index] +
+                                              unitType[widget.productItem
+                                                  .productUnitType.index]);
+                                          unitSelected.value = index;
+                                        },
+                                        child: Container(
+                                          width: 50,
+                                          height: 40,
+                                          margin: EdgeInsets.only(
+                                              left: 4, right: 4),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Orange,
+                                                  width: (unitSelected.value ==
+                                                          index)
+                                                      ? 1.4
+                                                      : 0.4)),
+                                          child: Text(
+                                            _list[index] +
+                                                " " +
+                                                unitType[widget.productItem
+                                                    .productUnitType.index],
+                                            style: TextStyle(
+                                                fontSize: 14, color: Orange),
+                                          ),
+                                        ));
                                   },
-                                  child: Container(
-                                    width: 50,
-                                    height: 40,
-                                    margin: EdgeInsets.only(left: 4, right: 4),
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Orange, width: 0.4)),
-                                    child: Text(
-                                      _list[index] +
-                                          " " +
-                                          unitType[widget.productItem
-                                              .productUnitType.index],
-                                      style: TextStyle(
-                                          fontSize: 14, color: Orange),
-                                    ),
-                                  ),
                                 );
                               }),
                         )
@@ -274,7 +291,7 @@ class _ProductViewState extends State<ProductView>
                   Container(
                       alignment: Alignment.centerLeft,
                       width: _width,
-                      height: _height*0.5,
+                      height: _height * 0.6,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -322,7 +339,6 @@ class _ProductViewState extends State<ProductView>
                           Expanded(
                             child: Container(
                               width: _width,
-                              height: _height * 0.1,
                               child: TabBarView(
                                   physics: NeverScrollableScrollPhysics(),
                                   controller: _tabController,
@@ -346,8 +362,94 @@ class _ProductViewState extends State<ProductView>
                           Expanded(
                             child: Container(
                               width: _width,
-//                              height: _height * 0.6,
-                              color: Maroon,
+                              decoration: BoxDecoration(
+                                  color: White,
+                                  border: Border.all(
+                                      color: LightBlack, width: 0.1)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        width: 100,
+//                                        color: FakeWhite,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              (_productMetaData.rating)
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  color: Orange,
+                                                  fontSize: 60,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                          height: 40,
+                                          width: 100,
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                FontAwesomeIcons.userAlt,
+                                                size: 10,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                ((l[0]+l[1]+l[2]+l[3]+l[4])
+                                                        .toString() +
+                                                    " Reviews"),
+                                                style: TextStyle(
+                                                    color:
+                                                        LightBlack.withOpacity(
+                                                            0.5),
+                                                    fontSize: 14),
+                                              ),
+                                            ],
+                                          )),
+                                    ],
+                                  ),
+                                  Expanded(
+                                      child: Container(
+                                    color: White,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        _ratingWidget(Colors.green, 5),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        _ratingWidget(Colors.lightGreen, 4),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        _ratingWidget(Colors.yellow, 3),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        _ratingWidget(Colors.orange, 2),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        _ratingWidget(Colors.red, 1),
+                                      ],
+                                    ),
+                                  ))
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -537,8 +639,7 @@ class _ProductViewState extends State<ProductView>
         ),
       ));
     }
-    if(_items.length>4)
-      _items = _items.sublist(0,4);
+    if (_items.length > 4) _items = _items.sublist(0, 4);
     return Container(
         color: White,
         child: Column(
@@ -575,8 +676,7 @@ class _ProductViewState extends State<ProductView>
       ));
     }
 
-    if(_items.length>4)
-      _items = _items.sublist(0,4);
+    if (_items.length > 4) _items = _items.sublist(0, 4);
     return Container(
         color: White,
         child: Column(
@@ -660,6 +760,70 @@ class _ProductViewState extends State<ProductView>
           ),
         ],
       ),
+    );
+  }
+
+  Widget _ratingWidget(Color color, int star) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 5,
+        ),
+        Row(
+          children: [
+            Text(
+              star.toString(),
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              width: 2,
+            ),
+            Icon(
+              Icons.star,
+              color: Colors.yellow,
+              size: 12,
+            )
+          ],
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        Container(
+            height: 4,
+            width: 120,
+            child: Row(
+              children: [
+                Container(
+                    height: 4,
+                    width: (l[star - 1]).toDouble(),
+                    decoration: BoxDecoration(
+                        color: color, borderRadius: BorderRadius.circular(12))),
+              ],
+            )),
+        SizedBox(
+          width: 5,
+        ),
+        Row(
+          children: [
+            Text(
+              (l[star - 1].toString()),
+              style:
+                  TextStyle(color: LightBlack.withOpacity(0.5), fontSize: 10),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+            Icon(
+              FontAwesomeIcons.userAlt,
+              size: 8,
+            )
+          ],
+        ),
+        SizedBox(
+          width: 5,
+        ),
+      ],
     );
   }
 }
