@@ -3,6 +3,24 @@
 Flutter Ecommerce Application
 ![Sadar  बाजार](https://user-images.githubusercontent.com/42827589/91656068-441d6e80-ead3-11ea-9081-77cd503f2a48.png)
 
+### Features
+
+| Search, Buy, Add to Cart, Order Products | 
+| :-------------: | 
+
+| Product suggestion, Search suggestion | 
+| :-------------: | 
+
+| View Ratings, Description, Order Status, Stock status, Change Quantity | 
+| :-------------: |
+
+| Filter/View By  Category, Type, Trending| 
+| :-------------: |
+
+| Track Orders, Map based Location auto fetch, Wallet, Favourites| 
+| :-------------: |
+
+
 ### Screens
 | ![collage (3)](https://user-images.githubusercontent.com/42827589/91656293-4b457c00-ead5-11ea-8bd7-f611ad4882ef.jpg) | 
 | :-------------: | 
